@@ -11,8 +11,12 @@ $(function() {
 			name: "David",
 			age:8,
 			budget: 50}
+	annie = {id: "three",
+			name: "Annie",
+			age: 22,
+			budget: 1000}
 
-	var children = [john, david];
+	var children = [john, david, annie];
 	var firstItem = true;
 	var offset;
 	children.forEach(function(child){
@@ -21,10 +25,12 @@ $(function() {
 		if(firstItem){
 			offset="col-md-offset-2";
 			firstItem = false;
+		}else{
+			firstItem = true;
 		}
 		$("#profiles").append(
 			'<div class = "col-sm-6 col-md-4 '+offset+'" id="'+child.id+'">'+
-		      '<div class = "thumbnail">'+
+		      '<div class = "thumbnail profile">'+
 		         '<img src = "../images/cute cat.jpg" alt = "Generic placeholder thumbnail">'+
 		      '</div>'+
 		      
