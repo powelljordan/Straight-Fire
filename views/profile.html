@@ -41,5 +41,45 @@
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
+
+		<!-- end of nav bar and start of actual code -->
+		<div class="col-md-4">
+			<h1> David </h1>
+			<br>
+			<img id="image" text0align ="left" src="../images/boyAvatar.jpg">
+		</div>
+
+		<div class="col-md-6">
+			Name:
+			<input type="text" name="name">
+			<br><br>
+			Age:
+			<input type="text" name="age">
+			<br><br>
+			Interests:
+			<input type="text" name="interests">
+			<br><br>
+		</div>
+
+		<form name="myform"> 
+			<input type="button" onClick="save();" value="Save">
+			<br>
+			<textarea name="text_area" id="text_area_id" rows="14" cols="40"></textarea> 
+		</form> 
+
+		<!-- JavaScript -->
+		<script language="javascript" type="text/javascript">
+
+			function save() 
+			{ 
+			val = document.myform.text_area.value; 
+			mydoc = document.open(); 
+			mydoc.write(val); 
+			mydoc.execCommand("saveAs",true,".txt"); //you can change the .txt to your extention
+			history.go(-1);
+			} 
+
+		</script>
+
 	</body>
 </html>
