@@ -8,5 +8,11 @@
 }
 
 .profile{
-	
+
+}
+
+
+.list-group{
+    max-height: 27em;
+    overflow-y:scroll; 
 }
