@@ -15,7 +15,7 @@ $(function() {
 			notes:"",
 			reviews:[{
 				summary:"ok",
-				content:"ok",
+				content:"it was ok",
 				author:"jojoy",
 				author_desc:"",
 				rating:5
@@ -241,14 +241,12 @@ $(function() {
 	}
 
 	var fillStars = function(rating) {
-		console.log(rating);
 		$(".shaded-star").each(function(index, elem) {
 			$(this).removeClass('filled');
 			$(this).addClass('unused-star');
 		});
 		resetWidths();
 		var num_full_stars = Math.floor(rating);
-		console.log("num full", num_full_stars);
 		for (var i = 0; i < num_full_stars; i++) {
 			$("#shaded-star-"+i).removeClass('unused-star');
 			$("#shaded-star-"+i).addClass('filled');
@@ -256,11 +254,27 @@ $(function() {
 		}
 		if (num_full_stars < 5 && num_full_stars != rating) {
 			var ratio_width = (rating - num_full_stars)*20.0;
-			console.log("ratio_width", ratio_width);
 			$("#shaded-star-"+num_full_stars).removeClass('unused-star');
 			$("#shaded-star-"+num_full_stars).addClass('half-star');
 			$("#shaded-star-"+num_full_stars).css({width:ratio_width});
 		}
+	}
+
+	var parseChild = function(input_str) {
+		var name = input_str.split('=')[1];
+		if (!name) {
+			$(".navbar-right").html('<li><a href="#" role="botton">Choose child</a></li>');
+			return;
+		}
+		$("#nav-bar-dropdown").text(name);
+		var found = false;
+		$("#wishlist-dropdown-menu li a").each(function(index,elem){
+			if (elem.text == name) found = true;
+		});
+		if (!found) {
+			$("#wishlist-dropdown-menu").append('<li><a href="#">'+name+'</a></li>');
+		}
+		$("#wishlist-dropdown").html(name+' <span class="caret"></span>');
 	}
 
 	for (var i = 0; i < data.length; i++) {
@@ -270,6 +284,8 @@ $(function() {
 	    var caption_text = '<div class = "caption"> <h4 class="sub">' + d.name + '</div>';
 		$("#search-content").append(div_text + img_text + caption_text + '</div></div>');
 	}
+
+	parseChild(location.search);
 
 	$(".item-wrapper").click(function(event) {
 		var index = parseInt(event.toElement.id.split("-")[2]);
@@ -293,6 +309,7 @@ $(function() {
 		}
 		$("#reviews-body").html(reviews_str);
 		$("#modal-buttons").data("url", data[index].url);
+		$("#myModal").data("index", index);
 
 		$("#rating-number").text(data[index].rating+"/5");
 		fillStars(data[index].rating);
@@ -305,7 +322,6 @@ $(function() {
 	$("#wishlist-dropdown-menu li a").click(function(event) {
 		var selected = $(this).text();
 		$(this).parents('.btn-grouping').find('.dropdown-toggle').html(selected+' <span class="caret"></span>');
-
 	});
 
 	$("#wishlist-add").click(function(event) {

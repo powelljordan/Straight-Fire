@@ -11,7 +11,7 @@ $(function() {
 			name: "David",
 			age:8,
 			budget: 50}
-	annie = {id: "three",
+	annie = {id: "Three",
 			name: "Annie",
 			age: 22,
 			budget: 1000}
@@ -20,7 +20,7 @@ $(function() {
 	var firstItem = true;
 	var offset;
 	children.forEach(function(child){
-		console.log(firstItem);
+		// console.log(firstItem);
 		offset = "";
 		if(firstItem){
 			offset="col-md-offset-2";
@@ -29,29 +29,62 @@ $(function() {
 			firstItem = true;
 		}
 		$("#profiles").append(
-			'<div class = "col-sm-6 col-md-4 '+offset+'" id="'+child.id+'">'+
-		      '<div class = "thumbnail profile">'+
-		         '<img src = "../images/cute cat.jpg" alt = "Generic placeholder thumbnail">'+
-		      '</div>'+
-		      
-		      '<div class = "caption">'+
-		         '<p class="home-profile-text">Name: <span class="name"></span></p>'+
-		         '<p class="home-profile-text">Age: <span class="age "></span></p>'+
-		         '<p class="home-profile-text">Budget: <span class="budget"></span></p>'+
-		         '<p>'+
-		            '<a href = "#" class = "btn btn-default" role = "button">'+
-		               'ToyChest'+
-		            '</a> '+
-		            '<a href = "#" class = "btn btn-default" role = "button">'+
-		               'Wishlist'+
-		            '</a>'+
-		         '</p>'+
-		      '</div>'+
+			'<div class = "profile col-sm-6 col-md-4 '+offset+'" id="'+child.id+'">'+
+				'<div class="panel">'+
+			      '<div class = "thumbnail">'+
+			         '<img src = "../images/cute cat.jpg" alt = "Generic placeholder thumbnail">'+
+			      '</div>'+
+			      
+			      '<div class = "caption">'+
+			         '<p class="home-profile-text">Name: <span class="name"></span></p>'+
+			         '<p class="home-profile-text">Age: <span class="age "></span></p>'+
+			         '<p class="home-profile-text">Budget: <span class="budget"></span></p>'+
+			       '</div><div class="btn-wrapper">'+
+			            '<a href = "#" class = "btn btn-default" role = "button">'+
+			               'ToyChest'+
+			            '</a> '+
+			            '<a href = "#" class = "btn btn-default" role = "button">'+
+			               'Wishlist'+
+			            '</a>'+
+			            '<a href="shopping.html?name='+child.name+'" id="btn-start-shopping" class="btn btn-default" role = "button">' + 
+			            	'<span class = "glyphicon glyphicon-shopping-cart"></span> Start Shopping'+
+			            '</a>' +	            
+			      '</div>'+
+			     '</div>'+
 		   	'</div>'
 			)
 		$("#"+child.id).find(".caption").find(".home-profile-text").find(".name").text(child.name);
 		$("#"+child.id).find(".caption").find(".home-profile-text").find(".age").text(child.age);
 		$("#"+child.id).find(".caption").find(".home-profile-text").find(".budget").text(child.budget);
 	});
+
+	$(".profile").click(function(event){
+		// console.log(event.target);
+		if (event.target.classList[0] == "btn") return;
+		var profile = event.target.parentElement;
+		if (profile.classList[0] != 'profile') {
+			profile = profile.parentElement;
+		}
+		var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
+		window.location.href = "profile.html?name="+child.name+"&age="+child.age;
+	});
+
+	$("#btn-new-profile").click(function(event) {
+		$("#new-profile-modal").modal('show');
+	});
+
+	$("#btn-create-profile").click(function(event) {
+		var name = $("#create-name").val();
+		var age = $("#create-age").val();
+		var interests = $("#create-interests").val();
+		if (name == "" || age == "") {
+			alert("Please fill out Name and Age.");
+		} else {
+			window.location.href = "profile.html?name="+name+"&age="+age+"&interests="+interests;
+			$("#create-profile-form").find('.form-group').find('input').each(function(index, elem){
+				($(elem)).val('');
+			});
+		}
+	})
 	
 });

@@ -4,15 +4,69 @@
 }
 
 .home-profile-text{
-	font-size: 2em;
+	font-size: 1.8em;
+	pointer-events:none;
 }
 
 .profile{
+	cursor:pointer;
+}
 
+.btn-circle{
+	border-radius:50% !important;
 }
 
 
 .list-group{
     max-height: 27em;
     overflow-y:scroll; 
+}
+
+.panel {
+	border: 1px solid #ddd;
+	/*pointer-events:none;*/
+}
+
+.thumbnail{
+	pointer-events:none;
+}
+
+.caption {
+	padding-left:10px;
+	padding-right:10px;
+	text-align:center;
+	pointer-events:none;
+}
+
+.btn-wrapper{
+	text-align:center;
+	margin:10px;
+}
+
+#title{
+	text-align:center;
+	font-size:5em;
+}
+
+#btn-start-shopping{
+	margin-left:5px;
+}
+
+#btn-donate{
+	margin-top:2px;
+}
+
+#btn-new-profile{
+	border:3px solid #999;
+	color:#999;
+	margin:25px;
+	position:fixed;
+	bottom:0;
+	right:0;
+	height:60px;
+	width:60px;
+}
+
+#create-profile-modal-footer{
+	text-align:center;
 }
