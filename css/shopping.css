@@ -149,3 +149,7 @@ body.modal-open {
 .child-card {
 	cursor:pointer;
 }
+
+#choose-child-body{
+	height:300px;
+}

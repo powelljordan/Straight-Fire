@@ -296,7 +296,7 @@ $(function() {
 		var elem = $("#"+event.toElement.id);
 		var src = elem.find(".panel").find(".thumbnail").find("img").attr("src");
 		$("#modal-thumbnail").html("<img src='" + src +"'</div>");
-		$(".modal-title").text(elem.find(".caption").text());
+		$(".item-title").text(elem.find(".caption").text());
 		$("#modal-price").text("$"+data[index].price);
 		$("#seller").text(data[index].seller);
 		(data[index].description.length < 200) ? $("#description").text(data[index].description) : $("#description").html(data[index].description.slice(0,200) + "... <a href='" + data[index].url + "' target='_blank'>Read more</a>");
