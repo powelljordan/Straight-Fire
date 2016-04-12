@@ -56,22 +56,6 @@
 			  margin-left: 10px;
 			}
 
-			.inline {
-				display: inline-block;
-			}
-
-			.toyChestImage { 
-			   position: relative; 
-			   height: 150px;
-			   background-image: url(../images/toyChest.jpg);
-			   background-size: cover;
-			}
-
-			h2 { 
-			   position: absolute; 
-			   height: 50px;
-			   width: ; 
-			}
 
 			/* Bootstrap icon colors */
 			.blue {
@@ -107,21 +91,24 @@
 			<div>
 			<div>
 				Name:
-				<input type="text" id="nameField" placeholder="First and last name" onClick="this.select()">
+				<span id="nameField-span">David</span>
+				<input type='text' id='nameField-input' onClick='this.select()' placeholder='First and last name'>
 				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editName()"></span>
 			</div>
-			<br>
+			<br><br>
 			<div>
 				Age:
-				<input type="text" id="ageField" placeholder="Numerical value">
+				<span id="ageField-span">8</span>
+				<input type='text' id='ageField-input' onclick='this.select()' placeholder='Numerical value'>
 				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editAge()"></span>
 			</div>
-			<br>
+			<br><br>
 			<div>
 				Interests:
-				<input type="text" id="interestsField" placeholder="Add one interest at a time">
-				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editInterest()"></span>
-				<span class="glyphicon glyphicon-plus green" height="50" onClick="addInterest()" id="addIcon"></span>
+				<span id="interestsField-span">Star Wars</span>
+				<input type='text' id='interestsField-input' onclick='this.select()' placeholder='Add one interest at a time'>
+				<span id="interestsPencil" class="glyphicon glyphicon-pencil blue" height="50" onClick="editInterest()"></span>
+				<span class="glyphicon glyphicon-plus green" height="50" onClick="addInterest()"></span>
 				<br>
 					<!-- list of interests -->
 					<table id="interestsTable" class='alnright' border="0">
@@ -135,23 +122,25 @@
 		<!-- JavaScript -->
 		<script language="javascript" type="text/javascript">
 
+			$("#nameField-input").css({display:"None"});
+			$("#ageField-input").css({display:"None"});
+			$("#interestsField-input").css({display:"None"});
+
 			// save button
 			function save() {
 				// make input text into solid text
-				if (document.getElementById('nameField').tagName == 'INPUT') {
-					var newName = String(document.getElementById('nameField').value);
-					$( "#nameField" ).replaceWith("<div id='nameField'>" + newName + "</div>");
+				if (document.getElementById('nameField-input').tagName == 'INPUT') {
+					var newName = String(document.getElementById('nameField-span').value);
+					$( "#nameField-input" ).replaceWith("<span id='nameField-span'>" + newName + "</span>");
 				} 
-				if (document.getElementById('ageField').tagName == 'INPUT'){
-					var newAge = String(document.getElementById('ageField').value);
-					$( "#ageField" ).replaceWith("<div id='ageField'>" + newAge + "</div>");
+				if (document.getElementById('ageField-input').tagName == 'INPUT'){
+					var newAge = String(document.getElementById('ageField-span').value);
+					$( "#ageField-input" ).replaceWith("<span id='ageField-span'>" + newAge + "</span>");
 				} 
-				if(document.getElementById('interestsField').tagName == 'INPUT') {
-					var newInterest = String(document.getElementById('interestsField').value);
-					$( "#interestsField" ).replaceWith("<div id='interestsField'>" + newInterest + "</div>");
-					// remove add icon
-					$( "#addIcon" ).remove();
-					// remove delete icon
+				if(document.getElementById('interestsField-input').tagName == 'INPUT') {
+					var newInterest = String(document.getElementById('interestsField-span').value);
+					$( "#interestsField-input" ).replaceWith("<span id='interestsField-span'>" + newInterest + "</span>");
+					// remove delete icons
 					var deleteIcons = document.getElementsByClassName('glyphicon glyphicon-remove red');
 					while(deleteIcons[0]) {
 						deleteIcons[0].parentNode.removeChild(deleteIcons[0]);
@@ -162,29 +151,38 @@
 
 			// editing form fields
 			function editName() {
-				var newName = String(document.getElementById('nameField').innerHTML);				
+				var newName = $("#nameField-span").text();		
 				// make solid text into input text
-				$( "#nameField" ).replaceWith("<input type='text' id='nameField' onClick='this.select()' value=" + newName + ">");
-				$( "#nameField" ).select();
-			}
+				$("#nameField-span").css({display:"none"});
+				$("#nameField-input").css({display:"inline-block"});
+				$("#nameField-input").val(newName);
+				$("#nameField-input").select();
+			} 
 
 			function editAge() {
-				var newAge = String(document.getElementById('ageField').innerHTML);
-				$( "#ageField" ).replaceWith("<input type='text' id='ageField' onclick='this.select()' value=" + newAge + ">");
-				$( "#ageField" ).select();
+				var newAge = $("#ageField-span").text();
+				// make solid text into input text
+				$("#ageField-span").css({display:"none"});
+				$("#ageField-input").css({display:"inline-block"});
+				$("#ageField-input").val(newAge);
+				$("#ageField").select();
 			}
 
 			function editInterest() {
-				var newInterest = String(document.getElementById('interestsField').innerHTML);
-				$( "#interestsField" ).replaceWith("<input type='text' id='interestsField' onclick='this.select()' value=" + newInterest + ">");
-				$( "#interestsField" ).select();
+				var newInterest = $("#interestsField-span").text();
+				// make solid text into input text
+				$("#interestsField-span").css({display:"none"});
+				$("#interestsField-input").css({display:"inline-block"});
+				$("#interestsField-input").val(newInterest)
+				$("#interestsField").select();
 			}
 
 
 			// functions for interests field
 			
 			// add an interest with enter key press
-			$("#interestsField").keyup(function(event){
+			$("#interestsField-input").keyup(function(event){
+				console.log("here", event.keyCode);
 			    if(event.keyCode == 13){
 			        addInterest();
 			    }
@@ -193,7 +191,7 @@
 			// for the add interest plus button
 			function addInterest() {
 				// get new interest
-				var newInterest = String(document.getElementById('interestsField').value);
+				var newInterest = String(document.getElementById('interestsField-input').value);
 				// make sure an interest is entered
 				if (newInterest) {
 					// insert new row
@@ -204,7 +202,7 @@
 		   			col3 = $("<td style='width:100px'><span class='glyphicon glyphicon-remove red' height='50' onClick='deleteInterest(this)''></span></td>");
 		   			// prepend new interest to top of list
 		   			row.append(col1,col2,col3).prependTo("#interestsTable");
-		   			document.getElementById('interestsField').value = "";
+		   			document.getElementById('interestsField-input').value = "";
 				}
 			}
 
