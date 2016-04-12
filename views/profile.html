@@ -5,6 +5,8 @@
 		<link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.min.css"/>
 		<script src="../jquery/js/jquery-1.12.3.min.js"></script>
 		<script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/profile.css" />
 	</head>
 	<body>
 		<nav class="navbar navbar-default">
@@ -28,14 +30,15 @@
 		        <li><a href="shopping.html">Shopping</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventories<span class="caret"></span></a>
+		        <li id="name-present" class="dropdown">
+		          <a id="nav-bar-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventories<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="#">Wishlist</a></li>
 		            <li><a href="#">ToyChest</a></li>
 		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Change child</a></li>
+		            <li><a class="btn-choose-child" href="#">Change child</a></li>
 		          </ul>
+		          <li id="name-not-present"><a class="btn-choose-child" href="#" role="botton">Choose child</a></li>
 		        </li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
@@ -43,193 +46,104 @@
 		</nav>
 
 		<!-- end of nav bar and start of actual code -->
-		
-		<!-- CSS STYLING -->
-		<style type ="text/css">
 
-			.ad-left {
-			  float: left;
-			}
-			 
-			.ad-right {
-			  float: right;
-			  margin-left: 10px;
-			}
-
-
-			/* Bootstrap icon colors */
-			.blue {
-				color: blue;
-			}
-
-			.green {
-				color: green;
-			}
-
-			.red {
-				color: red;
-			}
-
-		</style>
-
-		<div class="col-sm-6">
+		<div class="col-md-offset-2 col-md-4">
 			<table>
-				<tr align="center"><td><div>
-					<h1> David </h1>
-					<img id="avatarImage" src="../images/boyAvatar.jpg"><br><br>
-				</div></td></tr>
-				<tr align="center"><td>
+				<tr align="center">
+					<td>
+						<div>
+							<h1 id="name">David</h1>
+							<div class="thumbnail">
+							<img id="avatarImage" src="../images/cute cat.jpg">
+							</div>
+							<div class="btn-wrapper">
+								<button class="btn btn-default">Wishlist</button>
+								<button id="btn-start-shopping" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Start Shopping</button>
+							</div>
+						</div>
+					</td>
+				</tr>
+			<tr align="center">
+				<td>
 					<input type="image" src="../images/toyChest.jpg" onClick="viewToyChest()">
-				</td></tr>
+				</td>
+			</tr>
 			</table> <!-- end of first half of page -->
 		</div>
 
 
-		<div class="col-sm-6">
-			<div>
-				<input type="image" src="../images/startShopping.png" height="50" onClick="startShopping()" align="right">
-			<div>
-			<div>
-				Name:
-				<span id="nameField-span">David</span>
+		<div class="col-md-6">
+			<table id='profile-table'>
+			<tr class="space-under">
+				<td class='first-col'><label>Name:</label></td>
+				<td><span id="nameField-span" class="form-span edit-name">David</span>
 				<input type='text' id='nameField-input' onClick='this.select()' placeholder='First and last name'>
-				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editName()"></span>
-			</div>
-			<br><br>
-			<div>
-				Age:
-				<span id="ageField-span">8</span>
-				<input type='text' id='ageField-input' onclick='this.select()' placeholder='Numerical value'>
-				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editAge()"></span>
-			</div>
-			<br><br>
-			<div>
-				Interests:
-				<span id="interestsField-span">Star Wars</span>
+				<span class="glyphicon glyphicon-pencil blue edit-name" height="50"></span>
+				</td>
+			</tr>
+			<tr class="space-under">
+				<td><label>Age:</label></td>
+				<td><span id="ageField-span" class="form-span edit-age">8</span>
+				<input type='number' id='ageField-input' onclick='this.select()' placeholder='Numerical value'>
+				<span class="glyphicon glyphicon-pencil blue edit-age" height="50"></span>
+				</td>
+			</tr>
+			<tr class="space-under">
+				<td><label>Interests:</label></td>
+				<td><span id="interestsField-span" class="form-span edit-interests"></span>
 				<input type='text' id='interestsField-input' onclick='this.select()' placeholder='Add one interest at a time'>
-				<span id="interestsPencil" class="glyphicon glyphicon-pencil blue" height="50" onClick="editInterest()"></span>
-				<span class="glyphicon glyphicon-plus green" height="50" onClick="addInterest()"></span>
-				<br>
+				<span id="interestsPencil" class="glyphicon glyphicon-pencil blue edit-interests" height="50"></span>
+				<span id="add-interest" class="glyphicon glyphicon-plus green" height="50"></span>
+				</td>
 					<!-- list of interests -->
 					<table id="interestsTable" class='alnright' border="0">
+						<tr class="panel panel-default">
+							<td class='first-col'></td>
+							<td class='second-col'>Star Wars &nbsp;&nbsp;</td>
+							<td class='third-col'><span id='interest-0' class='glyphicon glyphicon-remove red remove-interest'></span></td>
+						</tr>
 					</table>
 			</div>
 			<br>
-			<input type="button" onClick="save();" value="Save">
+			<button id="btn-save-changes" class="btn btn-default">Save</button>
 		</div> <!-- end of second half of page -->
 
+	<div id="choose-child-modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
 
-		<!-- JavaScript -->
-		<script language="javascript" type="text/javascript">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Choose a child</h4>
+	      </div>
+	      <div id="choose-child-body" class="modal-body">
+	      	<div class="row">
+		      	<div id="profile-john" class="col-md-6 child-card">
+		      		<div class="panel">
+		      			<div class="thumbnail">
+		      				<img src="../images/cute cat.jpg">
+		      			</div>
+		      			<div class="caption">John</div>
+		      		</div>
+		      	</div>
+		      	<div id="profile-david" class="col-md-6 child-card">
+		      		<div class="panel">
+		      			<div class="thumbnail">
+		      				<img src="../images/cute cat.jpg">
+		      			</div>
+		      			<div class="caption">David</div>
+		      		</div>
+		      	</div>
+		      </div>
+	      </div>
+	      <div id="create-profile-modal-footer" class="modal-footer">
+	      </div>
+	    </div>
 
-			$("#nameField-input").css({display:"None"});
-			$("#ageField-input").css({display:"None"});
-			$("#interestsField-input").css({display:"None"});
-
-			// save button
-			function save() {
-				// make input text into solid text
-				if (document.getElementById('nameField-input').tagName == 'INPUT') {
-					var newName = String(document.getElementById('nameField-span').value);
-					$( "#nameField-input" ).replaceWith("<span id='nameField-span'>" + newName + "</span>");
-				} 
-				if (document.getElementById('ageField-input').tagName == 'INPUT'){
-					var newAge = String(document.getElementById('ageField-span').value);
-					$( "#ageField-input" ).replaceWith("<span id='ageField-span'>" + newAge + "</span>");
-				} 
-				if(document.getElementById('interestsField-input').tagName == 'INPUT') {
-					var newInterest = String(document.getElementById('interestsField-span').value);
-					$( "#interestsField-input" ).replaceWith("<span id='interestsField-span'>" + newInterest + "</span>");
-					// remove delete icons
-					var deleteIcons = document.getElementsByClassName('glyphicon glyphicon-remove red');
-					while(deleteIcons[0]) {
-						deleteIcons[0].parentNode.removeChild(deleteIcons[0]);
-					}
-				}
-			} 
-
-
-			// editing form fields
-			function editName() {
-				var newName = $("#nameField-span").text();		
-				// make solid text into input text
-				$("#nameField-span").css({display:"none"});
-				$("#nameField-input").css({display:"inline-block"});
-				$("#nameField-input").val(newName);
-				$("#nameField-input").select();
-			} 
-
-			function editAge() {
-				var newAge = $("#ageField-span").text();
-				// make solid text into input text
-				$("#ageField-span").css({display:"none"});
-				$("#ageField-input").css({display:"inline-block"});
-				$("#ageField-input").val(newAge);
-				$("#ageField").select();
-			}
-
-			function editInterest() {
-				var newInterest = $("#interestsField-span").text();
-				// make solid text into input text
-				$("#interestsField-span").css({display:"none"});
-				$("#interestsField-input").css({display:"inline-block"});
-				$("#interestsField-input").val(newInterest)
-				$("#interestsField").select();
-			}
-
-
-			// functions for interests field
-			
-			// add an interest with enter key press
-			$("#interestsField-input").keyup(function(event){
-				console.log("here", event.keyCode);
-			    if(event.keyCode == 13){
-			        addInterest();
-			    }
-			});
-
-			// for the add interest plus button
-			function addInterest() {
-				// get new interest
-				var newInterest = String(document.getElementById('interestsField-input').value);
-				// make sure an interest is entered
-				if (newInterest) {
-					// insert new row
-					row = $("<tr></tr>"); 
-	   				// add interest 
-		   			col1 = $("<td style='width:65px'></td>");
-		   			col2 = $("<td style='width:180px'>" + newInterest + "&nbsp;&nbsp;</td>");
-		   			col3 = $("<td style='width:100px'><span class='glyphicon glyphicon-remove red' height='50' onClick='deleteInterest(this)''></span></td>");
-		   			// prepend new interest to top of list
-		   			row.append(col1,col2,col3).prependTo("#interestsTable");
-		   			document.getElementById('interestsField-input').value = "";
-				}
-			}
-
-
-			// for error messages
-			function emptyField() {
-
-			}
-
-
-			// for the delete interest x button
-			function deleteInterest(row) {
-				var rowOfButton = row.parentNode.parentNode;
-         		rowOfButton.parentNode.removeChild(rowOfButton);
-			}
-
-
-			// functions that navigate to other pages
-			function startShopping() {
-				// navigates to shopping page
-			}
-
-			function viewToyChest() {
-				// navigates to list of toys
-			}
-			
-		</script>
-
+	  </div>
+	</div>
+		<script src="../javascripts/common.js"></script>
+	  	<script src="../javascripts/profile.js"></script>
 	</body>
 </html>

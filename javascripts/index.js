@@ -81,7 +81,7 @@ $(function() {
 			profile = profile.parentElement;
 		}
 		var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
-		window.location.href = "profile.html?name="+child.name+"&age="+child.age;
+		window.location.href = "profile.html?name="+child.name;
 	});
 
 	$("#btn-new-profile").click(function(event) {

@@ -260,25 +260,25 @@ $(function() {
 		}
 	}
 
-	var parseChild = function(name) {
-		if (!name) {
-			$("#name-present").css({display:'none'});    
-			$("#name-not-present").css({display: 'block'});       
-			return;
-		}
-		name = name.charAt(0).toUpperCase() + name.slice(1);
-		$("#name-not-present").css({display:'none'});           
-		$("#name-present").css({display: 'block'}); 
-		$("#nav-bar-dropdown").text(name);
-		var found = false;
-		$("#wishlist-dropdown-menu li a").each(function(index,elem){
-			if (elem.text == name) found = true;
-		});
-		if (!found) {
-			$("#wishlist-dropdown-menu").append('<li><a href="#">'+name+'</a></li>');
-		}
-		$("#wishlist-dropdown").html(name+' <span class="caret"></span>');
-	}
+	// var parseChild = function(name) {
+	// 	if (!name) {
+	// 		$("#name-present").css({display:'none'});    
+	// 		$("#name-not-present").css({display: 'block'});       
+	// 		return;
+	// 	}
+	// 	name = name.charAt(0).toUpperCase() + name.slice(1);
+	// 	$("#name-not-present").css({display:'none'});           
+	// 	$("#name-present").css({display: 'block'}); 
+	// 	$("#nav-bar-dropdown").text(name);
+	// 	var found = false;
+	// 	$("#wishlist-dropdown-menu li a").each(function(index,elem){
+	// 		if (elem.text == name) found = true;
+	// 	});
+	// 	if (!found) {
+	// 		$("#wishlist-dropdown-menu").append('<li><a href="#">'+name+'</a></li>');
+	// 	}
+	// 	$("#wishlist-dropdown").html(name+' <span class="caret"></span>');
+	// }
 
 	for (var i = 0; i < data.length; i++) {
 		var d = data[i];
@@ -288,8 +288,8 @@ $(function() {
 		$("#search-content").append(div_text + img_text + caption_text + '</div></div>');
 	}
 
-	var name = location.search.split('=')[1];
-	parseChild(name);
+	// var name = location.search.split('=')[1];
+	// parseChild(name);
 
 	$(".item-wrapper").click(function(event) {
 		var index = parseInt(event.toElement.id.split("-")[2]);
@@ -333,16 +333,16 @@ $(function() {
 		alert("Successfully added to wishlist!");
 	});
 
-	$(".btn-choose-child").click(function(event){
-		console.log("clicked");
-		$("#choose-child-modal").modal('show');
-	});
+	// $(".btn-choose-child").click(function(event){
+	// 	console.log("clicked");
+	// 	$("#choose-child-modal").modal('show');
+	// });
 
-	$(".child-card").click(function(event){
-		$("#choose-child-modal").modal('hide');
-		var name = event.target.id.split('-')[1];
-		parseChild(name);
-	});
+	// $(".child-card").click(function(event){
+	// 	$("#choose-child-modal").modal('hide');
+	// 	var name = event.target.id.split('-')[1];
+	// 	parseChild(name);
+	// });
           
         
 	// Code from: http://miles-by-motorcycle.com/fv-b-8-670/stacking-bootstrap-dialogs-using-event-callbacks

@@ -1,0 +1,20 @@
+.child-card {
+	cursor:pointer;
+}
+
+#choose-child-body{
+	height:300px;
+}
+
+.caption{
+	text-align:center;
+	pointer-events: none;
+}
+
+.thumbnail{
+	pointer-events:none;
+}
+
+.child-card .panel{
+	pointer-events:none;
+}

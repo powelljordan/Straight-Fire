@@ -1,0 +1,60 @@
+.ad-left {
+  float: left;
+}
+ 
+.ad-right {
+  float: right;
+  margin-left: 10px;
+}
+
+
+/* Bootstrap icon colors */
+.blue {
+	color: blue;
+}
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
+
+/* */
+.first-col{
+	width:69px;
+}
+
+.second-col{
+	width:180px;
+}
+
+.third-col{
+	width:50px;
+}
+
+.form-span{
+	width:152px;
+	display: inline-block;
+	padding-left:2px;
+	background-color: #EEE;
+}
+
+#interestsField-span{
+	overflow:auto;
+	height:20px;
+}
+
+#interestsTable{
+	margin-bottom:10px;
+}
+
+tr.space-under > td {
+  padding-top: 2em !important;
+  padding-bottom:1em;
+}
+
+.first-col label{
+	margin-bottom:0px !important;
+}
