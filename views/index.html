@@ -30,7 +30,8 @@
 		        <li><a href="shopping.html">Shopping</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li class="dropdown">
+		      	<button id="btn-donate" type="button" class="btn btn-info btn-default btn-lg" data-toggle="modal" data-target="#myModal">Donate Toys</button>
+		       <!--  <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username"></span><span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="#">Wishlist</a></li>
@@ -38,14 +39,12 @@
 		            <li role="separator" class="divider"></li>
 		            <li><a href="#">Change child</a></li>
 		          </ul>
-		        </li>
+		        </li> -->
 		      </ul>
-		    </div><!-- /.navbar-collapse -->
+
+		    </div> <!-- /.navbar-collapse
 		  </div><!-- /.container-fluid -->
 		</nav>
-
-			<!-- Trigger the modal with a button -->
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
 		<!-- Modal -->
 		<div id="myModal" class="modal fade" role="dialog">
@@ -66,9 +65,48 @@
 		  </div>
 		</div>
 
+		<!-- Modal -->
+		<div id="new-profile-modal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
 
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Create New Profile</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<form id="create-profile-form">
+				  <fieldset class="form-group">
+				    <label for="name">Name</label>
+				    <input type="text" class="form-control" id="create-name" placeholder="Name">
+				  </fieldset>
+				  <fieldset class="form-group">
+				    <label for="age">Age</label>
+				    <input type="number" class="form-control" id="create-age" placeholder="0">
+				  </fieldset>
+				  <fieldset class="form-group">
+				    <label for="interests">Interests</label>
+				    <small class="text-muted">(Please separate interests with commas.)</small>
+				    <input type="text" class="form-control" id="create-interests" placeholder="field hockey">
+				  </fieldset>
+				  
+				</form>
+		      </div>
+		      <div id="create-profile-modal-footer" class="modal-footer">
+		      	<button id="btn-create-profile" type="submit" class="btn btn-primary">Create</button>
+		      <!--   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
+
+		<h1 id="title" class="display-1">Your Children</h1>
 		<div class = "row" id="profiles">
 	  </div>
+	  <button id="btn-new-profile" class="btn btn-lg btn-default btn-circle"><i >&#43</i></button>
 	</body>
 
 </html>
