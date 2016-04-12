@@ -13,14 +13,8 @@ $(function() {
 			age:8,
 			budget: 50,
 			toyChest: ["Connect 4", "Chess", "Book", "Xbox", "Wii", "yet another toy"]}
-			
-	annie = {id: "three",
-			name: "Annie",
-			age: 22,
-			budget: 1000,
-			toyChest: ["camera", "metal thing", "laptop", "tennis ball"]}
 
-	var children = [john, david, annie];
+	var children = [john, david];
 	var firstItem = true;
 	var offset;
 	var test = function(){
