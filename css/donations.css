@@ -1,0 +1,40 @@
+body {
+	background: #f5f5f5;
+}
+
+.donation-item {
+	height: 250px;
+}
+
+.donation-item .panel-heading {
+	padding: 10px 10px;
+}
+
+.donation-item .row {
+	margin: 0px;
+}
+
+.donation-item .col {
+	padding: 0 5px;
+}
+
+.toy-img {
+	height: 150px;
+}
+
+.item-hidden {
+	position: absolute;
+}
+
+.undo-col {
+	margin-bottom: 10px;
+}
+
+#undo {
+	display: none;
+}
+
+#undo:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}

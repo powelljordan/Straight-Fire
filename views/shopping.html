@@ -6,10 +6,10 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Bubble Cursor</title>
+<title>Shopping</title>
 
 <!-- Load style sheets -->
-<link rel="stylesheet" href="../css/index.css" />
+<link rel="stylesheet" href="../css/shopping.css" />
 <link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.min.css"/>
 </head>
 
@@ -35,23 +35,180 @@
 	        <li class="active"><a href="shopping.html">Shopping</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventories<span class="caret"></span></a>
+	        <li id="name-present" class="dropdown">
+	          <a id="nav-bar-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventories<span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	            <li><a href="#">Wishlist</a></li>
 	            <li><a href="#">ToyChest</a></li>
 	            <li role="separator" class="divider"></li>
-	            <li><a href="#">Change child</a></li>
+	            <li><a class="btn-choose-child" href="#">Change child</a></li>
 	          </ul>
+	          <li id="name-not-present"><a class="btn-choose-child" href="#" role="botton">Choose child</a></li>
 	        </li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
+
+		<div class="input-group col-md-6 col-md-offset-3 search-bar">
+			<input type="text" class="form-control input-lg" placeholder="Search" />
+			<span class="input-group-btn">
+	            <button class="btn btn-info btn-lg" type="button">
+	                <i class="glyphicon glyphicon-search"></i>
+	            </button>
+	        </span>
+		</div>
+	<div id="search-content">
+	   	
+	</div>
+
+<!-- Modal -->
+<div id="wishListModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body wishlist-body">
+        <div class="dropdown btn-grouping"> Add to
+		  <button id="wishlist-dropdown" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">John
+		  <span class="caret"></span></button>
+		  <ul id="wishlist-dropdown-menu" class="dropdown-menu">
+		  	<li><a href="#">John</a></li>
+		    <li><a href="#">David</a></li>
+		  </ul>'s Wishlist
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button id="wishlist-add" type="button" class="btn btn-default">Add</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div id="modal-left-half" class="col-sm-6">
+	        <div id="modal-thumbnail" class = "thumbnail"></div>
+	        <div id="rating-price-row" class="row">
+	        <div class="col-xs-6">
+	        	<div id="modal-ratings">
+		        	<div class="stars-frame">
+		        		<i class="glyphicon glyphicon-star frame-star"></i>
+						<i class="glyphicon glyphicon-star frame-star"></i>
+						<i class="glyphicon glyphicon-star frame-star"></i>
+						<i class="glyphicon glyphicon-star frame-star"></i>
+						<i class="glyphicon glyphicon-star frame-star"></i>
+		        	</div>
+		        	<div class="stars-frame">
+			        	<i id="shaded-star-0" class="glyphicon glyphicon-star shaded-star"></i>
+						<i id="shaded-star-1" class="glyphicon glyphicon-star shaded-star"></i>
+						<i id="shaded-star-2" class="glyphicon glyphicon-star shaded-star"></i>
+						<i id="shaded-star-3" class="glyphicon glyphicon-star shaded-star"></i>
+						<i id="shaded-star-4" class="glyphicon glyphicon-star shaded-star"></i>
+					</div>
+		        </div>
+	        </div>
+		    <div class="col-xs-6">
+		    	<div id="modal-price"></div>
+		    </div>  
+			</div>
+			<div id="btn-wrapper" class="row">
+	        	<div id="modal-buttons">
+		        	<button type="button" id="btn-wishlist" class="btn btn-info modal-button" data-toggle="modal" data-target="#wishListModal">Add to Wishlist</button>
+		        	<button type="button" id="btn-purchase" class="btn btn-info modal-button">Purchase</button>
+		        </div>
+			</div>
+	    </div>
+        <div id="modal-right-half" class="col-sm-6">
+        	<div id="modal-item-details">
+	        	<p><span class="modifier">Seller: </span><span id="seller"></span> </p>
+	        	<p><span class="modifier">Description: </span><span id="description"></span></p>
+	        	<p><span class="modifier">Rating: </span><span id="rating-number"></span></p>
+	        	<p><span class="modifier">Age: </span><span id="age"></span></p>
+	       <!--  	<p><span class="modifier">Notes: </span><span id="notes"></span></p> -->
+	        	<div id="reviews-wrapper"><span class="modifier">Reviews: </span>
+	        		<div class="col-xs-12">
+	        			<div class="tab-content"><div class="tab-pane active" id="reviews-body">
+	        			</div></div>
+	        		</div>
+				</div>
+				</div>
+	        </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+	<div id="choose-child-modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Choose a child</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="row">
+		      	<div id="profile-john" class="col-md-6 child-card">
+		      		<div class="panel">
+		      			<div class="thumbnail">
+		      				<img src="../images/cute cat.jpg">
+		      			</div>
+		      			<div class="caption">John</div>
+		      		</div>
+		      	</div>
+		      	<div id="profile-david" class="col-md-6 child-card">
+		      		<div class="panel">
+		      			<div class="thumbnail">
+		      				<img src="../images/cute cat.jpg">
+		      			</div>
+		      			<div class="caption">David</div>
+		      		</div>
+		      	</div>
+		      </div>
+		      <div class="row">
+		      	<div id="profile-annie" class="col-md-6 child-card">
+		      		<div class="panel">
+		      			<div class="thumbnail">
+		      				<img src="../images/cute cat.jpg">
+		      			</div>
+		      			<div class="caption">Annie</div>
+		      		</div>
+		      	</div>
+		      </div>
+	      </div>
+	      <div id="create-profile-modal-footer" class="modal-footer">
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
   <script src="../jquery/js/jquery-1.12.3.min.js"></script>
   <script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
   <script src="../jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
-  <script src="../javascripts/index.js"></script>
+  <script src="../javascripts/shopping.js"></script>
+  <script src="../javascripts/common.js"></script>
 </body>
 
 </html>
