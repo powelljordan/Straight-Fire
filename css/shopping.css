@@ -21,7 +21,7 @@
 
 .panel{
 	pointer-events:none;
-	border: 1px solid #CCC;
+	border: 1px solid #CCC !important;
 	/*height:325.25px*/
 }
 
@@ -144,4 +144,8 @@ body.modal-open {
 
 .wishlist-body{
 	/*text-align:center;*/
+}
+
+.child-card {
+	cursor:pointer;
 }

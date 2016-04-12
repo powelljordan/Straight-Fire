@@ -35,14 +35,15 @@
 	        <li class="active"><a href="shopping.html">Shopping</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li class="dropdown">
+	        <li id="name-present" class="dropdown">
 	          <a id="nav-bar-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventories<span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	            <li><a href="#">Wishlist</a></li>
 	            <li><a href="#">ToyChest</a></li>
 	            <li role="separator" class="divider"></li>
-	            <li><a href="#">Change child</a></li>
+	            <li><a class="btn-choose-child" href="#">Change child</a></li>
 	          </ul>
+	          <li id="name-not-present"><a class="btn-choose-child" href="#" role="botton">Choose child</a></li>
 	        </li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
@@ -155,6 +156,53 @@
 
   </div>
 </div>
+
+<!-- Modal -->
+	<div id="choose-child-modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Choose a child</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="row">
+		      	<div id="profile-john" class="col-md-6 child-card">
+		      		<div class="panel">
+		      			<div class="thumbnail">
+		      				<img src="../images/cute cat.jpg">
+		      			</div>
+		      			<div class="caption">John</div>
+		      		</div>
+		      	</div>
+		      	<div id="profile-david" class="col-md-6 child-card">
+		      		<div class="panel">
+		      			<div class="thumbnail">
+		      				<img src="../images/cute cat.jpg">
+		      			</div>
+		      			<div class="caption">David</div>
+		      		</div>
+		      	</div>
+		      </div>
+		      <div class="row">
+		      	<div id="profile-annie" class="col-md-6 child-card">
+		      		<div class="panel">
+		      			<div class="thumbnail">
+		      				<img src="../images/cute cat.jpg">
+		      			</div>
+		      			<div class="caption">Annie</div>
+		      		</div>
+		      	</div>
+		      </div>
+	      </div>
+	      <div id="create-profile-modal-footer" class="modal-footer">
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 
   <script src="../jquery/js/jquery-1.12.3.min.js"></script>
   <script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
