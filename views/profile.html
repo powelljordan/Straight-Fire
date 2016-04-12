@@ -94,6 +94,7 @@
 				<span id="nameField-span">David</span>
 				<input type='text' id='nameField-input' onClick='this.select()' placeholder='First and last name'>
 				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editName()"></span>
+				<span style="color:red;" id="errorName"></span>
 			</div>
 			<br><br>
 			<div>
@@ -101,6 +102,7 @@
 				<span id="ageField-span">8</span>
 				<input type='text' id='ageField-input' onclick='this.select()' placeholder='Numerical value'>
 				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editAge()"></span>
+				<span style="color:red;" id="errorAge"></span>
 			</div>
 			<br><br>
 			<div>
@@ -109,6 +111,7 @@
 				<input type='text' id='interestsField-input' onclick='this.select()' placeholder='Add one interest at a time'>
 				<span id="interestsPencil" class="glyphicon glyphicon-pencil blue" height="50" onClick="editInterest()"></span>
 				<span class="glyphicon glyphicon-plus green" height="50" onClick="addInterest()"></span>
+				<span style="color:red;" id="errorInterests"></span>
 				<br>
 					<!-- list of interests -->
 					<table id="interestsTable" class='alnright' border="0">
@@ -152,20 +155,26 @@
 			// editing form fields
 			function editName() {
 				var newName = $("#nameField-span").text();		
-				// make solid text into input text
-				$("#nameField-span").css({display:"none"});
-				$("#nameField-input").css({display:"inline-block"});
-				$("#nameField-input").val(newName);
-				$("#nameField-input").select();
+				// if valid name
+				if (newName) {
+					// make solid text into input text
+					$("#nameField-span").css({display:"none"});
+					$("#nameField-input").css({display:"inline-block"});
+					$("#nameField-input").val(newName);
+					$("#nameField-input").select();
+				}
 			} 
 
 			function editAge() {
 				var newAge = $("#ageField-span").text();
-				// make solid text into input text
-				$("#ageField-span").css({display:"none"});
-				$("#ageField-input").css({display:"inline-block"});
-				$("#ageField-input").val(newAge);
-				$("#ageField").select();
+				// if valid age
+				if (isInt(document.getElementById("ageField-input"))) {
+					// make solid text into input text
+					$("#ageField-span").css({display:"none"});
+					$("#ageField-input").css({display:"inline-block"});
+					$("#ageField-input").val(newAge);
+					$("#ageField").select();
+				}
 			}
 
 			function editInterest() {
@@ -173,7 +182,7 @@
 				// make solid text into input text
 				$("#interestsField-span").css({display:"none"});
 				$("#interestsField-input").css({display:"inline-block"});
-				$("#interestsField-input").val(newInterest)
+				$("#interestsField-input").val(newInterest);
 				$("#interestsField").select();
 			}
 
@@ -182,7 +191,6 @@
 			
 			// add an interest with enter key press
 			$("#interestsField-input").keyup(function(event){
-				console.log("here", event.keyCode);
 			    if(event.keyCode == 13){
 			        addInterest();
 			    }
@@ -205,13 +213,6 @@
 		   			document.getElementById('interestsField-input').value = "";
 				}
 			}
-
-
-			// for error messages
-			function emptyField() {
-
-			}
-
 
 			// for the delete interest x button
 			function deleteInterest(row) {
