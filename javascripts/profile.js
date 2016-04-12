@@ -153,10 +153,12 @@ $(function() {
 
 	$(".edit-name").click(function(event) {
 		editName();
+		$("#nameField-input").select();
 	});
 
 	$(".edit-age").click(function(event){
 		editAge();
+		$("#ageField-input").select();
 	});
 
 	$("#add-interest").click(function(event){
@@ -165,6 +167,7 @@ $(function() {
 
 	$(".edit-interests").click(function(event){
 		editInterest();
+		$("#interestsField-input").select();
 	});
 
 	$("#btn-save-changes").click(function(event){
