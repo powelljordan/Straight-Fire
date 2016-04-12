@@ -43,42 +43,194 @@
 		</nav>
 
 		<!-- end of nav bar and start of actual code -->
-		<div class="col-md-4">
-			<h1> David </h1>
+		
+		<!-- CSS STYLING -->
+		<style type ="text/css">
+
+			.ad-left {
+			  float: left;
+			}
+			 
+			.ad-right {
+			  float: right;
+			  margin-left: 10px;
+			}
+
+			.inline {
+				display: inline-block;
+			}
+
+			.toyChestImage { 
+			   position: relative; 
+			   height: 150px;
+			   background-image: url(../images/toyChest.jpg);
+			   background-size: cover;
+			}
+
+			h2 { 
+			   position: absolute; 
+			   height: 50px;
+			   width: ; 
+			}
+
+			/* Bootstrap icon colors */
+			.blue {
+				color: blue;
+			}
+
+			.green {
+				color: green;
+			}
+
+			.red {
+				color: red;
+			}
+
+		</style>
+
+		<div class="col-sm-6">
+			<table>
+				<tr align="center"><td><div>
+					<h1> David </h1>
+					<img id="avatarImage" src="../images/boyAvatar.jpg"><br><br>
+				</div></td></tr>
+				<tr align="center"><td>
+					<input type="image" src="../images/toyChest.jpg" onClick="viewToyChest()">
+				</td></tr>
+			</table> <!-- end of first half of page -->
+		</div>
+
+
+		<div class="col-sm-6">
+			<div>
+				<input type="image" src="../images/startShopping.png" height="50" onClick="startShopping()" align="right">
+			<div>
+			<div>
+				Name:
+				<input type="text" id="nameField" placeholder="First and last name" onClick="this.select()">
+				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editName()"></span>
+			</div>
 			<br>
-			<img id="image" text0align ="left" src="../images/boyAvatar.jpg">
-		</div>
-
-		<div class="col-md-6">
-			Name:
-			<input type="text" name="name">
-			<br><br>
-			Age:
-			<input type="text" name="age">
-			<br><br>
-			Interests:
-			<input type="text" name="interests">
-			<br><br>
-		</div>
-
-		<form name="myform"> 
+			<div>
+				Age:
+				<input type="text" id="ageField" placeholder="Numerical value">
+				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editAge()"></span>
+			</div>
+			<br>
+			<div>
+				Interests:
+				<input type="text" id="interestsField" placeholder="Add one interest at a time">
+				<span class="glyphicon glyphicon-pencil blue" height="50" onClick="editInterest()"></span>
+				<span class="glyphicon glyphicon-plus green" height="50" onClick="addInterest()" id="addIcon"></span>
+				<br>
+					<!-- list of interests -->
+					<table id="interestsTable" class='alnright' border="0">
+					</table>
+			</div>
+			<br>
 			<input type="button" onClick="save();" value="Save">
-			<br>
-			<textarea name="text_area" id="text_area_id" rows="14" cols="40"></textarea> 
-		</form> 
+		</div> <!-- end of second half of page -->
+
 
 		<!-- JavaScript -->
 		<script language="javascript" type="text/javascript">
 
-			function save() 
-			{ 
-			val = document.myform.text_area.value; 
-			mydoc = document.open(); 
-			mydoc.write(val); 
-			mydoc.execCommand("saveAs",true,".txt"); //you can change the .txt to your extention
-			history.go(-1);
+			// save button
+			function save() {
+				// make input text into solid text
+				if (document.getElementById('nameField').tagName == 'INPUT') {
+					var newName = String(document.getElementById('nameField').value);
+					$( "#nameField" ).replaceWith("<div id='nameField'>" + newName + "</div>");
+				} 
+				if (document.getElementById('ageField').tagName == 'INPUT'){
+					var newAge = String(document.getElementById('ageField').value);
+					$( "#ageField" ).replaceWith("<div id='ageField'>" + newAge + "</div>");
+				} 
+				if(document.getElementById('interestsField').tagName == 'INPUT') {
+					var newInterest = String(document.getElementById('interestsField').value);
+					$( "#interestsField" ).replaceWith("<div id='interestsField'>" + newInterest + "</div>");
+					// remove add icon
+					$( "#addIcon" ).remove();
+					// remove delete icon
+					var deleteIcons = document.getElementsByClassName('glyphicon glyphicon-remove red');
+					while(deleteIcons[0]) {
+						deleteIcons[0].parentNode.removeChild(deleteIcons[0]);
+					}
+				}
 			} 
 
+
+			// editing form fields
+			function editName() {
+				var newName = String(document.getElementById('nameField').innerHTML);				
+				// make solid text into input text
+				$( "#nameField" ).replaceWith("<input type='text' id='nameField' onClick='this.select()' value=" + newName + ">");
+				$( "#nameField" ).select();
+			}
+
+			function editAge() {
+				var newAge = String(document.getElementById('ageField').innerHTML);
+				$( "#ageField" ).replaceWith("<input type='text' id='ageField' onclick='this.select()' value=" + newAge + ">");
+				$( "#ageField" ).select();
+			}
+
+			function editInterest() {
+				var newInterest = String(document.getElementById('interestsField').innerHTML);
+				$( "#interestsField" ).replaceWith("<input type='text' id='interestsField' onclick='this.select()' value=" + newInterest + ">");
+				$( "#interestsField" ).select();
+			}
+
+
+			// functions for interests field
+			
+			// add an interest with enter key press
+			$("#interestsField").keyup(function(event){
+			    if(event.keyCode == 13){
+			        addInterest();
+			    }
+			});
+
+			// for the add interest plus button
+			function addInterest() {
+				// get new interest
+				var newInterest = String(document.getElementById('interestsField').value);
+				// make sure an interest is entered
+				if (newInterest) {
+					// insert new row
+					row = $("<tr></tr>"); 
+	   				// add interest 
+		   			col1 = $("<td style='width:65px'></td>");
+		   			col2 = $("<td style='width:180px'>" + newInterest + "&nbsp;&nbsp;</td>");
+		   			col3 = $("<td style='width:100px'><span class='glyphicon glyphicon-remove red' height='50' onClick='deleteInterest(this)''></span></td>");
+		   			// prepend new interest to top of list
+		   			row.append(col1,col2,col3).prependTo("#interestsTable");
+		   			document.getElementById('interestsField').value = "";
+				}
+			}
+
+
+			// for error messages
+			function emptyField() {
+
+			}
+
+
+			// for the delete interest x button
+			function deleteInterest(row) {
+				var rowOfButton = row.parentNode.parentNode;
+         		rowOfButton.parentNode.removeChild(rowOfButton);
+			}
+
+
+			// functions that navigate to other pages
+			function startShopping() {
+				// navigates to shopping page
+			}
+
+			function viewToyChest() {
+				// navigates to list of toys
+			}
+			
 		</script>
 
 	</body>
