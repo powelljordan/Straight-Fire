@@ -58,7 +58,7 @@
 							<img id="avatarImage" src="../images/cute cat.jpg">
 							</div>
 							<div class="btn-wrapper">
-								<button class="btn btn-default">Wishlist</button>
+								<button class="btn btn-default" data-toggle="modal" data-target="#wishlist-modal">Wishlist</button>
 								<button id="btn-start-shopping" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Start Shopping</button>
 							</div>
 						</div>
@@ -177,6 +177,45 @@
                 </div>
                 <div id="toychest-modal-footer" class="modal-footer">
                     <button id="donate-selected-btn" type="submit" class="btn btn-primary">Donate Selected</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Wishlist Modal  -->
+    <div id="wishlist-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span id="wishlist-name">John</span>'s Wishlist</h4>
+                </div>
+                <div class="wishlist-modal-body row">
+                    <div class="col-md-12 toy-section">
+                        <div class="col-md-1 col check-column">
+                            <p class="checkbox"><i class="fa fa-square-o"></i></p>
+                        </div>
+                        <div class="col-md-6 col"><h3>Fire Blaster</h3></div>
+                        <div class="col-md-3 col"><img src="../images/fireblaster.jpg" class="toy-image center-block"></div>
+                        <div class="col-md-2 col">
+                            <button class="btn btn-primary purchase-toy-btn">Purchase</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12 toy-section">
+                        <div class="col-md-1 col check-column">
+                            <p class="checkbox"><i class="fa fa-square-o"></i></p>
+                        </div>
+                        <div class="col-md-6 col"><h3>Rex Dinosaur</h3></div>
+                        <div class="col-md-3 col"><img src="../images/dinosaur.jpg" class="toy-image center-block"></div>
+                        <div class="col-md-2 col">
+                            <button class="btn btn-primary purchase-toy-btn">Purchase</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="wishlist-modal-footer" class="modal-footer">
+                	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="delete-selected-btn" type="submit" class="btn btn-primary">Delete Selected</button>
                 </div>
             </div>
         </div>
