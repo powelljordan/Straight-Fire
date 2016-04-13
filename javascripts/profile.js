@@ -30,6 +30,7 @@ $(function() {
 			$("#nameField-span").text(newName);
 			$("#name").text(newName);
 			$("#nav-bar-dropdown").text(newName);
+			$("#toychest-name").text(newName);
 		}
 		$("#nameField-input").css({display:'none'});
 		$("#nameField-span").css({display:'inline-block'});
@@ -147,6 +148,7 @@ $(function() {
 		$("#name").text(name);
 		$("#nameField-span").text(name);
 		$("#ageField-span").text(age);
+		$("#toychest-name").text(name);
 		$("#interestsTable").empty();
 		for (var i = 0; i < interests.length; i++) {
 			addInterest(interests[i]);
@@ -210,7 +212,7 @@ $(function() {
 	$("#btn-start-shopping").click(function(event){
 		var name = $("#name").text();
 		window.location.href = "shopping.html?name="+name;
-	})
+	});
 
 	// Main code
 	var args = location.search.slice(1).split('&');

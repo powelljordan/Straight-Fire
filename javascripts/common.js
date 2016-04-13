@@ -3,13 +3,14 @@ $(function() {
 	var parseChild = function(name) {
 		if (!name) {
 			$("#name-present").css({display:'none'});    
-			$("#name-not-present").css({display: 'block'});       
+			$("#name-not-present").css({display: 'block'});
 			return;
 		}
 		name = name.charAt(0).toUpperCase() + name.slice(1);
 		$("#name-not-present").css({display:'none'});           
 		$("#name-present").css({display: 'block'}); 
 		$("#nav-bar-dropdown").text(name);
+		$("#toychest-name").text(name);
 		var found = false;
 		$("#wishlist-dropdown-menu li a").each(function(index,elem){
 			if (elem.text == name) found = true;
@@ -20,7 +21,6 @@ $(function() {
 		$("#wishlist-dropdown").html(name+' <span class="caret"></span>');
 	};
 	$(".btn-choose-child").click(function(event){
-		console.log("clicked");
 		$("#choose-child-modal").modal('show');
 	});
 
@@ -83,4 +83,8 @@ $(function() {
             alert(selected.length + " toy(s) now pending donation");
         }
     });
+
+    $("#btn-toychest").click(function(event) {
+		$("#toychest-modal").modal("show");
+	});
 });
