@@ -6,13 +6,13 @@ $(function() {
 			name: "John",
 			age: 13,
 			budget: 50,
-			toyChest: ["Dinosaur", "Gameboy", "Lego", "Racecar", "Cards", "other toys"]}
+			toyChest: ["Dinosaur", "Gameboy", "Lego", "Racecar", "Cards"]}
 
 	david = {id: "Two",
 			name: "David",
 			age:8,
 			budget: 50,
-			toyChest: ["Connect 4", "Chess", "Book", "Xbox", "Wii", "yet another toy"]}
+			toyChest: ["Connect 4", "Chess", "Book", "Xbox", "Wii"]}
 
 	var children = [john, david];
 	var firstItem = true;
@@ -68,7 +68,7 @@ $(function() {
 
 		child.toyChest.forEach(function(toyName){
 			$("#"+child.id+"toyChest").append(
-				'<a href="#" class="list-group-item">'+toyName+'<img src="../images/testToyPicture.png"></a>'
+				'<a href="#" class="list-group-item">'+toyName+'<img src="../images/' + toyName + '.jpg"></a>'
 			);
 		});
 	});
