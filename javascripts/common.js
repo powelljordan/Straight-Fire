@@ -34,7 +34,7 @@ $(function() {
 	parseChild(name);
 
 	// JS for toy chest modal
-    $('.checkbox i').click(function() {
+    $('.toy-section').on('click', '.checkbox i', function() {
         var box = $(this);
         if (box.hasClass('fa-check-square-o')) {
             box.removeClass('fa-check-square-o');
@@ -45,7 +45,40 @@ $(function() {
         }
     });
 
-    $('.delete-toy-btn').click(function () {
-       $(this).parents('.toy-section').html('Undo');
+    var undoHtml = "<span class='undo-delete text-primary'>" +
+        "<i class='fa fa-undo'></i> Undo delete</span>" +
+        "<small class='pull-right dismiss-undo'>Dismiss</small>";
+
+    $('.toy-section').on('click', '.delete-toy-btn', function() {
+        var section = $(this).parents('.toy-section');
+        section.attr('oldInfo', section.html());
+        section.html($(undoHtml));
+    });
+
+    $('.toy-section').on('click', '.undo-delete', function() {
+        var section = $(this).parents('.toy-section');
+        var oldHtml = section.attr('oldInfo');
+        section.html(oldHtml);
+    });
+
+    $('.toy-section').on('click', '.dismiss-undo', function() {
+        var toysLeft = [];
+        var section = $(this).parents('.toy-section');
+        section.fadeOut({
+            complete: function() {
+                $(this).detach();
+                toysLeft = $('.toychest-modal-body').children('.toy-section');
+                if (!toysLeft.length > 0) {
+                    $('#toychest-modal').modal('hide');
+                }
+            }
+        });
+    });
+
+    $('#donate-selected-btn').click(function() {
+        var selected = $('.checkbox i.fa-check-square-o');
+        selected.parents('.toy-section').detach();
+        $('#toychest-modal').modal('hide');
+        alert(selected.length + " toy(s) now pending donation");
     });
 });

@@ -23,7 +23,7 @@ $(function() {
 				$('#undo').fadeIn();
 			}
 		});
-	}
+	};
 
 	$('.donate-btn, .return-to-chest').click(deleteAction);
 
