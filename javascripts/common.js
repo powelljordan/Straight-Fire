@@ -79,6 +79,8 @@ $(function() {
         var selected = $('.checkbox i.fa-check-square-o');
         selected.parents('.toy-section').detach();
         $('#toychest-modal').modal('hide');
-        alert(selected.length + " toy(s) now pending donation");
+        if (selected.length) {
+            alert(selected.length + " toy(s) now pending donation");
+        }
     });
 });
