@@ -28,7 +28,7 @@
 }
 
 .thumbnail{
-	pointer-events:none;
+	/*pointer-events:none;*/
 }
 
 .caption {
