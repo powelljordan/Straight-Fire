@@ -114,7 +114,7 @@ $(function() {
 	}
 
 	function viewToyChest() {
-		// navigates to list of toys
+		$('#toychest-modal').modal('show');
 	}
 
 	var loadChildInfo = function(name) {
@@ -126,7 +126,7 @@ $(function() {
 		for (var i = 0; i < child.interests.length; i++) {
 			addInterest(child.interests[i]);
 		}
-	}
+	};
 
 	var createChild = function(name, age, interests) {
 		$("#name").text(name);

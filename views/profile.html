@@ -3,6 +3,7 @@
 	<head>
 		<title>Profile</title>
 		<link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 		<script src="../jquery/js/jquery-1.12.3.min.js"></script>
 		<script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="../css/common.css" />
@@ -65,7 +66,7 @@
 				</tr>
 			<tr align="center">
 				<td>
-					<input type="image" src="../images/toyChest.jpg" onClick="viewToyChest()">
+					<input type="image" src="../images/toyChest.jpg"  data-toggle="modal" data-target="#toychest-modal">
 				</td>
 			</tr>
 			</table> <!-- end of first half of page -->
@@ -143,6 +144,45 @@
 
 	  </div>
 	</div>
+
+     <!-- Toy Chest Modal  -->
+    <div id="toychest-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">John's Toy Chest</h4>
+                </div>
+                <div class="toychest-modal-body row">
+                    <div class="col-md-12 toy-section">
+                        <div class="col-md-1 col check-column">
+                            <p class="checkbox"><i class="fa fa-square-o"></i></p>
+                        </div>
+                        <div class="col-md-6 col"><h3>Kylo Ren Ship</h3></div>
+                        <div class="col-md-3 col"><img src="../images/kyloren.jpg" class="toy-image center-block"></div>
+                        <div class="col-md-2 col">
+                            <button class="btn btn-primary delete-toy-btn">Delete</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12 toy-section">
+                        <div class="col-md-1 col check-column">
+                            <p class="checkbox"><i class="fa fa-square-o"></i></p>
+                        </div>
+                        <div class="col-md-6 col"><h3>Obi Wan Action Figure</h3></div>
+                        <div class="col-md-3 col"><img src="../images/obiwan.jpg" class="toy-image center-block"></div>
+                        <div class="col-md-2 col">
+                            <button class="btn btn-primary delete-toy-btn">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="toychest-modal-footer" class="modal-footer">
+                    <button id="donate-selected-btn" type="submit" class="btn btn-primary">Donate Selected</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 		<script src="../javascripts/common.js"></script>
 	  	<script src="../javascripts/profile.js"></script>
 	</body>
