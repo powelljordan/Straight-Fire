@@ -30,116 +30,88 @@
 		        <li class="active"><a href="donations.html">Donations</a></li>
 		        <li><a href="shopping.html">Shopping</a></li>
 		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventories<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Wishlist</a></li>
-		            <li><a href="#">ToyChest</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Change child</a></li>
-		          </ul>
-		        </li>
-		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Toy Chests</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div id="toyChestModal" class="row">
+		        </div>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-3">content</div>
-				<div class="col-lg-9 col-md-9">
-					<div class="col-md-12 undo-col text-right">
-						<span class="text-primary" id="undo">Undo '<span>Mark as donated</span>'</span>
-					</div>
-					<div class="col-md-4 item-col">
-						<div class="panel panel-default donation-item">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col col-md-10">
-										<p>Jacob's Obi Wan Action Figure</p>
-									</div>
-									<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
+			<div class="row items">
+				<div class="col-lg-12">
+					<h1 class="header">Pending Donations <button type="button" class="btn btn-info btn-default add-donations" data-toggle="modal" data-target="#myModal">Add Donations</button></h1>
+					<hr>
+				</div>
+				<div class="col-md-12 undo-col text-right">
+					<span class="text-primary" id="undo">Undo '<span id="undo-action">Mark as donated</span>'</span>
+				</div>
+				<div class="col-md-3 item-col">
+					<div class="panel panel-default donation-item">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col col-md-10">
+									<p class="toy-desc">Jacob's Obi Wan Action Figure</p>
 								</div>
-							</div>
-							<div class="panel-body">
-								<img src="../images/obiwan.jpg" class="toy-img center-block">
+								<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4  item-col">
-						<div class="panel panel-default donation-item">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col col-md-10">
-										<p>Jason's Kylo Ren Ship</p>
-									</div>
-									<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
-								</div>
-							</div>
-							<div class="panel-body">
-								<img src="../images/kyloren.jpg" class="toy-img center-block">
-							</div>
+						<div class="panel-body">
+							<img src="../images/obiwan.jpg" class="toy-img center-block">
+						</div>
+						<div class="panel-footer">
+							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to Jacob's toyChest</small>
 						</div>
 					</div>
-					<div class="col-md-4  item-col">
-						<div class="panel panel-default donation-item">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col col-md-10">
-										<p>Jacob's Fire Blaster</p>
-									</div>
-									<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
+				</div>
+				<div class="col-md-3  item-col">
+					<div class="panel panel-default donation-item">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col col-md-10">
+									<p class="toy-desc">Jason's Kylo Ren Ship</p>
 								</div>
-							</div>
-							<div class="panel-body">
-								<img src="../images/fireblaster.jpg" class="toy-img center-block">
+								<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4  item-col">
-						<div class="panel panel-default donation-item">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col col-md-10">
-										<p>Jacob's Obi Wan Action Figure</p>
-									</div>
-									<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
-								</div>
-							</div>
-							<div class="panel-body">
-								<img src="../images/obiwan.jpg" class="toy-img center-block">
-							</div>
+						<div class="panel-body">
+							<img src="../images/kyloren.jpg" class="toy-img center-block">
+						</div>
+						<div class="panel-footer">
+							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to Jason's toyChest</small>
 						</div>
 					</div>
-					<div class="col-md-4  item-col">
-						<div class="panel panel-default donation-item">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col col-md-10">
-										<p>Jason's Kylo Ren Ship</p>
-									</div>
-									<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
+				</div>
+				<div class="col-md-3  item-col">
+					<div class="panel panel-default donation-item">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col col-md-10">
+									<p class="toy-desc">Jacob's Fire Blaster</p>
 								</div>
-							</div>
-							<div class="panel-body">
-								<img src="../images/kyloren.jpg" class="toy-img center-block">
+								<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4  item-col">
-						<div class="panel panel-default donation-item">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col col-md-10">
-										<p>Jacob's Fire Blaster</p>
-									</div>
-									<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
-								</div>
-							</div>
-							<div class="panel-body">
-								<img src="../images/fireblaster.jpg" class="toy-img center-block">
-							</div>
+						<div class="panel-body">
+							<img src="../images/fireblaster.jpg" class="toy-img center-block">
+						</div>
+						<div class="panel-footer">
+							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to Jacob's toyChest</small>
 						</div>
 					</div>
 				</div>
