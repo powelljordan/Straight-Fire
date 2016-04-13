@@ -41,7 +41,7 @@ $(function() {
 			         '<p class="home-profile-text">Age: <span class="age "></span></p>'+
 			         '<p class="home-profile-text">Budget: <span class="budget"></span></p>'+
 			       '</div><div class="btn-wrapper">'+
-			            '<a href = "#" id="btn-toychest" class = "btn btn-default" role = "button">'+
+			            '<a href = "#" id="'+ child.name +'" class = "btn btn-default btn-toychest" role = "button">'+
 			               'ToyChest'+
 			            '</a> '+
 			            '<a href = "#" class = "btn btn-default" role = "button">'+
@@ -100,5 +100,11 @@ $(function() {
 				($(elem)).val('');
 			});
 		}
-	})
+	});
+
+	$(".btn-toychest").click(function(event) {
+		var name = event.toElement.id;
+		$("#toychest-modal").modal("show");
+		$("#toychest-name").text(name);
+	});
 });
