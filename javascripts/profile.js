@@ -102,21 +102,35 @@ $(function() {
 	}
 
 
-	// for error messages
-	function emptyField() {
+	// only allow letters and white spaces to be typed for name and interests fields
+	$("#interestsField-input").keypress(function(event){
+        var inputValue = event.which;
+        // allow letters and whitespaces only.
+        if((inputValue > 47 && inputValue < 58) && (inputValue != 32)){
+            event.preventDefault();
+        }
+    });
 
-	}
+    $("#nameField-input").keypress(function(event){
+        var inputValue = event.which;
+        // allow letters and whitespaces only.
+        if((inputValue > 47 && inputValue < 58) && (inputValue != 32)){
+            event.preventDefault();
+        }
+    });
 
-
+	
 	// for the delete interest x button
 	function deleteInterest(row) {
 		var rowOfButton = $("#"+row).parent().parent().remove();
 	}
 
+	// show toy chest pop up
 	function viewToyChest() {
 		$('#toychest-modal').modal('show');
 	}
 
+	// select child's profile to view
 	var loadChildInfo = function(name) {
 		var child = $.grep(children, function(e){ return e.name == name; })[0];
 		$("#name").text(child.name);
@@ -128,6 +142,7 @@ $(function() {
 		}
 	};
 
+	// add inputs to profile for each child
 	var createChild = function(name, age, interests) {
 		$("#name").text(name);
 		$("#nameField-span").text(name);
