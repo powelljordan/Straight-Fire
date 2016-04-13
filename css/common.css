@@ -12,7 +12,7 @@
 }
 
 .thumbnail{
-	pointer-events:none;
+	/*pointer-events:none;*/
 }
 
 .child-card .panel{
