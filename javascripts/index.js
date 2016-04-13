@@ -41,7 +41,7 @@ $(function() {
 			         '<p class="home-profile-text">Age: <span class="age "></span></p>'+
 			         '<p class="home-profile-text">Budget: <span class="budget"></span></p>'+
 			       '</div><div class="btn-wrapper">'+
-			            '<a href = "#" class = "btn btn-default" role = "button">'+
+			            '<a href = "#" id="btn-toychest" class = "btn btn-default" role = "button">'+
 			               'ToyChest'+
 			            '</a> '+
 			            '<a href = "#" class = "btn btn-default" role = "button">'+
