@@ -8,6 +8,7 @@ body {
 
 hr {
 	border-color: #ddd;
+	margin-bottom: 10px;
 }
 
 .add-donations:focus {
@@ -19,7 +20,6 @@ hr {
 	right: 15px;
 	top: 50%;
 	transform: translateY(-50%);
-	text-transform: uppercase;
 	font-weight: 300;
 }
 
@@ -73,6 +73,7 @@ hr {
 
 .undo-col {
 	margin-bottom: 10px;
+	height: 20px;
 }
 
 #undo {

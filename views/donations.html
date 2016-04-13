@@ -3,10 +3,12 @@
 	<head>
 		<link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/common.css">
 		<link rel="stylesheet" type="text/css" href="../css/donations.css">
 		<script src="../jquery/js/jquery-1.12.3.min.js"></script>
 		<script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../javascripts/donations.js"></script>
+        <script type="text/javascript" src="../javascripts/common.js"></script>
 		<title>Donations</title>
 	</head>
 	<body>
@@ -34,7 +36,7 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 
-		<div id="myModal" class="modal fade" role="dialog">
+		<div id="donations-modal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
 
 		    <!-- Modal content-->
@@ -55,7 +57,7 @@
 		<div class="container">
 			<div class="row items">
 				<div class="col-lg-12">
-					<h1 class="header">Pending Donations <button type="button" class="btn btn-info btn-default add-donations" data-toggle="modal" data-target="#myModal">Add Donations</button></h1>
+					<h1 class="header">Pending <span data-toggle="modal" data-target="#toychest-modal">Donations</span> <button type="button" class="btn btn-info btn-default add-donations" data-toggle="modal" data-target="#donations-modal">Add Donations</button></h1>
 					<hr>
 				</div>
 				<div class="col-md-12 undo-col text-right">
@@ -66,7 +68,7 @@
 						<div class="panel-heading">
 							<div class="row">
 								<div class="col col-md-10">
-									<p class="toy-desc">Jacob's Obi Wan Action Figure</p>
+									<p class="toy-desc">John's Obi Wan Action Figure</p>
 								</div>
 								<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
 							</div>
@@ -75,7 +77,7 @@
 							<img src="../images/obiwan.jpg" class="toy-img center-block">
 						</div>
 						<div class="panel-footer">
-							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to Jacob's toyChest</small>
+							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to John's toyChest</small>
 						</div>
 					</div>
 				</div>
@@ -84,7 +86,7 @@
 						<div class="panel-heading">
 							<div class="row">
 								<div class="col col-md-10">
-									<p class="toy-desc">Jason's Kylo Ren Ship</p>
+									<p class="toy-desc">John's Kylo Ren Ship</p>
 								</div>
 								<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
 							</div>
@@ -93,7 +95,7 @@
 							<img src="../images/kyloren.jpg" class="toy-img center-block">
 						</div>
 						<div class="panel-footer">
-							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to Jason's toyChest</small>
+							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to John's toyChest</small>
 						</div>
 					</div>
 				</div>
@@ -102,7 +104,7 @@
 						<div class="panel-heading">
 							<div class="row">
 								<div class="col col-md-10">
-									<p class="toy-desc">Jacob's Fire Blaster</p>
+									<p class="toy-desc">David's Fire Blaster</p>
 								</div>
 								<div class="col col-md-2 text-right"><i class="fa fa-check donate-btn"></i></div>
 							</div>
@@ -111,8 +113,47 @@
 							<img src="../images/fireblaster.jpg" class="toy-img center-block">
 						</div>
 						<div class="panel-footer">
-							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to Jacob's toyChest</small>
+							<small class="return-to-chest"><i class="fa fa-angle-left"></i> Return to David's toyChest</small>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- I'm putting the toychest modal here for now to avoid merge conflicts -->
+		<div id="toychest-modal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">John's Toy Chest</h4>
+					</div>
+					<div class="toychest-modal-body row">
+                        <div class="col-md-12 toy-section">
+                            <div class="col-md-1 col check-column">
+                               <p class="checkbox"><i class="fa fa-square-o"></i></p>
+                            </div>
+                            <div class="col-md-6 col"><h3>Kylo Ren Ship</h3></div>
+                            <div class="col-md-3 col"><img src="../images/kyloren.jpg" class="toy-image center-block"></div>
+                            <div class="col-md-2 col">
+                                <button class="btn btn-primary delete-toy-btn">Delete</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 toy-section">
+                            <div class="col-md-1 col check-column">
+                                <p class="checkbox"><i class="fa fa-square-o"></i></p>
+                            </div>
+                            <div class="col-md-6 col"><h3>Obi Wan Action Figure</h3></div>
+                            <div class="col-md-3 col"><img src="../images/obiwan.jpg" class="toy-image center-block"></div>
+                            <div class="col-md-2 col">
+                                <button class="btn btn-primary delete-toy-btn">Delete</button>
+                            </div>
+                        </div>
+					</div>
+					<div id="toychest-modal-footer" class="modal-footer">
+						<button id="donate-selected-btn" type="submit" class="btn btn-primary">Donate Selected</button>
 					</div>
 				</div>
 			</div>

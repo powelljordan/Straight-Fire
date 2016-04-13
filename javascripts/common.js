@@ -18,7 +18,7 @@ $(function() {
 			$("#wishlist-dropdown-menu").append('<li><a href="#">'+name+'</a></li>');
 		}
 		$("#wishlist-dropdown").html(name+' <span class="caret"></span>');
-	}
+	};
 	$(".btn-choose-child").click(function(event){
 		console.log("clicked");
 		$("#choose-child-modal").modal('show');
@@ -26,10 +26,26 @@ $(function() {
 
 	$(".child-card").click(function(event){
 		$("#choose-child-modal").modal('hide');
-		var name = event.target.id.split('-')[1];;
+		var name = event.target.id.split('-')[1];
 		parseChild(name);
 	});
 
 	var name = location.search.split('&')[0].split('=')[1];
 	parseChild(name);
+
+	// JS for toy chest modal
+    $('.checkbox i').click(function() {
+        var box = $(this);
+        if (box.hasClass('fa-check-square-o')) {
+            box.removeClass('fa-check-square-o');
+            box.addClass('fa-square-o');
+        } else {
+            box.removeClass('fa-square-o');
+            box.addClass('fa-check-square-o');
+        }
+    });
+
+    $('.delete-toy-btn').click(function () {
+       $(this).parents('.toy-section').html('Undo');
+    });
 });

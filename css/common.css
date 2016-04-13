@@ -18,3 +18,74 @@
 .child-card .panel{
 	pointer-events:none;
 }
+
+
+/* Styling for toy chest modal */
+.toy-section {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.toychest-modal-body {
+    max-height: 490px;
+    overflow-y: auto;
+    margin: 0px;
+}
+
+.modal-header {
+    background: #f5f5f5;
+}
+.modal-footer {
+    background: #f5f5f5;
+}
+
+.modal-content {
+    overflow: hidden;
+}
+
+.toychest-modal-body div:last-of-type {
+    border-bottom: 0px !important;
+}
+
+.toy-section .col {
+    height: 50px;
+    position: relative;
+}
+
+.toy-section h3 {
+    white-space: nowrap;
+    position: absolute;
+    margin: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.check-column {
+    position: relative;
+}
+
+.checkbox {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    height: 1.5em;
+    margin: 0px;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+}
+
+.toy-image {
+    max-width: 100%;
+    height: 50px;
+}
+
+.delete-toy-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
