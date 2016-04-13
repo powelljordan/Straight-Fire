@@ -30,8 +30,8 @@
 
 .toychest-modal-body {
     max-height: 490px;
-    overflow-y: auto;
-    margin: 0px;
+    overflow-y: auto !important;
+    margin: 0px !important;
 }
 
 .modal-header {
