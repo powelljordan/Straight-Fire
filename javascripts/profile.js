@@ -127,6 +127,16 @@ $(function() {
 			addInterest(child.interests[i]);
 		}
 	}
+
+	var createChild = function(name, age, interests) {
+		$("#name").text(name);
+		$("#nameField-span").text(name);
+		$("#ageField-span").text(age);
+		$("#interestsTable").empty();
+		for (var i = 0; i < interests.length; i++) {
+			addInterest(interests[i]);
+		}
+	}
 	
 	// add an interest with enter key press
 	$("#interestsField-input").keyup(function(event){
@@ -187,11 +197,25 @@ $(function() {
 		window.location.href = "shopping.html?name="+name;
 	})
 
-	var name = location.search.split('=')[1];
-	if (name == undefined){
-		$("#choose-child-modal").modal("show");
+	// Main code
+	var args = location.search.slice(1).split('&');
+	var cur_child = {}
+	for (var i = 0; i < args.length; i++) {
+		var param = args[i].split('=');
+		cur_child[param[0]] = param[1];
+	}
+
+	var child = $.grep(children, function(e){ return e.name == cur_child.name; })[0]
+	// Creating a new child
+	if (args.length > 1 && !child) {
+		createChild(cur_child.name, cur_child.age, cur_child.interests.split("%20").join("").split(','));
 	} else {
-		loadChildInfo(name);
+		// Load modal if no child selected, or show specified child's profile
+		if (cur_child.name == undefined){
+			$("#choose-child-modal").modal("show");
+		} else {
+			loadChildInfo(cur_child.name);
+		}
 	}
 
 	$(".child-card").click(function(event){

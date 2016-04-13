@@ -318,6 +318,13 @@ $(function() {
 		$("#rating-number").text(data[index].rating+"/5");
 		fillStars(data[index].rating);
 	});
+
+	// $('.stars-frame').tooltip({
+	// 	trigger: 'hover focus',
+	// 	title: 'Mark as donated',
+	// 	placement: 'top'
+	// });
+
 	
 	$("#btn-purchase").click(function(event) {
 		openExternalPage();

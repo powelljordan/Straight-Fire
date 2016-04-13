@@ -7,7 +7,9 @@
   margin-left: 10px;
 }
 
-
+#profile-wrapper{
+	overflow:auto;
+}
 /* Bootstrap icon colors */
 .blue {
 	color: blue;

@@ -30,6 +30,6 @@ $(function() {
 		parseChild(name);
 	});
 
-	var name = location.search.split('=')[1];
+	var name = location.search.split('&')[0].split('=')[1];
 	parseChild(name);
 });
