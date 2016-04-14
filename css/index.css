@@ -74,3 +74,7 @@
 .child-panel-card{
 	background-color:#f5f5f5 !important;
 }
+
+.child-panel-card .thumbnail img {
+	height:250px;
+}
