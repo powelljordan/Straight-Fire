@@ -11,8 +11,8 @@
 	pointer-events: none;
 }
 
-.thumbnail{
-	/*pointer-events:none;*/
+.child-panel-card .thumbnail{
+	pointer-events:none;
 }
 
 .child-card .panel{

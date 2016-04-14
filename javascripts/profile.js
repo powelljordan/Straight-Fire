@@ -229,7 +229,7 @@ $(function() {
 	} else {
 		// Load modal if no child selected, or show specified child's profile
 		if (cur_child.name == undefined){
-			$("#choose-child-modal").modal("show");
+			$("#choose-child-modal").modal("show")
 		} else {
 			loadChildInfo(cur_child.name);
 		}
