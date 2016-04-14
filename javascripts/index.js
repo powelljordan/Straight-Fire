@@ -44,7 +44,7 @@ $(function() {
 			            '<a href = "#" id="'+ child.name +'" class = "btn btn-default btn-toychest" role = "button">'+
 			               'ToyChest'+
 			            '</a> '+
-			            '<a href = "#" class = "btn btn-default" role = "button">'+
+			            '<a href = "#" class = "btn btn-default btn-wishlist" role = "button">'+
 			               'Wishlist'+
 			            '</a>'+
 			            '<a href="shopping.html?name='+child.name+'" id="btn-start-shopping" class="btn btn-default" role = "button">' + 
@@ -60,7 +60,7 @@ $(function() {
 
 
 		$("#toyChestModal").append( 
-			'<div class = "thumbnail col-md-6">'+
+			'<div class = "thumbnail col-md-6 col-sm-6">'+
 			'<h3 class="text-center">'+child.name+'</h3>'+
 			'<ul id="'+child.id+'toyChest" class = "list-group checked-list-box">'+
 			'</ul></div>'
@@ -68,7 +68,13 @@ $(function() {
 
 		child.toyChest.forEach(function(toyName){
 			$("#"+child.id+"toyChest").append(
-				'<a href="#" class="list-group-item">'+toyName+'<img src="../images/' + toyName + '.jpg"></a>'
+				'<div class="col-md-12 col-sm-12 toy-section">'+
+				'<div class="col-md-3 col-sm-3 col check-column">'+
+                    '<p class="checkbox"><i class="fa fa-square-o"></i></p>'+
+                '</div>'+
+                '<div class="col-md-6 col-sm-6 col"><h3>'+toyName+'</h3></div>'+
+                '<div class="col-md-3 col-sm-3 col"><img src="../images/'+toyName+'.jpg" class="toy-image center-block"></div>'+
+                '</div>'
 			);
 		});
 	});
@@ -103,6 +109,12 @@ $(function() {
 	});
 
 	$(".btn-toychest").click(function(event) {
+		var name = event.toElement.id;
+		$("#toychest-modal").modal("show");
+		$("#toychest-name").text(name);
+	});
+
+	$(".btn-wishlist").click(function(event) {
 		var name = event.toElement.id;
 		$("#toychest-modal").modal("show");
 		$("#toychest-name").text(name);
