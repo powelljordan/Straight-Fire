@@ -3,7 +3,7 @@
 }
 
 #choose-child-body{
-	height:300px;
+	height:350px;
 }
 
 .caption{
@@ -17,6 +17,10 @@
 
 .child-card .panel{
 	pointer-events:none;
+}
+
+.child-card .thumbnail {
+    pointer-events: none;
 }
 
 

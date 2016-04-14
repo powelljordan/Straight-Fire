@@ -33,7 +33,7 @@ $(function() {
 			'<div class = "profile col-sm-6 col-md-4 '+offset+'" id="'+child.id+'">'+
 				'<div class="panel child-panel-card">'+
 			      '<div class = "thumbnail">'+
-			         '<img src = "../images/cute cat.jpg" alt = "Generic placeholder thumbnail">'+
+			         '<img src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
 			      '</div>'+
 			      
 			      '<div class = "caption">'+

@@ -60,3 +60,11 @@ tr.space-under > td {
 .first-col label{
 	margin-bottom:0px !important;
 }
+
+.child-card .panel .thumbnail img {
+	height: 225px;
+}
+
+#avatarImage {
+	height: 250px;
+}

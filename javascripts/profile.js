@@ -6,7 +6,8 @@ $(function() {
 			age: 13,
 			budget: 50,
 			toyChest: ["Dinosaur", "Gameboy", "Lego", "Racecar", "Cards", "other toys"],
-			interests: ["Star Wars", "Arts & Crafts", "Biking"]
+			interests: ["Star Wars", "Arts & Crafts", "Biking"],
+			img_src: "../images/john.png"
 		},
 		{
 			id: "Two",
@@ -14,7 +15,8 @@ $(function() {
 			age:8,
 			budget: 50,
 			toyChest: ["Connect 4", "Chess", "Book", "Xbox", "Wii", "yet another toy"],
-			interests: ["LEGOs", "Painting", "Action Figures"]
+			interests: ["LEGOs", "Painting", "Action Figures", "Cars"],
+			img_src: "../images/david.png"
 		}
 	];
 
@@ -29,7 +31,7 @@ $(function() {
 		if (newName) {
 			$("#nameField-span").text(newName);
 			$("#name").text(newName);
-			$("#nav-bar-dropdown").text(newName);
+			$("#nav-bar-dropdown").html(newName + "<span class='caret'></span>");
 			$("#toychest-name").text(newName);
 		}
 		$("#nameField-input").css({display:'none'});
@@ -150,6 +152,7 @@ $(function() {
 		$("#nameField-span").text(child.name);
 		$("#ageField-span").text(child.age);
 		$("#interestsTable").empty();
+		$("#avatarImage").attr('src',child.img_src);
 		for (var i = 0; i < child.interests.length; i++) {
 			addInterest(child.interests[i]);
 		}
@@ -248,7 +251,7 @@ $(function() {
 	}
 
 	$(".child-card").click(function(event){
-		var name = event.target.id.split('-')[1];
+		var name = event.target.parentElement.id.split('-')[1];
 		name = name.charAt(0).toUpperCase() + name.slice(1);
 		loadChildInfo(name);
 	});
