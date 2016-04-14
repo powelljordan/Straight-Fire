@@ -77,7 +77,7 @@ $(function() {
     });
 
     $('#donate-selected-btn').click(function() {
-        var selected = $('.checkbox i.fa-check-square-o', '#toychest-modal');
+        var selected = $('.checkbox i.fa-check-square-o');
         selected.parents('.toy-section').detach();
         $('#toychest-modal').modal('hide');
         if (selected.length) {
