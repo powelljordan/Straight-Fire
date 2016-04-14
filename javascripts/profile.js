@@ -95,7 +95,7 @@ $(function() {
 				// add interest 
    			col1 = $("<td class='first-col'></td>");
    			col2 = $("<td class='second-col'>" + newInterest + "&nbsp;&nbsp;</td>");
-   			col3 = $("<td class='third-col'><span id='interest-"+id+"' class='glyphicon glyphicon-remove remove-interest red'></span></td>");
+   			col3 = $("<td class='third-col'><span id='interest-"+id+"' class='glyphicon glyphicon-remove remove-interest red' height='80'></span></td>");
    			// prepend new interest to top of list
    			row.append(col1,col2,col3).prependTo("#interestsTable");
    			$('#interestsField-input').val("");

@@ -75,40 +75,43 @@
 
 		<div class="col-md-6">
 			<table id='profile-table'>
-			<tr class="space-under">
-				<td class='first-col'><label>Name:</label></td>
-				<td><span id="nameField-span" class="form-span edit-name">David</span>
-				<input type='text' id='nameField-input' onClick='this.select()' placeholder='First and last name'>
-				<span class="glyphicon glyphicon-pencil blue edit-name" height="50"></span>
+			<tr class="space-under" style="width:1000px">
+				<td class='first-col'><label class="h1" style="width:20%">Name:</label></td>
+				<td><span id="nameField-span" class="form-span edit-name" style="width:50%">David</span>
+				<input type='text' class="form-control" id='nameField-input' onClick='this.select()' placeholder='First and last name' style="width:50%">
+				<span class="glyphicon glyphicon-pencil blue edit-name" height="80" style="width:20%"></span>
 				</td>
 			</tr>
-			<tr class="space-under">
-				<td><label>Age:</label></td>
-				<td><span id="ageField-span" class="form-span edit-age">8</span>
-				<input type='number' id='ageField-input' onClick='this.select()' placeholder='Numerical value'>
-				<span class="glyphicon glyphicon-pencil blue edit-age" height="50"></span>
+			<tr class="space-under" style="width:1000px">
+				<td><label class="h1" style="width:20%">Age:</label></td>
+				<td><span id="ageField-span" class="form-span edit-age" style="width:50%">8</span>
+				<input type='number' class="form-control" id='ageField-input' onClick='this.select()' placeholder='Numerical value' style="width:50%">
+				<span class="glyphicon glyphicon-pencil blue edit-age" height="80" style="width:20%"></span>
 				</td>
 			</tr>
-			<tr class="space-under">
-				<td><label>Interests:</label></td>
-				<td><span id="interestsField-span" class="form-span edit-interests"></span>
-				<input type='text' id='interestsField-input' onClick='this.select()' placeholder='Add one interest at a time'>
-				<span id="interestsPencil" class="glyphicon glyphicon-pencil blue edit-interests" height="50"></span>
-				<span id="add-interest" class="glyphicon glyphicon-plus green" height="50"></span>
+			<tr class="space-under" style="width:1000px">
+				<td><label class="h1" style="width:10%">Interests:&nbsp;</label></td>
+				<td><span id="interestsField-span" class="form-span edit-interests form-control" height="100" style="width:50%"></span>
+				<input type='text' class="form-control ad-left" id='interestsField-input' onClick='this.select()' style="width:80%" height="100" placeholder='Add one interest at a time'>
+				<span id="interestsPencil" class="glyphicon glyphicon-pencil blue edit-interests padding" height="80" style="width:10%"></span>
+				<span id="add-interest" class="glyphicon glyphicon-plus green" height="80" style="width:20%"></span>
 				</td>
 					<!-- list of interests -->
 					<table id="interestsTable" class='alnright' border="0">
-						<tr class="panel panel-default">
-							<td class='first-col'></td>
-							<td class='second-col'>Star Wars &nbsp;&nbsp;</td>
-							<td class='third-col'><span id='interest-0' class='glyphicon glyphicon-remove red remove-interest'></span></td>
-						</tr>
+						<!-- list of interests -->
+						<ul id="interestsTable" class='alnright list-group' border="0">
+							<li class='first-col'></li>
+							<li class='second-col h2'>Star Wars &nbsp;&nbsp;</li>
+							<li class='third-col'><span id='interest-0' class='glyphicon glyphicon-remove red remove-interest'></span></li>
+						</ul>
 					</table>
 			</div>
-			<br>
+			<br> <br>
 			<button id="btn-save-changes" class="btn btn-default">Save</button>
 		</div> <!-- end of second half of page -->
 
+
+	<!-- modal for choosing which child's profile you want to view -->
 	<div id="choose-child-modal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 

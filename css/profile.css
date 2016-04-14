@@ -10,6 +10,15 @@
 #profile-wrapper{
 	overflow:auto;
 }
+
+.h1 {
+	font-size: 150%;
+}
+
+.h2 {
+	font-size: 120%;
+}
+
 /* Bootstrap icon colors */
 .blue {
 	color: blue;
@@ -36,11 +45,14 @@
 	width:50px;
 }
 
+.padding{
+	padding-left:10px;
+}
+
 .form-span{
 	width:152px;
 	display: inline-block;
 	padding-left:2px;
-	background-color: #EEE;
 }
 
 #interestsField-span{
