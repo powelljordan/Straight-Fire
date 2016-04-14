@@ -120,7 +120,19 @@ $(function() {
         }
     });
 
-	
+
+    // save automatically when user clicks out of the input text box
+    $("#nameField-input").blur(function() {
+    	save();
+	});
+    $("#ageField-input").blur(function() {
+    	save();
+	});
+    $("#interestsField-input").blur(function() {
+    	save();
+	});
+
+
 	// for the delete interest x button
 	function deleteInterest(row) {
 		var rowOfButton = $("#"+row).parent().parent().remove();
@@ -229,7 +241,7 @@ $(function() {
 	} else {
 		// Load modal if no child selected, or show specified child's profile
 		if (cur_child.name == undefined){
-			$("#choose-child-modal").modal("show");
+			$("#choose-child-modal").modal("show")
 		} else {
 			loadChildInfo(cur_child.name);
 		}

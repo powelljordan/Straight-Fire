@@ -11,6 +11,7 @@ $(function() {
 		$("#name-present").css({display: 'block'}); 
 		$("#nav-bar-dropdown").text(name);
 		$("#toychest-name").text(name);
+        $("#wishlist-name").text(name);
 		var found = false;
 		$("#wishlist-dropdown-menu li a").each(function(index,elem){
 			if (elem.text == name) found = true;
@@ -76,7 +77,7 @@ $(function() {
     });
 
     $('#donate-selected-btn').click(function() {
-        var selected = $('.checkbox i.fa-check-square-o');
+        var selected = $('.checkbox i.fa-check-square-o', '#toychest-modal');
         selected.parents('.toy-section').detach();
         $('#toychest-modal').modal('hide');
         if (selected.length) {
@@ -87,4 +88,16 @@ $(function() {
     $("#btn-toychest").click(function(event) {
 		$("#toychest-modal").modal("show");
 	});
+
+    $('#delete-selected-btn').click(function() {
+        var selected = $('.checkbox i.fa-check-square-o', '#wishlist-modal');
+        selected.parents('.toy-section').detach();
+        toysLeft = $('.wishlist-modal-body').children('.toy-section');
+        if (!toysLeft.length) {
+            $('#wishlist-modal').modal('hide');
+        }
+        if (selected.length) {
+            alert("Removed " + selected.length + " toy(s) from wishlist");
+        }
+    });
 });

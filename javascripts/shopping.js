@@ -282,7 +282,7 @@ $(function() {
 
 	for (var i = 0; i < data.length; i++) {
 		var d = data[i];
-		var div_text = '<div id="item-wrapper-'+i+'"class = "col-sm-6 col-md-3 item-wrapper" data-toggle="modal" data-target="#myModal"><div class= "panel panel-default">';
+		var div_text = '<div id="item-wrapper-'+i+'"class = "col-sm-6 col-md-3 item-wrapper" data-toggle="modal" data-target="#myModal"><div class= "panel panel-default item-card">';
 		var img_text = '<div class = "thumbnail"> <img src = "' + d.img_src + '" alt = "' + d.item + 'thumbnail"> </div>';
 	    var caption_text = '<div class = "caption"> <h4 class="sub">' + d.name + '</div>';
 		$("#search-content").append(div_text + img_text + caption_text + '</div></div>');
