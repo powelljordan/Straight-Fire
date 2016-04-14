@@ -9,7 +9,7 @@ $(function() {
 		name = name.charAt(0).toUpperCase() + name.slice(1);
 		$("#name-not-present").css({display:'none'});           
 		$("#name-present").css({display: 'block'}); 
-		$("#nav-bar-dropdown").text(name);
+		$("#nav-bar-dropdown").html(name + '<span class="caret"></span>');
 		$("#toychest-name").text(name);
         $("#wishlist-name").text(name);
 		var found = false;
@@ -27,7 +27,7 @@ $(function() {
 
 	$(".child-card").click(function(event){
 		$("#choose-child-modal").modal('hide');
-		var name = event.target.id.split('-')[1];
+		var name = event.target.parentElement.id.split('-')[1];
 		parseChild(name);
 	});
 
