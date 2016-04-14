@@ -44,7 +44,7 @@ $(function() {
 			            '<a href = "#" id="'+ child.name +'" class = "btn btn-default btn-toychest" role = "button">'+
 			               'ToyChest'+
 			            '</a> '+
-			            '<a href = "#" class = "btn btn-default btn-wishlist" role = "button">'+
+			            '<a href = "#" id="'+ child.name +'"class = "btn btn-default btn-wishlist" role = "button">'+
 			               'Wishlist'+
 			            '</a>'+
 			            '<a href="shopping.html?name='+child.name+'" id="btn-start-shopping" class="btn btn-default" role = "button">' + 
