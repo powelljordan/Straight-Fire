@@ -22,7 +22,6 @@ $(function() {
 
 	$("#nameField-input").css({display:"None"});
 	$("#ageField-input").css({display:"None"});
-	$("#interestsField-input").css({display:"None"});
 
 	// save button
 	function save() {
@@ -34,22 +33,22 @@ $(function() {
 			$("#nav-bar-dropdown").html(newName + "<span class='caret'></span>");
 			$("#toychest-name").text(newName);
 		}
-		$("#nameField-input").css({display:'none'});
-		$("#nameField-span").css({display:'inline-block'});
+		$("#nameField-input").hide();
+		$("#nameField-span").show();
+        $("#name-pencil").show();
 
 		var newAge = $('#ageField-input').val();
 		if (newAge) {
 			$("#ageField-span").text(newAge);
 		}
-		$("#ageField-input").css({display:'none'});
-		$("#ageField-span").css({display:'inline-block'});
+		$("#ageField-input").hide();
+		$("#ageField-span").show();
+        $("#age-pencil").show();
 
 		var newInterest = $('#interestsField-input').val();
 		if (newInterest) {
 			addInterest();
 		}
-		$("#interestsField-input").css({display:'none'});
-		$("#interestsField-span").css({display:'inline-block'});
 
 		// remove delete icons
 		var deleteIcons = $('.glyphicon .glyphicon-remove .red');
@@ -63,28 +62,21 @@ $(function() {
 	function editName() {
 		var newName = $("#nameField-span").text();		
 		// make solid text into input text
-		$("#nameField-span").css({display:"none"});
-		$("#nameField-input").css({display:"inline-block"});
+		$("#nameField-span").hide();
+		$("#nameField-input").show();
 		$("#nameField-input").val(newName);
+        $("#name-pencil").hide();
 		$("#nameField-input").select();
 	} 
 
 	function editAge() {
 		var newAge = $("#ageField-span").text();
 		// make solid text into input text
-		$("#ageField-span").css({display:"none"});
-		$("#ageField-input").css({display:"inline-block"});
+		$("#ageField-span").hide();
+		$("#ageField-input").show();
 		$("#ageField-input").val(newAge);
+        $('#age-pencil').hide();
 		$("#ageField").select();
-	}
-
-	function editInterest() {
-		var newInterest = $("#interestsField-span").text();
-		// make solid text into input text
-		$("#interestsField-span").css({display:"none"});
-		$("#interestsField-input").css({display:"inline-block"});
-		$("#interestsField-input").val(newInterest)
-		$("#interestsField").select();
 	}
 
 	// for the add interest plus button
@@ -93,13 +85,12 @@ $(function() {
 		// make sure an interest is entered
 		if (newInterest) {
 			// insert new row
-			row = $("<tr class='panel panel-default'></tr>"); 
-				// add interest 
-   			col1 = $("<td class='first-col'></td>");
-   			col2 = $("<td class='second-col'>" + newInterest + "&nbsp;&nbsp;</td>");
-   			col3 = $("<td class='third-col'><span id='interest-"+id+"' class='glyphicon glyphicon-remove remove-interest red' height='80'></span></td>");
+			var listItem = $("<li class='list-group-item'></li>");
+				// add interest
+   			var itemName = $("<span>" + newInterest + "</span>");
+            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close'></i></span>");
    			// prepend new interest to top of list
-   			row.append(col1,col2,col3).prependTo("#interestsTable");
+   			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
    			$('#interestsField-input').val("");
 		}
 	}
@@ -134,12 +125,6 @@ $(function() {
     	save();
 	});
 
-
-	// for the delete interest x button
-	function deleteInterest(row) {
-		var rowOfButton = $("#"+row).parent().parent().remove();
-	}
-
 	// show toy chest pop up
 	function viewToyChest() {
 		$('#toychest-modal').modal('show');
@@ -151,7 +136,7 @@ $(function() {
 		$("#name").text(child.name);
 		$("#nameField-span").text(child.name);
 		$("#ageField-span").text(child.age);
-		$("#interestsTable").empty();
+		$("#interest-list").empty();
 		$("#avatarImage").attr('src',child.img_src);
 		for (var i = 0; i < child.interests.length; i++) {
 			addInterest(child.interests[i]);
@@ -164,22 +149,30 @@ $(function() {
 		$("#nameField-span").text(name);
 		$("#ageField-span").text(age);
 		$("#toychest-name").text(name);
-		$("#interestsTable").empty();
+		$("#interest-list").empty();
 		for (var i = 0; i < interests.length; i++) {
 			addInterest(interests[i]);
 		}
-	}
+	};
 	
 	// add an interest with enter key press
-	$("#interestsField-input").keyup(function(event){
+	$("#interest-input").keyup(function(event){
 	    if(event.keyCode == 13){
-	    	if ($("#interestsField-input").val()){
-	    		addInterest($('#interestsField-input').val());
+	    	if ($("#interest-input").val()){
+	    		addInterest($('#interest-input').val());
+                $("#interest-input").val("");
 	    	} else {
 	    		save();
 	    	}
 	    }
 	});
+
+    $("#add-interest").click(function() {
+       if ($("#interest-input").val()) {
+           addInterest($("#interest-input").val());
+           $("#interest-input").val("");
+       }
+    });
 
 	$("#nameField-input").keyup(function(event){
 		if (event.keyCode==13){
@@ -207,21 +200,12 @@ $(function() {
 		addInterest($('#interestsField-input').val());
 	});
 
-	$(".edit-interests").click(function(event){
-		editInterest();
-		$("#interestsField-input").select();
-	});
-
 	$("#btn-save-changes").click(function(event){
 		save();
 	});
 
-	$("#interestsTable").click(function(event){
-		var id = event.toElement.id;
-		if (id.split('-')[0] != 'interest') {
-			return;
-		}
-		deleteInterest(id);
+	$("#interest-list").on('click', '.remove-interest', function(event){
+		$(event.target).parents('.list-group-item').detach();
 	});
 
 	$("#btn-start-shopping").click(function(event){
@@ -231,7 +215,7 @@ $(function() {
 
 	// Main code
 	var args = location.search.slice(1).split('&');
-	var cur_child = {}
+	var cur_child = {};
 	for (var i = 0; i < args.length; i++) {
 		var param = args[i].split('=');
 		cur_child[param[0]] = param[1];
@@ -256,4 +240,4 @@ $(function() {
 		loadChildInfo(name);
 	});
 			
-})
+});

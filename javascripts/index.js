@@ -19,7 +19,7 @@ $(function() {
 	var offset;
 	var test = function(){
 		console.log("gets called");
-	}
+	};
 	children.forEach(function(child){
 		// console.log(firstItem);
 		offset = "";
