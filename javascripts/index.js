@@ -20,6 +20,37 @@ $(function() {
 	var test = function(){
 		console.log("gets called");
 	};
+
+
+	/**
+	Firebase Stuff
+
+	Initialize Firebase Reference
+	This makes rootRef a Firebase object sorta like getting a reference to the javascript object holding our data
+	We can use methods of this rootRef object to store and query data.
+	All querying is done through callbacks
+
+	*/
+	var rootRef = new Firebase("https://toychest.firebaseio.com/");
+
+	//For example I can add the two children I defined above to our firebase
+	children.forEach(function(child){
+		rootRef.child(child.id).set(child);
+	})
+
+	//Then I can print them from the database as they're added by adding a listener and getting a snapshot
+	rootRef.on("child_added", function(snapshot){
+		console.log(snapshot.val());
+	});
+
+
+	//There are other events and custom queries that you can do, but that's kinda the gist
+	//Go ahead and add an delete some things in the database to get a feel for how it behaves. There aren't any
+	//Read or write permissions right now so technically I think anyone can write to the db, but if we feel it's necessary
+	//we can add those later
+
+
+
 	children.forEach(function(child){
 		// console.log(firstItem);
 		offset = "";
