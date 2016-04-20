@@ -6,7 +6,7 @@ $(function() {
 			name: "John",
 			age: 13,
 			budget: 50,
-			toyChest: ["Dinosaur", "Gameboy", "Lego", "Racecar", "Cards"]}
+			toyChest: ["Dinosaur", "Gameboy", "Lego", "Racecar", "Cards", "another", "and another"]}
 
 	david = {id: "Two",
 			name: "David",
@@ -72,8 +72,8 @@ $(function() {
 				'<div class="col-md-3 col-sm-3 col check-column">'+
                     '<p class="checkbox"><i class="fa fa-square-o"></i></p>'+
                 '</div>'+
-                '<div class="col-md-6 col-sm-6 col"><h3>'+toyName+'</h3></div>'+
-                '<div class="col-md-3 col-sm-3 col"><img src="../images/'+toyName+'.jpg" class="toy-image center-block"></div>'+
+                '<div class="col-md-9 col-sm-9 col"><h3>'+toyName+'</h3></div>'+
+                // '<div class="col-md-3 col-sm-3 col"><img src="../images/'+toyName+'.jpg" class="toy-image center-block"></div>'+
                 '</div>'
 			);
 		});
