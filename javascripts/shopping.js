@@ -228,6 +228,9 @@ $(function() {
 		}
 	];
 
+	// TODO: get child from firebase
+	var child = {interests: ['one', 'two int', 'three-what']};
+
 	var openExternalPage = function() {
 		var confirmation = confirm("You will be directed to an external page to complete your transaction.");
 		if (confirmation){
@@ -259,6 +262,20 @@ $(function() {
 			$("#shaded-star-"+num_full_stars).css({width:ratio_width});
 		}
 	}
+
+	for (var i = 0; i < child.interests.length; i++) {
+		$("#filters-wrapper").append("<a class='btn filter-btn' id='"+ i + "-filter'>"+child.interests[i]+"</div>");
+	}
+
+	// TODO: actually filter
+	$(".filter-btn").click(function(event) {
+		// If filter is unselected, remove the unselected class
+		if ($.inArray('unselected', event.toElement.classList) != -1) {
+			$("#"+event.toElement.id).removeClass('unselected');
+		} else {
+			$("#"+event.toElement.id).addClass('unselected');
+		}
+	})
 
 	// var parseChild = function(name) {
 	// 	if (!name) {
@@ -350,6 +367,11 @@ $(function() {
 	$("#wishlist-add").click(function(event) {
 		$("#wishListModal").modal('hide');
 		alert("Successfully added to wishlist!");
+	});
+
+	// Go back to toychest view
+	$("#back-button").click(function(event) {
+		window.location.href = "donations.html";
 	});
 
 	// $(".btn-choose-child").click(function(event){

@@ -1,4 +1,4 @@
-/*.modal-dialog{
+.modal-dialog{
 	width:2000px;
 }*/
 
@@ -172,10 +172,27 @@
 	/*text-align:center;*/
 }
 
+#back-button{
+	cursor:pointer;
+}
+
+
+.filter-btn{
+	margin-left:10px;
+}
+
+#filters-row{
+	text-align:center;
+}
+
+.unselected{
+	box-shadow: none !important;
+	background-color:rgba(38, 166, 154, 0.39) !important;
+}
 /*.child-card {
 	cursor:pointer;
 }
 
 #choose-child-body{
 	height:300px;
-}*/
+}
