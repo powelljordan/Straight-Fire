@@ -57,14 +57,25 @@
 }
 
 #btn-new-profile{
-	border:3px solid #999;
+/*	border:3px solid #999;
 	color:#999;
 	margin:25px;
 	position:fixed;
 	bottom:0;
 	right:0;
 	height:60px;
-	width:60px;
+	width:60px;*/
+}
+
+#manageProfiles{
+	font-size:2em;
+	border-style: solid; 
+	border-width: 5px; 
+	border-color:gray
+}
+#manageProfiles:hover{
+	border-color:black;
+	color:black;
 }
 
 #create-profile-modal-footer{
