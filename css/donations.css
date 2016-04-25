@@ -12,19 +12,49 @@ body {
 }
 
 .undo-col {
-	margin-bottom: 10px;
+	margin-top: 7px;
 	height: 20px;
 }
 
-#undo {
+.undo {
 	display: none;
 }
 
-#undo:hover {
+.undo:hover {
 	cursor: pointer;
 	text-decoration: underline;
 }
 
 .card-action i {
     vertical-align: middle;
+}
+
+.card-title {
+    color: #000 !important;
+    background: rgba(255, 255, 255, 0.87);
+}
+
+.add-icon-container {
+    position: relative;
+    width: 100%;
+}
+
+.add-icon-container:after {
+    padding-bottom: 100%;
+    display: block;
+    content: "";
+}
+
+.add-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+.add-label {
+    display: block;
+    width: 100%;
+    text-align: center;
 }
