@@ -25,4 +25,6 @@ $(function() {
 			$(this).fadeOut();
 		}
 	});
+
+    $('.add-toy-card').leanModal();
 });
