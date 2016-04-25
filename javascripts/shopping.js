@@ -281,24 +281,34 @@ $(function() {
 	// }
 
 	for (var i = 0; i < data.length; i++) {
+		var row_num = Math.floor(i/4);
+		if (i%4 == 0) {
+			console.log("here", i);
+			$("#search-content").append("<div class='row' id='row-"+ row_num + "'></div>");
+		}
 		var d = data[i];
-		var div_text = '<div id="item-wrapper-'+i+'"class = "col-sm-6 col-md-3 item-wrapper"><div class= "panel panel-default item-card">';
-		var img_text = '<div class = "thumbnail"> <img src = "' + d.img_src + '" alt = "' + d.item + 'thumbnail"> </div>';
-	    var caption_text = '<div class = "caption"> <h4 class="sub">' + d.name + '</div>';
-		$("#search-content").append(div_text + img_text + caption_text + '</div></div>');
+		// var div_text = '<div id="item-wrapper-'+i+'"class = "col-sm-6 col-md-3 item-wrapper"><div class= "panel panel-default item-card">';
+		// var img_text = '<div class = "thumbnail"> <img src = "' + d.img_src + '" alt = "' + d.item + 'thumbnail"> </div>';
+	    // var caption_text = '<div class = "caption"> <h4 class="sub">' + d.name + '</div>';
+	    var div_text = '<div id="item-wrapper-'+i+'" class="col m3"><div class="card item-card">';
+	    var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
+	    var caption_text = '<div class="card-action">'+d.name+'</div>';
+	    var str = div_text + img_text + caption_text + '</div>';
+		$("#row-"+row_num).append(str);
 	}
 
 	// var name = location.search.split('=')[1];
 	// parseChild(name);
 
 	$(".item-card").click(function(event) {
-		$("#myModal").modal("show");
+		// $("#myModal").modal("show");
+		$("#myModal").openModal();
 		console.log(event);
 		var index = parseInt(event.toElement.parentElement.id.split("-")[2]);
 		var elem = $("#"+event.toElement.parentElement.id);
-		var src = elem.find(".panel").find(".thumbnail").find("img").attr("src");
-		$("#modal-thumbnail").html("<img src='" + src +"'</div>");
-		$(".item-title").text(elem.find(".caption").text());
+		var src = elem.find(".card").find(".card-image").find("img").attr("src");
+		$("#modal-thumbnail").html("<img class='responsive-img' src='" + src +"'/>");
+		$(".item-title").text(elem.find(".card-action").text());
 		$("#modal-price").text("$"+data[index].price);
 		$("#seller").text(data[index].seller);
 		(data[index].description.length < 200) ? $("#description").text(data[index].description) : $("#description").html(data[index].description.slice(0,200) + "... <a href='" + data[index].url + "' target='_blank'>Read more</a>");
