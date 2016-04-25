@@ -229,7 +229,7 @@ $(function() {
 	];
 
 	// TODO: get child from firebase
-	var child = {interests: ['one', 'two int', 'three-what']};
+	var child = {interests: ['Star Wars', 'LEGOs', 'Arts & Crafts']};
 
 	var openExternalPage = function() {
 		var confirmation = confirm("You will be directed to an external page to complete your transaction.");
