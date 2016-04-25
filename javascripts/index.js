@@ -8,14 +8,18 @@ $(function() {
 			age: 13,
 			budget: 50,
 			toyChest: ["Dinosaur", "Gameboy", "Lego", "Racecar", "Cards", "another", "and another"],
-			interests:["Biking", "Arts & Crafts", "Star Wars"]}
+			interests:["Biking", "Arts & Crafts", "Star Wars"],
+			wishlist: [0,1]
+		}
 
 	david = {id: "Two",
 			name: "David",
 			age:8,
 			budget: 50,
 			toyChest: ["Connect 4", "Chess", "Book", "Xbox", "Wii"],
-			interests:["Cars", "Action Figures", "Painting"]}
+			interests:["Cars", "Action Figures", "Painting"],
+			wishlist: [0,1]
+		}
 
 	var children = [john, david];
 	var firstItem = true;
@@ -38,11 +42,11 @@ $(function() {
 
 	//For example I can add the two children I defined above to our firebase
 	children.forEach(function(child){
-		rootRef.child(child.id).set(child);
+		rootRef.child('children').child(child.id).set(child);
 	})
 
 	//Then I can print them from the database as they're added by adding a listener and getting a snapshot
-	rootRef.on("child_added", function(snapshot){
+	rootRef.child('children').on("child_added", function(snapshot){
 		console.log(snapshot.val());
 	});
 
