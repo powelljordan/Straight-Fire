@@ -1,118 +1,130 @@
 <!DOCTYPE html>
 <html>
-	<head>
-        <link rel="stylesheet" type="text/css" href="../css/common.css">
-		<link rel="stylesheet" type="text/css" href="../css/donations.css">
-        <link rel="stylesheet" type="text/css" href="../css/index.css">
-        <!-- Compiled and minified CSS -->
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
- 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/donations.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 
-		<script src="../jquery/js/jquery-1.12.3.min.js"></script>
-		<!-- Compiled and minified JavaScript -->
-  		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-		<script type="text/javascript" src="../javascripts/donations.js"></script>
-        <script type="text/javascript" src="../javascripts/common.js"></script>
-		<title>Donations</title>
-	</head>
-	<body>
+    <script src="../jquery/js/jquery-1.12.3.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../javascripts/donations.js"></script>
+    <script type="text/javascript" src="../javascripts/common.js"></script>
+    <title>Donations</title>
+</head>
+<body>
 
-		<div class="container" style="margin-top: 20px;">
-			<div class="row">
-				<div class="col s3">
-                    <img src="../images/john.png" class="responsive-img">
-				</div>
-			</div>
-			<div class="row">
-                <div class="col s12">
-                    <ul class="tabs">
-                        <li class="tab col s4"><a href="#toychest">ToyChest</a></li>
-                        <li class="tab col s4"><a href="#donations">Donations</a></li>
-                        <li class="tab col s4"><a href="#wishlist">Wishlist</a></li>
-                    </ul>
-                </div>
-                <div class="col s12" id="toychest">
-                    <div class="col s12 undo-col right-align">
-                        <span class="undo" id="toychest-undo">Undo '<span id="toychest-undo-action">Queue for donation</span>'</span>
-                    </div>
-                    <div class="col s6 l4">
-                        <div class="card add-card add-toy-card" href="#add-toy-modal">
-                            <div class="card-image add-icon-container waves-effect">
-                                <i class="material-icons large add-icon">add</i>
-                            </div>
-                            <div class="card-action">
-                                <span class="add-label">ADD TOY</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12" id="donations">
-                    <div class="col s12 undo-col right-align">
-                        <span class="undo" id="donations-undo">Undo '<span id="donations-undo-action">Mark as donated</span>'</span>
-                    </div>
-                    <div class="col s6 l4 item-col">
-                        <div class="card toy z-depth-0">
-                            <div class="card-image">
-                                <img src="../images/obiwan.jpg">
-                                <span class="card-title">Obi Wan Action Figure</span>
-                            </div>
-                            <div class="card-action">
-                                <i class="material-icons left-align waves-effect tooltipped return" data-position="right" data-delay="50" data-tooltip="Return to toyChest">arrow_back</i>
-                                <i class="material-icons right waves-effect tooltipped donate" data-position="left" data-delay="50" data-tooltip="Mark as donated">check</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 l4 item-col">
-                        <div class="card toy z-depth-0">
-                            <div class="card-image">
-                                <img src="../images/color_fingers.jpg">
-                                <span class="card-title">Color Wonder</span>
-                            </div>
-                            <div class="card-action">
-                                <i class="material-icons left-align waves-effect tooltipped return" data-position="right" data-delay="50" data-tooltip="Return to toyChest">arrow_back</i>
-                                <i class="material-icons right waves-effect tooltipped donate" data-position="left" data-delay="50" data-tooltip="Mark as donated">check</i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12" id="wishlist">
-                    <div class="col s12 undo-col right-align">
-                        <span class="undo" id="wishlist-undo">Undo 'Delete'</span>
-                    </div>
-                    <div class="col s6 l4">
-                        <div class="card add-card">
-                            <div class="card-image add-icon-container waves-effect">
-                                <i class="material-icons large add-icon">shopping_cart</i>
-                            </div>
-                            <div class="card-action">
-                                <span class="add-label">SHOP FOR TOYS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-			</div>
-		</div>
 
-        <div class="modal" id="add-toy-modal">
-            <div class="modal-content">
-                <form id="add-toy-form">
-                    <div class="file-field input-field">
-                        <div class="btn z-depth-0">
-                            <span>File</span>
-                            <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <input form="add-toy-form" type="submit" value="Submit" class="btn-flat waves-effect">
-                <a class="modal-action modal-close btn-flat" data-dismiss="modal">Cancel</a>
+<div class="row header">
+    <div class="col s2 offset-s2 valign-wrapper">
+        <div class="child-thumbnail valign">
+            <img src="../images/john.png" class="responsive-img child-image">
+            <span class="child-name">John</span>
+            <div class="thumbnail-overlay">
+                <i class="material-icons large swap-icon">swap_horiz</i>
             </div>
         </div>
+    </div>
+    <div class="col s2 valign-wrapper" style="display: none;">
+        <div class="child-thumbnail valign">
+            <img src="../images/david.png" class="responsive-img child-image">
+            <span class="child-name">David</span>
+        </div>
+    </div>
+</div>
 
-	</body>
+<div class="col s12">
+    <ul class="tabs">
+        <li class="tab col s2"><a href="#toychest">ToyChest</a></li>
+        <li class="tab col s2"><a href="#donations">Donations</a></li>
+        <li class="tab col s2"><a href="#wishlist">Wishlist</a></li>
+    </ul>
+</div>
+    <div class="row">
+        <div class="col s12" id="toychest">
+            <div class="col s12 undo-col right-align">
+                <span class="undo" id="toychest-undo">Undo '<span id="toychest-undo-action">Queue for donation</span>'</span>
+            </div>
+            <div class="col s6 l2">
+                <div class="card add-card add-toy-card" href="#add-toy-modal">
+                    <div class="card-image add-icon-container waves-effect">
+                        <i class="material-icons large add-icon">add</i>
+                    </div>
+                    <div class="card-action">
+                        <span class="add-label">ADD TOY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" id="donations">
+            <div class="col s12 undo-col right-align">
+                <span class="undo" id="donations-undo">Undo '<span id="donations-undo-action">Mark as donated</span>'</span>
+            </div>
+            <div class="col s6 l2 item-col">
+                <div class="card toy z-depth-0">
+                    <div class="card-image">
+                        <img src="../images/obiwan.jpg">
+                        <span class="card-title">Obi Wan Action Figure</span>
+                    </div>
+                    <div class="card-action">
+                        <i class="material-icons left-align waves-effect tooltipped return" data-position="right" data-delay="50" data-tooltip="Return to toyChest">arrow_back</i>
+                        <i class="material-icons right waves-effect tooltipped donate" data-position="left" data-delay="50" data-tooltip="Mark as donated">check</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col s6 l2 item-col">
+                <div class="card toy z-depth-0">
+                    <div class="card-image">
+                        <img src="../images/color_fingers.jpg">
+                        <span class="card-title">Color Wonder</span>
+                    </div>
+                    <div class="card-action">
+                        <i class="material-icons left-align waves-effect tooltipped return" data-position="right" data-delay="50" data-tooltip="Return to toyChest">arrow_back</i>
+                        <i class="material-icons right waves-effect tooltipped donate" data-position="left" data-delay="50" data-tooltip="Mark as donated">check</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" id="wishlist">
+            <div class="col s12 undo-col right-align">
+                <span class="undo" id="wishlist-undo">Undo 'Delete'</span>
+            </div>
+            <div class="col s6 l2">
+                <div class="card add-card">
+                    <div class="card-image add-icon-container waves-effect">
+                        <i class="material-icons large add-icon">shopping_cart</i>
+                    </div>
+                    <div class="card-action">
+                        <span class="add-label">SHOP FOR TOYS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal" id="add-toy-modal">
+    <div class="modal-content">
+        <form id="add-toy-form">
+            <div class="file-field input-field">
+                <div class="btn z-depth-0">
+                    <span>File</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <input form="add-toy-form" type="submit" value="Submit" class="btn-flat waves-effect">
+        <a class="modal-action modal-close btn-flat" data-dismiss="modal">Cancel</a>
+    </div>
+</div>
+
+</body>
 </html>
