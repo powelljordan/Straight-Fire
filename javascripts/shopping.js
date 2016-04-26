@@ -37,6 +37,8 @@ $(function() {
 		if (child.id == child_id) {
 			selected_child = child;
 			updateChildParams(child);
+		} else {
+			displayChild(child);
 		}
 	});
 
@@ -89,23 +91,19 @@ $(function() {
 		});
 	}
 
-	var updateChildParams = function(child) {
-		fillInterests(child);
+	var displayChild = function(child) {
+		var html_str = '<div class="col s2 valign-wrapper" style="display: none;">'+
+		'<div class="child-thumbnail valign"><img src="'+child.img_src+'" class="responsive-img child-image">'+
+		'<span class="child-name">'+child.name+'</span></div></div>';
+		$("#child-header").append(html_str);
 	}
 
-	// Display all shopping items retrieved from Firebase
-	// for (var i = 0; i < data.length; i++) {
-	// 	var row_num = Math.floor(i/4);
-	// 	if (i%4 == 0) {
-	// 		$("#search-content").append("<div class='row' id='row-"+ row_num + "'></div>");
-	// 	}
-	// 	var d = data[i];
-	//     var div_text = '<div id="item-wrapper-'+i+'" class="col m3"><div class="card item-card">';
-	//     var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
-	//     var caption_text = '<div class="card-action">'+d.name+'</div>';
-	//     var str = div_text + img_text + caption_text + '</div>';
-	// 	$("#row-"+row_num).append(str);
-	// }
+	var updateChildParams = function(child) {
+		fillInterests(child);
+		// Update the header to display selected child
+		$("#selected-child img").attr('src',child.img_src);
+		$("#selected-child .child-name").text(child.name);
+	}
 
 	// When an item is clicked, populate modal with item's info
 	var bind_modal = function(id) {
