@@ -1,3 +1,8 @@
+#right-arrow{
+    color:#5a5a5a;
+    cursor:pointer;
+}
+
 .undo-col {
 	margin-top: 7px;
 	height: 20px;

@@ -164,8 +164,8 @@ $(function() {
 	});
 
 	// Go back to toychest view
-	$("#back-button").click(function(event) {
-		window.location.href = "donations.html";
+	$("#left-arrow").click(function(event) {
+		window.location.href = "toys.html";
 	});
           
 	// // Code from: http://miles-by-motorcycle.com/fv-b-8-670/stacking-bootstrap-dialogs-using-event-callbacks

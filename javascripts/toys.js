@@ -106,5 +106,9 @@ $(function() {
 
     $('.add-toy-card').leanModal();
 
+    $("#right-arrow").click(function(event) {
+    	window.location.href = "shopping.html";
+    });
+
 
 });

@@ -15,6 +15,11 @@ input:focus {
     border-bottom: 1px solid #26a69a !important;
 }
 
+#left-arrow{
+	color:#5a5a5a;
+	cursor:pointer;
+}
+
 .modal-dialog{
 	width:2000px;
 }
