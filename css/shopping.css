@@ -1,3 +1,20 @@
+nav {
+	background-color:white !important;
+	box-shadow:none !important;
+}
+
+#search-icon{
+	color:gray!important;
+}
+
+/*input[type=search]:focus{
+	color:#26a69a !important;
+}*/
+
+input:focus {
+    border-bottom: 1px solid #26a69a !important;
+}
+
 .modal-dialog{
 	width:2000px;
 }
