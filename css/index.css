@@ -42,9 +42,13 @@
 	text-align:center;
 	margin:10px;
 }
+.top-nav{
+	height:7em;
+}
 
 #title{
 	text-align:center;
+	line-height:85px;
 	font-size:5em;
 }
 
@@ -67,15 +71,47 @@
 	width:60px;*/
 }
 
+#profiles{
+	padding-top: 5%;
+}
+
 #manageProfiles{
-	font-size:2em;
+	font-size:1.5em;
 	border-style: solid; 
-	border-width: 5px; 
-	border-color:gray
+	border-width: 3px; 
+	border-color:gray;
+	padding-left:5%;
+	padding-right:5%;
+	padding-top:5%;
+	padding-bottom:5%;
 }
 #manageProfiles:hover{
 	border-color:black;
 	color:black;
+}
+.card-reveal{
+	opacity:0.9;
+}
+
+.edit-icon{
+	display:block;
+	vertical-align: middle;
+	text-align:center;
+	padding-top: 20%;
+}
+
+.edit-icon-text{
+	text-align:center;
+	color:black;
+	font-size:2em;
+}
+
+.add-icon{
+	opacity:0.6; 
+	display:block; 
+	text-align:center; 
+	vertical-align:middle;
+	padding-top:27.5%;
 }
 
 #create-profile-modal-footer{

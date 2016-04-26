@@ -100,8 +100,16 @@ $(function() {
 	})
 
 	//Then I can print them from the database as they're added by adding a listener and getting a snapshot
-	rootRef.child('children').on("child_added", function(snapshot){
-		console.log(snapshot.val());
+	rootRef.child('children').on("value", function(snapshot){
+		dbChildren = snapshot.val();
+		children = [];
+		for (var key in dbChildren) {
+	    // skip loop if the property is from prototype
+	    if (!dbChildren.hasOwnProperty(key)) continue;
+
+	    var obj = dbChildren[key];
+	    children.push(obj);
+		}
 	});
 
 
@@ -130,7 +138,7 @@ $(function() {
 			      '<div class = "card-content" style="text-align:center">'+
 			         '<span class="card-title activator name"></span>'+
 			         '<div class="btn-group" style="text-align:center">'+
-			            '<a href = "#" id="'+ child.name +'" class = "btn btn-default btn-toychest" role = "button">'+
+			            '<a href = "toys.html?name='+ child.name +'" class = "btn btn-default btn-toychest" role = "button">'+
 			               'Toys'+
 			            '</a> '+
 			            '<a href="shopping.html?name='+child.name+'" id="btn-start-shopping" class="btn btn-default" role = "button">' + 
@@ -140,11 +148,10 @@ $(function() {
 			       '</div>'+
 			       '<div class="card-reveal style="text-align:center>'+
 			       	 '<span class="card-title grey-text text-darken-4 name"><i class="material-icons right">close</i></span>'+ 
-			       	 // '<span class="age" style="font-size:1.5em">Age: </span>'+
-			       	 '<ul id="interest-list" class="collection with-header">'+
-			       	 '<li class="collection-header"><h6>Interests</h6></li>'+
-			       	 '</ul>'+
-			       	 '<a class="btn bottom center profile">Edit<i class="material-icons">mode edit</i></a>'+         
+			       	 '<div class = "card-image waves-effect waves-block waves-light">'+
+		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile ">edit</i>'+
+		      		 '</div>'+
+		      		 '<div class="card-content edit-icon-text">Edit Profile</div>'+       
 			      '</div>'+
 			     '</div>'+
 		   	'</div>'
@@ -183,8 +190,8 @@ $(function() {
 	$("#profiles").append(
 		'<div id="btn-new-profile" class = "col-xs-6 col-sm-4 col-md-4" id="btn-create-profile">'+
 			'<div class="card small">'+
-		      '<div class = "card-image waves-effect waves-block waves-light" style="padding-top:5em">'+
-		      '<i class="material-icons large" style=" opacity:0.6; display:block; text-align:center; vertical-align:middle">add</i>'+
+		      '<div class = "card-image waves-effect waves-block waves-light">'+
+		      '<i class="material-icons large add-icon">add</i>'+
 		      '</div>'+
 		      '<div class="card-content" style="text-align:center; font-size:2em; padding-top:2em">Add another child</div>'+
 		    '</div>'+
@@ -198,8 +205,9 @@ $(function() {
 		if (profile.classList[0] != 'profile') {
 			profile = profile.parentElement;
 		}
-		var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
-		window.location.href = "profile.html?name="+child.name;
+		// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
+		console.log("ID", event.target.classList[0].split("_"));
+		window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
 	});
 
 	$("#btn-new-profile").click(function(event) {
@@ -231,15 +239,43 @@ $(function() {
 		$("#toychest-modal").modal("show");
 		$("#toychest-name").text(name);
 	});
-
+	var editMode = false;
 	$("#manageProfiles").click(function(event){
+		editMode = !editMode;
+		console.log(children)
 		children.forEach(function(child){
-			$("#"+child.id)
-			.find('.card')
-			.find('.card-reveal')
-			.css({ display: 'block'})
-			.velocity("stop", false)
-			.velocity({translateY: '-100%'}, {duration: 300, queue: false, easing: 'easeInOutQuad'});
+			if(editMode){
+				$("#"+child.id).find(".card-content").find(".name").css("color", "white");
+				$("#manageProfiles").text("Done");
+				$(document.body).css("overflow", "hidden");
+				$("#"+child.id)
+				.find('.card')
+				.find('.card-reveal')
+				.css({ display: 'block'})
+				.velocity("stop", false)
+				.velocity({translateY: '-100%'}, {duration: 300, queue: false, easing: 'easeInOutQuad',
+					complete: function(){
+						$(document.body).css("overflow", "visible");
+					}
+				});
+				
+			}else{
+						$(document.body).css("overflow", "hidden");
+				    $("#"+child.id)
+				    .find('.card-reveal').velocity(
+				    {translateY: 0}, 
+				    {
+				      duration: 225,
+				      queue: false,
+				      easing: 'easeInOutQuad',
+				      complete: function() {
+				        $(this).css({ display: 'none'});
+				        $("#manageProfiles").text("Manage Profiles");
+				 				$("#"+child.id).find(".card-content").find(".name").css("color", "black");
+				 				$(document.body).css("overflow", "visible");
+				      }
+				    });
+			}
 		});
 	});
 });
