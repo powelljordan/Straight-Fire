@@ -2,39 +2,40 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/common.css">
-    <link rel="stylesheet" type="text/css" href="../css/donations.css">
+    <link rel="stylesheet" type="text/css" href="../css/toys.css">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <!-- Compiled and minified CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script src="../jquery/js/jquery-1.12.3.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../javascripts/donations.js"></script>
+    <script type="text/javascript" src="../javascripts/toys.js"></script>
     <script type="text/javascript" src="../javascripts/common.js"></script>
     <title>Donations</title>
 </head>
 <body>
 
 
-<div class="row header">
+<div id="child-header" class="row header">
     <div class="col s2 offset-s2 valign-wrapper">
-        <div class="child-thumbnail valign">
-            <img src="../images/john.png" class="responsive-img child-image">
-            <span class="child-name">John</span>
+        <div id="selected-child" class="child-thumbnail valign">
+            <img  class="responsive-img child-image">
+            <span class="child-name"></span>
             <div class="thumbnail-overlay">
                 <i class="material-icons large swap-icon">swap_horiz</i>
             </div>
         </div>
     </div>
-    <div class="col s2 valign-wrapper" style="display: none;">
+<!--     <div class="col s2 valign-wrapper" style="display: none;">
         <div class="child-thumbnail valign">
             <img src="../images/david.png" class="responsive-img child-image">
             <span class="child-name">David</span>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div class="col s12">

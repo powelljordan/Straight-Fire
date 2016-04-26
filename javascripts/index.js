@@ -5,18 +5,72 @@ $(function() {
 	//Load Children Data
 	john = {id: "One",
 			name: "John",
+			img_src: "../images/john.png",
 			age: 13,
 			budget: 50,
-			toyChest: ["Dinosaur", "Gameboy", "Lego", "Racecar", "Cards", "another", "and another"],
+			toyChest: [
+				{
+					name: "Dinosaur",
+					img_src: "../images/Dinosaur.jpg",
+				},
+				{
+					name: "Gameboy",
+					img_src:"../images/Gameboy.jpg"
+				} ,
+				{
+					name:"Lego",
+					img_src:"../images/Lego.jpg"
+				}, 
+				{
+					name:"Racecar",
+					img_src:"../images/Racecar.jpg"
+				}, 
+				{
+					name:"Cards",
+					img_src:"../images/Cards.jpg"
+				}
+			],
+			donated: [{
+				name:"Book",
+				img_src:"../images/Book.jpg"
+			},
+			{
+				name:"Color Fingeres",
+				img_src:"../images/color_fingers.jpg"
+			}],
 			interests:["Biking", "Arts & Crafts", "Star Wars"],
 			wishlist: [0,1]
 		}
 
 	david = {id: "Two",
 			name: "David",
+			img_src: "../images/david.png",
 			age:8,
 			budget: 50,
-			toyChest: ["Connect 4", "Chess", "Book", "Xbox", "Wii"],
+			toyChest: [
+			{
+				name:"Connect 4",
+				img_src:"../images/Connect 4.jpg"
+			},
+			{
+				name: "Chess",
+				img_src:"../images/Chess.jpg"
+			},
+			{
+				name:"Xbox",
+				img_src:"../images/Xbox.jpg"
+			},
+			{
+				name:"Wii",
+				img_src:"../images/Wii.jpg"
+			}],
+			donated: [{
+				name:"Wii",
+				img_src:"../images/Wii.jpg"
+			},{
+				name:"Scooter",
+				img_src:"../images/scooter.jpg"
+			}],
 			interests:["Cars", "Action Figures", "Painting"],
 			wishlist: [0,1]
 		}
