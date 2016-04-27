@@ -1,5 +1,6 @@
 $(function() {
 	var lastDeleted;
+	var target_url;
 
 	var deleteAction = function() {
 		var undoMessage = "";
@@ -40,6 +41,24 @@ $(function() {
 		});
 	};
 
+	var openExternalPage = function() {
+		var confirmation = confirm("You will be directed to an external page to complete your transaction.");
+		if (confirmation){
+			open(target_url, "_blank");
+		}
+	}
+
+	var shopAction = function() {
+		console.log($(this).parents('.card')[0]);
+		var id = $(this).parents('.card')[0].id.split('-').splice(-1)[0];
+		rootRef.child('items').child(id).on('value', function(snap){
+			var specificChild = snap.val();
+			target_url = specificChild.url;
+			openExternalPage();
+		});
+
+	}
+
 	// Firebase code
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
 	// TODO: Get child ID somehow (from URL?)
@@ -54,8 +73,13 @@ $(function() {
                        + '<img src="' + item.img_src + '">'
                        + '<span class="card-title">' + item.name + '</span></div>'
                        + '<div class="card-action">'
+                       + '<i class="material-icons left-align waves-effect tooltipped shop" data-position="right" data-delay="50" data-tooltip="Purchase item">shopping_cart</i>'
+                       + '<i class="material-icons right waves-effect tooltipped return" data-position="left" data-delay="50" data-tooltip="Delete from wishlist">clear</i>'
                        + '</div></div></div>';
         $("#wishlist").append(html_str);
+        $("#wishlist-item-"+item.id+"> .card-action > .shop").click(shopAction);
+    	$("#wishlist-item-"+item.id+"> .card-action > .return").click(deleteAction);
+    	$("#wishlist-item-"+item.id+"> .card-action > .tooltipped").tooltip({'data-delay':50});
 	}
 
 	var displayToychestItem = function(item) {
@@ -64,7 +88,7 @@ $(function() {
                        + '<span class="card-title">' + item.name + '</span></div>'
                        + '<div class="card-action">'
                        + '<i class="material-icons left-align waves-effect tooltipped donate" data-position="right" data-delay="50" data-tooltip="Select to donate">local_mall</i>'
-                       + '<i class="material-icons right waves-effect tooltipped return" data-position="left" data-delay="50" data-tooltip="Delete">clear</i>'
+                       + '<i class="material-icons right waves-effect tooltipped return" data-position="left" data-delay="50" data-tooltip="Delete from toyChest">clear</i>'
                        + '</div></div></div>';
         	$("#toychest").append(html_str);
         	$("#toychest-item-"+item.id+"> .card-action > .donate").click(deleteAction);
@@ -138,7 +162,14 @@ $(function() {
 
 	var removeFromWishlist = function(id) {
 		var item_id = id.split('-').slice(-1)[0];
-		var index = selected_child.wishlist.indexOf(item_id);
+		var arr = selected_child.wishlist;
+		var index = -1;
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] == item_id) {
+				index = i;
+				break;
+			}
+		}
 		if (index != -1) {
 			selected_child.wishlist.splice(index, 1);
 			rootRef.child('children').child(selected_child.id).child('wishlist').set(selected_child.wishlist);		
@@ -152,6 +183,11 @@ $(function() {
 		selected_child.toyChest.push(new_toy);
 		rootRef.child('children').child(selected_child.id).child('toyChest').set(selected_child.toyChest);
 		return index;
+	}
+
+	var addToWishlist = function(id) {
+		selected_child.wishlist.push(id);
+		rootRef.child('children').child(selected_child.id).child('wishlist').set(selected_child.wishlist);
 	}
 
 	var addToDonated = function(toy_name, img_src, id = -1) {
@@ -269,6 +305,17 @@ $(function() {
 			}
 		}
 	});
+
+	$("#wishlist-undo").click(function() {
+		if (lastDeleted) {
+			lastDeleted.removeClass('item-hidden').fadeIn();
+			$(this).fadeOut();
+			var id = lastDeleted[0].getElementsByClassName('card')[0].id;
+			var toy_id = id.split('-').splice(-1)[0];
+			console.log(id, toy_id, 'HERE');
+			addToWishlist(toy_id);
+		}
+	})
 
     $('.add-toy-card').leanModal();
 
