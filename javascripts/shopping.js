@@ -164,5 +164,21 @@ $(function() {
 	$("#left-arrow").click(function(event) {
 		window.location.href = "toys.html";
 	});
+
+	// Autocomplete
+	var availableTags = [
+		'Star Wars',
+		'Arts & Crafts',
+		'Water colors',
+		'paint',
+		'painting',
+		'LEGOs',
+		'action figures'
+	];
+
+	$( "#search" ).autocomplete({
+      source: availableTags
+    });
+
 	
 });

@@ -186,3 +186,7 @@ input:focus {
 #search-nav{
 	/*background-color:white;*/
 }
+
+.input-field > span {
+	display:none;
+}
