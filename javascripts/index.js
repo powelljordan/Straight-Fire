@@ -10,31 +10,38 @@ $(function() {
 			budget: 50,
 			toyChest: [
 				{
+					id:0,
 					name: "Dinosaur",
 					img_src: "../images/Dinosaur.jpg",
 				},
 				{
+					id:1,
 					name: "Gameboy",
 					img_src:"../images/Gameboy.jpg"
 				} ,
 				{
+					id:2,
 					name:"Lego",
 					img_src:"../images/Lego.jpg"
 				}, 
 				{
+					id:3,
 					name:"Racecar",
 					img_src:"../images/Racecar.jpg"
 				}, 
 				{
+					id:4,
 					name:"Cards",
 					img_src:"../images/Cards.jpg"
 				}
 			],
 			donated: [{
+				id:0,
 				name:"Book",
 				img_src:"../images/Book.jpg"
 			},
 			{
+				id:1,
 				name:"Color Fingeres",
 				img_src:"../images/color_fingers.jpg"
 			}],
@@ -49,25 +56,31 @@ $(function() {
 			budget: 50,
 			toyChest: [
 			{
+				id:0,
 				name:"Connect 4",
 				img_src:"../images/Connect 4.jpg"
 			},
 			{
+				id:1,
 				name: "Chess",
 				img_src:"../images/Chess.jpg"
 			},
 			{
+				id:2,
 				name:"Xbox",
 				img_src:"../images/Xbox.jpg"
 			},
 			{
+				id:3,
 				name:"Wii",
 				img_src:"../images/Wii.jpg"
 			}],
 			donated: [{
+				id:0,
 				name:"Gameboy",
 				img_src:"../images/Gameboy.jpg"
 			},{
+				id:1,
 				name:"Scooter",
 				img_src:"../images/scooter.jpg"
 			}],
@@ -211,7 +224,7 @@ $(function() {
 	});
 
 	$("#btn-new-profile").click(function(event) {
-		$("#new-profile-modal").modal('show');
+		$("#new-profile-modal").openModal();
 	});
 
 	$("#btn-create-profile").click(function(event) {

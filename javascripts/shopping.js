@@ -110,7 +110,6 @@ $(function() {
 		// $(".item-card").click(function(event) {
 		$(id).click(function(event) {
 			$("#myModal").openModal();
-			// console.log(event);
 			var index = parseInt(event.toElement.parentElement.id.split("-")[2]);
 			var elem = $("#"+event.toElement.parentElement.id);
 			var src = elem.find(".card").find(".card-image").find("img").attr("src");
