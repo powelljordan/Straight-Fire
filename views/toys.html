@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="col s1 offset-s7 valign-wrapper">
-        <i id="right-arrow" class="material-icons large">keyboard_arrow_right</i>
+        <i id="right-arrow" class="material-icons large shop">keyboard_arrow_right</i>
     </div>
 <!--     <div class="col s2 valign-wrapper" style="display: none;">
         <div class="child-thumbnail valign">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s6 l2 item-col">
+<!--             <div class="col s6 l2 item-col">
                 <div class="card toy z-depth-0">
                     <div class="card-image">
                         <img src="../images/color_fingers.jpg">
@@ -91,14 +91,14 @@
                         <i class="material-icons right waves-effect tooltipped donate" data-position="left" data-delay="50" data-tooltip="Mark as donated">check</i>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="col s12" id="wishlist">
             <div class="col s12 undo-col right-align">
                 <span class="undo" id="wishlist-undo">Undo 'Delete'</span>
             </div>
             <div class="col s6 l2">
-                <div class="card add-card">
+                <div class="card add-card shop">
                     <div class="card-image add-icon-container waves-effect">
                         <i class="material-icons large add-icon">shopping_cart</i>
                     </div>
@@ -113,10 +113,15 @@
 <div class="modal" id="add-toy-modal">
     <div class="modal-content">
         <form id="add-toy-form">
+            <div class="input-field">
+              <i class="material-icons prefix">add</i>
+              <input id="toy-name" type="text" class="validate">
+              <label for="icon_prefix">Toy Name</label>
+            </div>
             <div class="file-field input-field">
                 <div class="btn z-depth-0">
                     <span>File</span>
-                    <input type="file">
+                    <input id="toy-imgg-src" type="file">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
