@@ -48,7 +48,7 @@ $(function() {
 	}
 	var resetWidths = function() {
 		$(".shaded-star").each(function(index, elem) {
-			$(this).css({width:20})
+			$(this).css({width:24})
 		});
 	}
 
@@ -65,7 +65,7 @@ $(function() {
 			resetWidths();
 		}
 		if (num_full_stars < 5 && num_full_stars != rating) {
-			var ratio_width = (rating - num_full_stars)*20.0;
+			var ratio_width = (rating - num_full_stars)*24.0;
 			$("#shaded-star-"+num_full_stars).removeClass('unused-star');
 			$("#shaded-star-"+num_full_stars).addClass('half-star');
 			$("#shaded-star-"+num_full_stars).css({width:ratio_width});
@@ -145,6 +145,10 @@ $(function() {
 			fillStars(data[index].rating);
 		});
 	}
+
+	$("#modal-close").click(function(e) {
+		$("#myModal").closeModal();
+	})
 
 	$("#btn-purchase").click(function(event) {
 		openExternalPage();
