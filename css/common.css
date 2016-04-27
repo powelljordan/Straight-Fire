@@ -136,6 +136,21 @@ body {
 
 .child-thumbnail {
     position: relative;
+    width: 20%;
+    margin-right: 10px;
+}
+
+.child-thumbnail.inactive-child {
+    transform: translateX(-40px) scale(0.4);
+    opacity: 0;
+    transition: all .25s ease-in-out;
+    -moz-transition: all .25s ease-in-out;
+    -webkit-transition: all .25s ease-in-out;
+}
+
+.child-thumbnail.activated {
+    transform: translateX(0px) scale(1) !important;
+    opacity: 1 !important;
 }
 
 .child-thumbnail:hover .thumbnail-overlay {

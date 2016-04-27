@@ -228,15 +228,15 @@ $(function() {
 		// Update the header to display selected child
 		$("#selected-child img").attr('src',child.img_src);
 		$("#selected-child .child-name").text(child.name);
-	}
+	};
 
 	var displayChild = function(child) {
 		var html_str = '<div class="col s2 valign-wrapper" style="display: none;">'+
 		'<div class="child-thumbnail valign"><img src="'+child.img_src+'" class="responsive-img child-image">'+
 		'<span class="child-name">'+child.name+'</span></div></div>';
 		$("#child-header").append(html_str);
-	}
-
+	};
+    
 	var loadAndDisplayChildInfo = function(c) {
 		for (var i = 0; i < c.wishlist.length; i++) {
 			rootRef.child('items').child(c.wishlist[i]).on('value', function(snap){
@@ -246,7 +246,11 @@ $(function() {
 		}
 		displayToychest(c.toyChest);
 		displayDonated(c.donated);
-	}
+	};
+
+	$('.thumbnail-overlay').click(function() {
+        $('.inactive-child').addClass('activated');
+    });
 
 	// Load all children
 	var children = [];

@@ -21,17 +21,25 @@
 
 
 <div id="child-header" class="row header">
-    <div class="col s2 offset-s2 valign-wrapper">
+    <div class="col s8 offset-s2 valign-wrapper">
         <div id="selected-child" class="child-thumbnail valign">
-            <img  class="responsive-img child-image">
+            <img src="" class="responsive-img child-image">
             <span class="child-name"></span>
             <div class="thumbnail-overlay">
                 <i class="material-icons large swap-icon">swap_horiz</i>
             </div>
         </div>
+        <div class="child-thumbnail inactive-child valign">
+            <img src="../images/david.png" class="responsive-img child-image">
+            <span class="child-name">Name</span>
+        </div>
+        <div class="child-thumbnail inactive-child valign">
+            <img src="../images/john.png" class="responsive-img child-image">
+            <span class="child-name">Nombre</span>
+        </div>
     </div>
-    <div class="col s1 offset-s7 valign-wrapper">
-        <i id="right-arrow" class="material-icons large shop">keyboard_arrow_right</i>
+    <div class="col s2 valign-wrapper">
+        SHOP <i id="right-arrow" class="material-icons large">chevron_right</i>
     </div>
 <!--     <div class="col s2 valign-wrapper" style="display: none;">
         <div class="child-thumbnail valign">
@@ -116,7 +124,7 @@
             <div class="input-field">
               <i class="material-icons prefix">add</i>
               <input id="toy-name" type="text" class="validate">
-              <label for="icon_prefix">Toy Name</label>
+              <label for="toy-name">Toy Name</label>
             </div>
             <div class="file-field input-field">
                 <div class="btn z-depth-0">
