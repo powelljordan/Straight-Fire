@@ -65,8 +65,8 @@ $(function() {
 				img_src:"../images/Wii.jpg"
 			}],
 			donated: [{
-				name:"Wii",
-				img_src:"../images/Wii.jpg"
+				name:"Gameboy",
+				img_src:"../images/Gameboy.jpg"
 			},{
 				name:"Scooter",
 				img_src:"../images/scooter.jpg"

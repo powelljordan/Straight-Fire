@@ -13,6 +13,7 @@ $(function() {
 		$(this).parents('.item-col').fadeOut({
 			complete: function() {
 				lastDeleted = $(this).addClass('item-hidden');
+				console.log(lastDeleted);
 				$('#donations-undo-action').text(undoMessage);
 				$('#donations-undo').fadeIn();
 			}
@@ -81,7 +82,7 @@ $(function() {
 		addToToychest(toy_name, toy_img_src);
 	}
 
-	moveToDonations = function(id) {
+	var moveToDonations = function(id) {
 		var toy_name = id.split('-').slice(-1)[0];
 		var index = findIndexByName(toy_name, selected_child.toyChest);
 		var toy_img_src = selected_child.toyChest[index].img_src;
@@ -172,6 +173,16 @@ $(function() {
 		if (lastDeleted) {
 			lastDeleted.removeClass('item-hidden').fadeIn();
 			$(this).fadeOut();
+			var id = lastDeleted[0].getElementsByClassName("card")[0].id;
+			if ($(this).text().split(' ').splice(-1)[0] == "donated'") {
+				// Add back to donated list
+				var img_src = $("#"+id+" > .card-image > img").attr("src");
+				var toy_name = id.split('-').slice(-1)[0];
+				addToDonated(toy_name, img_src);
+			} else {
+				// Move from toychest to donated
+				moveToDonations(id);
+			}
 		}
 	});
 
