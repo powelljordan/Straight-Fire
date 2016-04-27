@@ -186,7 +186,7 @@ $(function() {
 	}
 
 	var addToWishlist = function(id) {
-		selected_child.wishlist.push(id);
+		selected_child.wishlist.push(parseInt(id));
 		rootRef.child('children').child(selected_child.id).child('wishlist').set(selected_child.wishlist);
 	}
 
