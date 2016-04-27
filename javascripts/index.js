@@ -158,33 +158,7 @@ $(function() {
 			);
 		$("#"+child.id).find(".card-content").find(".name").text(child.name);
 		$("#"+child.id).find(".card-reveal").find(".name").html(child.name + '<i class="material-icons right">close</i>');
-		// $("#"+child.id).find(".card-reveal").find(".age").text(child.age);
-		child.interests.forEach(function(interest){
-			$("#"+child.id).find(".card-reveal").find("#interest-list").append(
-	            '<li class="collection-item">'+interest+'</li>'
-            );
-		});
 
-
-
-		$("#toyChestModal").append( 
-			'<div class = "thumbnail col-md-6 col-sm-6">'+
-			'<h3 class="text-center">'+child.name+'</h3>'+
-			'<ul id="'+child.id+'toyChest" class = "list-group checked-list-box">'+
-			'</ul></div>'
-			);
-
-		child.toyChest.forEach(function(toyName){
-			$("#"+child.id+"toyChest").append(
-				'<div class="col-md-12 col-sm-12 toy-section">'+
-				'<div class="col-md-3 col-sm-3 col check-column">'+
-                    '<p class="checkbox"><i class="fa fa-square-o"></i></p>'+
-                '</div>'+
-                '<div class="col-md-9 col-sm-9 col"><h3>'+toyName+'</h3></div>'+
-                // '<div class="col-md-3 col-sm-3 col"><img src="../images/'+toyName+'.jpg" class="toy-image center-block"></div>'+
-                '</div>'
-			);
-		});
 	});
 
 	$("#profiles").append(
@@ -228,17 +202,6 @@ $(function() {
 		}
 	});
 
-	$(".btn-toychest").click(function(event) {
-		var name = event.toElement.id;
-		$("#toychest-modal").modal("show");
-		$("#toychest-name").text(name);
-	});
-
-	$(".btn-wishlist").click(function(event) {
-		var name = event.toElement.id;
-		$("#toychest-modal").modal("show");
-		$("#toychest-name").text(name);
-	});
 	var editMode = false;
 	$("#manageProfiles").click(function(event){
 		editMode = !editMode;
