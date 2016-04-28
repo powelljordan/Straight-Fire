@@ -91,13 +91,13 @@ $(function() {
 	jill = {
 		name:"Jill",
 		img_src: "../images/jill.png",
-		image_size: "3.33KB" 
+		size: "3.33KB" 
 	}	
 
 	annie = {
 		name:"Annie",
 		img_src: "../images/annie.png",
-		image_size: "5.56KB" 
+		size: "5.56KB" 
 	}	
 
 
@@ -219,18 +219,20 @@ $(function() {
 
 	$("#addFile").click(function(){
 		$("#choose-file-modal").openModal();
-		$(".collection").html("");
+		$("#localImages").html("");
 		images.forEach(function(image){
-			$(".collection").append(			    
-				'<li class="collection-item">'+
+			$("#localImages").append(
+			'<div class="card col s2 m2" id="open-file-image">'+			    
+				'<div class="card-image   waves-effect waves-block waves-light">'+
 		      '<img class="responsive-img" width="15%" height="15%" style="float:left"src="'+image.img_src+'" alt="" >'+
-	      	'<div style="padding-left: 17%">'+
-			      '<p><span>'+image.name+'</span><br>'+
-			      	'PNG<br>'+
-			        '<span class="image-size">'+image.size+'</span>'+
-			      '</p>'+
-		      '</div>'+
-		    '</li>'
+		    '</div>'+
+		  '</div>'+
+		    '<div class="col s2 m2">'+
+		      '<p><span>'+image.name+'</span><br>'+
+		      	'PNG<br>'+
+		        '<span class="image-size">'+image.size+'</span>'+
+		      '</p>'+
+	      '</div>'
 			)
 		});
 	})
