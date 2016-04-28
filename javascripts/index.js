@@ -2,6 +2,7 @@
 // has finished loading in the browser.
 $(function() {
 	$(".button-collapse").sideNav();
+	// $('select').material_select();
 	//Load Children Data
 	john = {id: "One",
 			name: "John",
@@ -220,11 +221,14 @@ $(function() {
 	$("#addFile").click(function(){
 		$("#choose-file-modal").openModal();
 		$("#localImages").html("");
-		images.forEach(function(image){
+		$("#file-dropdown").html("");
+		$("#file-dropdown").append('<option id="default-option" value="" disabled selected>File Name</option>');
+		images.forEach(function(image, index){
 			$("#localImages").append(
-			'<div class="card col s2 m2" id="open-file-image">'+			    
+			'<div >'+
+			'<div class="card col s2 m2 select-file-image">'+			    
 				'<div class="card-image   waves-effect waves-block waves-light">'+
-		      '<img class="responsive-img" width="15%" height="15%" style="float:left"src="'+image.img_src+'" alt="" >'+
+		      '<img class="responsive-img brightness" width="15%" height="15%" style="float:left"src="'+image.img_src+'" alt="" >'+
 		    '</div>'+
 		  '</div>'+
 		    '<div class="col s2 m2">'+
@@ -232,10 +236,21 @@ $(function() {
 		      	'PNG<br>'+
 		        '<span class="image-size">'+image.size+'</span>'+
 		      '</p>'+
-	      '</div>'
+	      '</div>'+
+	     '</div>'
 			)
+
+			$("#file-dropdown").append('<option value="'+index+'">'+image.name+'</option>');
+    	$('select').material_select();
+
 		});
 	})
+
+
+	$(".brightness").click(function(event){
+		console.log(event.target);
+		event.target.css("border", "3px");
+	});
 
 	$("#btn-cancel-file").click(function(){
 		$("#choose-file-modal").closeModal();

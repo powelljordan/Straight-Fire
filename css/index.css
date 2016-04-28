@@ -117,6 +117,15 @@
 	padding-top:16%;
 }
 
+
+.brightness:hover {
+	cursor:pointer;
+    opacity: .5;
+    color:blue;
+    border:3px;
+    border-color:blue;
+}
+
 #create-profile-modal-footer{
 	text-align:center;
 }
