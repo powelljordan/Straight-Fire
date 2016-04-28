@@ -102,8 +102,7 @@
 
 .edit-icon-text{
 	text-align:center;
-	color:black;
-	font-size:2em;
+	padding-top:5%;
 }
 
 .add-icon{
@@ -114,9 +113,15 @@
 	padding-top:27.5%;
 }
 
+#addToyText{
+	padding-top:16%;
+}
+
 #create-profile-modal-footer{
 	text-align:center;
 }
+
+#btn-open-file{}
 
 .child-panel-card{
 	background-color:#f5f5f5 !important;

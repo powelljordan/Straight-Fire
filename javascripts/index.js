@@ -75,6 +75,22 @@ $(function() {
 			wishlist: [0,1]
 		}
 
+	jill = {
+		name:"Jill",
+		img_src: "../images/jill.png",
+		image_size: "3.33KB" 
+	}	
+
+	annie = {
+		name:"Annie",
+		img_src: "../images/annie.png",
+		image_size: "5.56KB" 
+	}	
+
+
+	var images = [jill, annie];
+
+
 	var children = [john, david];
 	var firstItem = true;
 	var offset;
@@ -124,13 +140,13 @@ $(function() {
 		// console.log(firstItem);
 		offset = "";
 		if(firstItem){
-			offset="col-md-offset-2";
+			offset="offset-m2";
 			firstItem = false;
 		}else{
 			firstItem = true;
 		}
 		$("#profiles").append(
-			'<div class = "col-xs-6 col-sm-4 col-md-4 " id="'+child.id+'">'+
+			'<div class = "col s4 m4 " id="'+child.id+'">'+
 				'<div class="card small">'+
 			      '<div class = "card-image waves-effect waves-block waves-light">'+
 			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
@@ -151,7 +167,7 @@ $(function() {
 			       	 '<div class = "card-image waves-effect waves-block waves-light">'+
 		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile ">edit</i>'+
 		      		 '</div>'+
-		      		 '<div class="card-content edit-icon-text">Edit Profile</div>'+       
+		      		 '<div class="card-title edit-icon-text">Edit Profile</div>'+       
 			      '</div>'+
 			     '</div>'+
 		   	'</div>'
@@ -162,12 +178,12 @@ $(function() {
 	});
 
 	$("#profiles").append(
-		'<div id="btn-new-profile" class = "col-xs-6 col-sm-4 col-md-4" id="btn-create-profile">'+
+		'<div id="btn-new-profile" class = "col s4 m4" id="btn-create-profile">'+
 			'<div class="card small">'+
 		      '<div class = "card-image waves-effect waves-block waves-light">'+
 		      '<i class="material-icons large add-icon">add</i>'+
 		      '</div>'+
-		      '<div class="card-content" style="text-align:center; font-size:2em; padding-top:2em">Add another child</div>'+
+		      '<div id="addToyText" class="card-title" style="text-align:center; ">Add another child</div>'+
 		    '</div>'+
 	   	'</div>'
 		);
@@ -185,7 +201,33 @@ $(function() {
 	});
 
 	$("#btn-new-profile").click(function(event) {
-		$("#new-profile-modal").modal('show');
+		$("#new-profile-modal").openModal();
+	});
+
+	$("#addFile").click(function(){
+		$("#choose-file-modal").openModal();
+		$(".collection").html("");
+		images.forEach(function(image){
+			$(".collection").append(			    
+				'<li class="collection-item">'+
+		      '<img class="responsive-img" width="15%" height="15%" style="float:left"src="'+image.img_src+'" alt="" >'+
+	      	'<div style="padding-left: 17%">'+
+			      '<p><span>'+image.name+'</span><br>'+
+			      	'PNG<br>'+
+			        '<span class="image-size">'+image.size+'</span>'+
+			      '</p>'+
+		      '</div>'+
+		    '</li>'
+			)
+		});
+	})
+
+	$("#btn-cancel-file").click(function(){
+		$("#choose-file-modal").closeModal();
+	});
+
+	$("#btn-open-file").click(function(){
+		$("#choose-file-modal").closeModal();
 	});
 
 	$("#btn-create-profile").click(function(event) {
@@ -203,12 +245,32 @@ $(function() {
 	});
 
 	var editMode = false;
+	var editingList = [];
+
+	$(".small").click(function(){
+		$(this).find(".card-content").find(".name").css("color", "black");
+		var itemIndex = editingList.indexOf($(this).find(".card-content").find(".name"));
+		if(itemIndex > -1){
+			editingList.splice(itemIndex, 1);
+		}else{
+			// editingList.push($(this).find(".card-content").find(".name"));	
+		}
+		console.log(editingList);
+		
+
+		
+		if(editingList.length === 0){
+			$("manageProfiles").text("Manage Profiles");
+		}
+	})
+
 	$("#manageProfiles").click(function(event){
 		editMode = !editMode;
 		console.log(children)
 		children.forEach(function(child){
 			if(editMode){
 				$("#"+child.id).find(".card-content").find(".name").css("color", "white");
+				editingList.push($(this).find(".card-content").find(".name"));	
 				$("#manageProfiles").text("Done");
 				$(document.body).css("overflow", "hidden");
 				$("#"+child.id)
