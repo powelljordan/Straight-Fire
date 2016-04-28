@@ -19,7 +19,6 @@ $(function() {
 
 	var item_index = 0;
 	rootRef.child("items").on("child_added", function(snapshot){
-		// console.log(snapshot.val());
 		var item = snapshot.val();
 		data.push(item);
 		display_item(item, item_index);
@@ -31,7 +30,6 @@ $(function() {
 
 	var children = [];
 	rootRef.child("children").on("child_added", function(snapshot){
-		// console.log(snapshot.val());
 		var child = snapshot.val();
 		children.push(child);
 		if (child.id == child_id) {
@@ -50,7 +48,7 @@ $(function() {
 	}
 	var resetWidths = function() {
 		$(".shaded-star").each(function(index, elem) {
-			$(this).css({width:20})
+			$(this).css({width:24})
 		});
 	}
 
@@ -67,7 +65,7 @@ $(function() {
 			resetWidths();
 		}
 		if (num_full_stars < 5 && num_full_stars != rating) {
-			var ratio_width = (rating - num_full_stars)*20.0;
+			var ratio_width = (rating - num_full_stars)*24.0;
 			$("#shaded-star-"+num_full_stars).removeClass('unused-star');
 			$("#shaded-star-"+num_full_stars).addClass('half-star');
 			$("#shaded-star-"+num_full_stars).css({width:ratio_width});
@@ -110,7 +108,6 @@ $(function() {
 		// $(".item-card").click(function(event) {
 		$(id).click(function(event) {
 			$("#myModal").openModal();
-			// console.log(event);
 			var index = parseInt(event.toElement.parentElement.id.split("-")[2]);
 			var elem = $("#"+event.toElement.parentElement.id);
 			var src = elem.find(".card").find(".card-image").find("img").attr("src");
@@ -149,6 +146,10 @@ $(function() {
 		});
 	}
 
+	$("#modal-close").click(function(e) {
+		$("#myModal").closeModal();
+	})
+
 	$("#btn-purchase").click(function(event) {
 		openExternalPage();
 	});
@@ -167,29 +168,21 @@ $(function() {
 	$("#left-arrow").click(function(event) {
 		window.location.href = "toys.html";
 	});
-          
-	// // Code from: http://miles-by-motorcycle.com/fv-b-8-670/stacking-bootstrap-dialogs-using-event-callbacks
-	// $('.modal').on('hidden.bs.modal', function(event) {
- //        $(this).removeClass( 'fv-modal-stack' );
- //        $('body').data( 'fv_open_modals', $('body').data( 'fv_open_modals' ) - 1 );
- //    });
 
-	// $( '.modal' ).on('shown.bs.modal', function(event) {  
- //    	// keep track of the number of open modals
- //    	if (typeof( $('body').data('fv_open_modals')) == 'undefined') {
- //        	$('body').data( 'fv_open_modals', 0 );
- //       	}       
-	// 	// if the z-index of this modal has been set, ignore.
- //    	if ($(this).hasClass('fv-modal-stack')) {
- //            return;
- //        } 
- //    	$(this).addClass('fv-modal-stack');
- //    	$('body').data( 'fv_open_modals', $('body').data('fv_open_modals') + 1 );
- //    	$(this).css('z-index', 1040 + (10 * $('body').data('fv_open_modals')));
- //    	$('.modal-backdrop').not( '.fv-modal-stack' )
- //            .css('z-index', 1039 + (10 * $('body').data('fv_open_modals')));
- //    	$('.modal-backdrop').not('fv-modal-stack')
- //            .addClass('fv-modal-stack'); 
- //     });
+	// Autocomplete
+	var availableTags = [
+		'Star Wars',
+		'Arts & Crafts',
+		'Water colors',
+		'paint',
+		'painting',
+		'LEGOs',
+		'action figures'
+	];
+
+	$( "#search" ).autocomplete({
+      source: availableTags
+    });
+
 	
 });
