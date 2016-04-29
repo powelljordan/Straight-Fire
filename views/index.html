@@ -24,24 +24,26 @@
     </nav>
 
 		<!-- Modal -->
-		<div id="new-profile-modal" class="modal" role="dialog">
-	    <div class="modal-content">
+		<div id="new-profile-modal" class="modal bottom-sheet" role="dialog">
+	    <div class="modal-content col s6 m6 l6">
 	    	<div class="modal-header">
-	    		<h4 class="modal-title center">Create new profile</h4>
+	    		<h4 class="modal-title center">Create new profile<i class="material-icons right modal-close">close</i></h4>
+
 	    	</div>
-			  <fieldset class="form-group">
+	    	<div class="row create-profile-padding">
+			  <div class="">
 			    <label for="name">Name</label>
-			    <input type="text" class="form-control" id="create-name" placeholder="First and last name">
-			  </fieldset>
-			  <fieldset class="form-group">
+			    <input type="text" class="form-control" id="create-name" placeholder="Name">
+			  </div>
+			  <div class="">
 			    <label for="age">Age</label>
 			    <input type="number" class="form-control" id="create-age" placeholder="Numerical value">
-			  </fieldset>
-			  <fieldset class="form-group">
+			  </div>
+			  <div class="">
 			    <label for="interests">Interests</label>
 			    <small class="text-muted">(Please separate interests with commas)</small>
 			    <input type="text" class="form-control" id="create-interests" placeholder="Enter interests">
-			  </fieldset> 
+			  </div> 
 					<!-- <label class="control-label">Select Toy Image</label> -->
 				  <form action="#">
 				    <div class="file-field input-field">
@@ -53,8 +55,11 @@
 				      </div>
 				    </div>
 				  </form>
-				<div id="create-profile-modal-footer" class="modal-footer">
-	    		<button id="btn-create-profile" type="submit" class="btn btn-primary">Create</button>
+				  <button id="btn-create-profile" type="submit" class="btn right">Create</button>
+				</div>
+
+				<div id="create-profile-modal-footer" class="modal-footer class="row create-profile-padding"">
+	    		
 	    	</div>
 	    </div>
 		</div>

@@ -101,9 +101,15 @@ $(function() {
     };
     var bindInactiveChild = function() {
         $('.inactive-child').click(function(event) {
+<<<<<<< HEAD
+            var child_id = event.toElement.id.split('-')[1];
+            toggleChildMenu(null, true);
+            switchChild(child_id);
+=======
             var c_id = event.toElement.id.split('-')[1];
             toggleChildMenu(null, true);
             switchChild(c_id);
+>>>>>>> d52424d76f397b2d16e4a2ec913aa8a89a8a8151
         });
     }
 
@@ -199,7 +205,24 @@ $(function() {
 	$(".back").click(function(event) {
 		window.location.href = "toys.html?id=" + child_id;
 	});
+<<<<<<< HEAD
+	// Autocomplete
+	var availableTags = [
+		'Star Wars',
+		'Arts & Crafts',
+		'Water colors',
+		'paint',
+		'painting',
+		'LEGOs',
+		'action figures'
+	];
 
+	// $( "#search" ).autocomplete({
+ //      source: availableTags
+ //    });
+=======
+
+>>>>>>> d52424d76f397b2d16e4a2ec913aa8a89a8a8151
 	var filter_by = function(filter) {
 		// TODO;
 	}
@@ -216,6 +239,12 @@ $(function() {
 		filter_by(new_filter);
 		display_new_filter(new_filter);
 		$("#search").val("");
+<<<<<<< HEAD
+
+		// Make sure border reaches end of the row
+		// $("#interests-wrapper").css('height',$("#filters-wrapper").css('height'));
+=======
+>>>>>>> d52424d76f397b2d16e4a2ec913aa8a89a8a8151
 	}
 
 	$("#btn-add-filter").click(function(event) {

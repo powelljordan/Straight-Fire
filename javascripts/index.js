@@ -180,21 +180,17 @@ $(function() {
 			      '</div>'+
 			      '<div class = "card-content" style="text-align:center">'+
 			         '<span class="card-title activator name"></span>'+
-			         '<div class="" style="text-align:center">'+
-			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest" role = "button">'+
+			       '</div>'+
+			       '<div class="card-reveal valign-wrapper" style="text-align:center">'+
+			       		'<span class="card-title grey-text text-darken-4 name"><i class="material-icons right">close</i></span>'+
+			       		'<div class="" style="padding-top:30%">'+
+			      			'<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest" role = "button">'+
 			               'Toys'+
 			            '</a> '+
 			            '<a href="shopping.html?id='+child.id+'" id="btn-start-shopping" class="btn" role = "button">' + 
 			            	' Shop'+
 			            '</a>' +
-			          '</div>'+  
-			       '</div>'+
-			       '<div class="card-reveal style="text-align:center>'+
-			       	 '<span class="card-title grey-text text-darken-4 name"><i class="material-icons right">close</i></span>'+ 
-			       	 '<div class = "card-image waves-effect waves-block waves-light">'+
-		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile ">edit</i>'+
-		      		 '</div>'+
-		      		 '<div class="card-title edit-icon-text">Edit Profile</div>'+       
+			          '</div>'+
 			      '</div>'+
 			     '</div>'+
 		   	'</div>'
@@ -317,7 +313,6 @@ $(function() {
 		}else{
 			// editingList.push($(this).find(".card-content").find(".name"));	
 		}
-		console.log(editingList);
 		
 
 		
@@ -328,10 +323,15 @@ $(function() {
 
 	$("#manageProfiles").click(function(event){
 		editMode = !editMode;
-		console.log(children)
+		if(editMode){
+
 		children.forEach(function(child){
-			if(editMode){
-				$("#"+child.id).find(".card-content").find(".name").css("color", "white");
+					$(".card-reveal").html(			       	 
+			'<span class="card-title grey-text text-darken-4 name"></span>'+
+			'<div class = "card-image waves-effect waves-block waves-light profile">'+
+		  	'<i class="edit_'+child.id+' material-icons large edit-icon ">edit</i>'+
+		  '</div>'+
+		  '<div class="card-title edit-icon-text">Edit Profile</div>')
 				editingList.push($(this).find(".card-content").find(".name"));	
 				$("#manageProfiles").text("Done");
 				$(document.body).css("overflow", "hidden");
@@ -345,8 +345,22 @@ $(function() {
 						$(document.body).css("overflow", "visible");
 					}
 				});
+			});
 				
 			}else{
+
+				children.forEach(function(child){
+					$(".card-reveal").html(
+					'<span class="card-title grey-text text-darken-4 name"><i class="material-icons right">close</i></span>'+
+			      '<div class="" style="padding-top:30%">'+	      			
+						'<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest" role = "button">'+
+			      	'Toys'+
+			    	'</a> '+
+			    	'<a href="shopping.html?id='+child.id+'" id="btn-start-shopping" class="btn" role = "button">' + 
+			      	'Shop'+
+			    	'</a>'+
+			    	'</div>'+
+			    '</div>')
 						$(document.body).css("overflow", "hidden");
 				    $("#"+child.id)
 				    .find('.card-reveal').velocity(
@@ -362,7 +376,20 @@ $(function() {
 				 				$(document.body).css("overflow", "visible");
 				      }
 				    });
-			}
-		});
+			});
+		}
+
+
+	$(".profile").click(function(event){
+		// console.log(event.target);
+		if (event.target.classList[0] == "btn") return;
+		var profile = event.target.parentElement;
+		if (profile.classList[0] != 'profile') {
+			profile = profile.parentElement;
+		}
+		// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
+		console.log("ID", event.target.classList[0].split("_"));
+		window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
+	});
 	});
 });

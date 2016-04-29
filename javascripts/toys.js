@@ -276,9 +276,15 @@ $(function() {
 
     var bindInactiveChild = function() {
 	    $('.inactive-child').click(function(event) {
+<<<<<<< HEAD
+	    	var child_id = event.toElement.id.split('-')[1];
+	    	toggleChildMenu(null, true);
+	    	switchChild(child_id);
+=======
 	    	var c_id = event.toElement.id.split('-')[1];
 	    	toggleChildMenu(null, true);
 	    	switchChild(c_id);
+>>>>>>> d52424d76f397b2d16e4a2ec913aa8a89a8a8151
 	    });
     }
 
