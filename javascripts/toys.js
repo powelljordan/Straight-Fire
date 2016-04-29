@@ -210,20 +210,6 @@ $(function() {
 	}
 
 	var moveFromWishlistToToychest = function(item_id, toy_name, img_src, id, display = true) {
-		// console.log("here");
-		// var item_id = id.split('-').slice(-1)[0];
-		// console.log(item_id, selected_child.wishlist);
-		// var arr = selected_child.wishlist;
-		// var index = -1;
-		// for (var i = 0; i < arr.length; i++) {
-		// 	if (arr[i] == item_id) {
-		// 		index = i;
-		// 		break;
-		// 	}
-		// }
-		// var toy_name = arr[index].name;
-		// var img_src = arr[index].img_src;
-		console.log(toy_name, img_src);
 		var toychest_id = addToToychest(toy_name, img_src);
 		removeFromWishlist(id);
 		if (display) {
@@ -332,8 +318,8 @@ $(function() {
 		// If child the selected child, update the page
 		if (child.id == child_id) {
 			selected_child = child;
-			toychest_index = child.toyChest[child.toyChest.length-1].id;
-			donated_index = child.donated[child.donated.length-1].id;
+			toychest_index = (child.toyChest == undefined) ? 0 : child.toyChest[child.toyChest.length-1].id;
+			donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
 			updateChildParams(child);
 			loadAndDisplayChildInfo(child);
 		} else {
