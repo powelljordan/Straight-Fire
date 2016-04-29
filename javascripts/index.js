@@ -2,7 +2,7 @@
 // has finished loading in the browser.
 $(function() {
 	$(".button-collapse").sideNav();
-	// $('select').material_select();
+	$('select').material_select();
 	//Load Children Data
 	john = {id: "One",
 			name: "John",
@@ -125,6 +125,7 @@ $(function() {
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
 
 	//For example I can add the two children I defined above to our firebase
+	var childrenDB = rootRef.child("children");
 	children.forEach(function(child){
 		rootRef.child('children').child(child.id).set(child);
 	})
@@ -148,10 +149,21 @@ $(function() {
 	//Read or write permissions right now so technically I think anyone can write to the db, but if we feel it's necessary
 	//we can add those later
 
+	$("#profiles").append(
+	'<div id="btn-new-profile" class = "col s4 m4" id="btn-create-profile">'+
+		'<div class="card small waves-effect waves-block waves-light">'+
+	      '<div class = "card-image ">'+
+	      '<i class="material-icons large add-icon">add</i>'+
+	      '</div>'+
+	      '<div id="addToyText" class="card-title" style="text-align:center; ">Add another child</div>'+
+	    '</div>'+
+   	'</div>'
+	);
 
 
-	children.forEach(function(child){
+	childrenDB.on("child_added", function(snapshot){
 		// console.log(firstItem);
+		var child = snapshot.val();
 		offset = "";
 		if(firstItem){
 			offset="offset-m2";
@@ -159,7 +171,8 @@ $(function() {
 		}else{
 			firstItem = true;
 		}
-		$("#profiles").append(
+
+		$("#btn-new-profile").before(
 			'<div class = "col s4 m4 " id="'+child.id+'">'+
 				'<div class="card small">'+
 			      '<div class = "card-image waves-effect waves-block waves-light">'+
@@ -191,16 +204,7 @@ $(function() {
 
 	});
 
-	$("#profiles").append(
-		'<div id="btn-new-profile" class = "col s4 m4" id="btn-create-profile">'+
-			'<div class="card small waves-effect waves-block waves-light">'+
-		      '<div class = "card-image ">'+
-		      '<i class="material-icons large add-icon">add</i>'+
-		      '</div>'+
-		      '<div id="addToyText" class="card-title" style="text-align:center; ">Add another child</div>'+
-		    '</div>'+
-	   	'</div>'
-		);
+
 
 	$(".profile").click(function(event){
 		// console.log(event.target);
@@ -239,10 +243,6 @@ $(function() {
 	      '</div>'+
 	     '</div>'
 			)
-
-			$("#file-dropdown").append('<option value="'+index+'">'+image.name+'</option>');
-    	$('select').material_select();
-
 		});
 
 		$(".brightness").click(function(event){
@@ -257,8 +257,8 @@ $(function() {
 			$(event.target).css("border-width", "2px");
 			$(event.target).css("border-color", "#b3e5fc")
 			$(event.target).css("opacity", "1");
-			$("#default-option").html($(this).attr("value"));
-			$('select').material_select();
+			console.log($("#file-name"));
+			$("#file-name").val($(this).attr("value"));
 			console.log($(this).attr("value"));
 		});
 	})
@@ -272,7 +272,7 @@ $(function() {
 		console.log("soething");
 		if(selectedImage){
 			console.log($("#file-path"));
-			$("#file-path").val("test");
+			$("#file-path").val(selectedImage.attr("value")+".png");
 		}
 		
 		$("#choose-file-modal").closeModal();
@@ -281,14 +281,28 @@ $(function() {
 	$("#btn-create-profile").click(function(event) {
 		var name = $("#create-name").val();
 		var age = $("#create-age").val();
+		var img_src = selectedImage.find(".card").find(".card-image").find("img").attr("src");
+		console.log(img_src);
 		var interests = $("#create-interests").val();
+		var interestsList = $("#create-interests").val().split(",");
 		if (name == "" || age == "") {
 			alert("Please fill out Name and Age.");
 		} else {
-			window.location.href = "profile.html?name="+name+"&age="+age+"&interests="+interests;
-			$("#create-profile-form").find('.form-group').find('input').each(function(index, elem){
-				($(elem)).val('');
-			});
+			// window.location.href = "profile.html?name="+name+"&age="+age+"&interests="+interests;
+			// $("#create-profile-form").find('.form-group').find('input').each(function(index, elem){
+			// 	($(elem)).val('');
+			// });
+			childrenDB.child(name).set(
+				{age: age,
+				donated: [],
+				id:name,
+				name:name,
+				img_src:img_src,
+				interests:interestsList,
+				toyChest: [],
+				wishlist:[]
+				});
+			$("#new-profile-modal").closeModal();
 		}
 	});
 

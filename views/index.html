@@ -69,14 +69,20 @@
 
 			  </div>
 				<div id="create-profile-modal-footer" class="modal-footer">
-					<div class="">
-					  <div class="input-field col s12">
-					    <select id="file-dropdown">
-					      <option id="default-option" value="" disabled selected>File Name</option>
+					<div class="row">
+					  <div class="input-field col s8 m8">
+					  	<input placeholder="File name" id="file-name" type="text" class="validate">
+					  </div>
+					  <div class="input-field col s4 m4">
+					    <select>
+					      <option value="" disabled selected>All Files(*.*)</option>
+					      <option value="1">.png</option>
 					    </select>
 					  </div>
-	    		<a id="btn-open-file" class="modal-action btn-flat waves-effect waves-light">Cancel</a>
-	    		<a id="btn-cancel-file"class="modal-action btn-flat waves-effect waves-light">Open</a>
+					<div class="col s12 m12">
+	    		<a id="btn-cancel-file" class="modal-action btn-flat waves-effect waves-light">Cancel</a>
+	    		<a id="btn-open-file"class="modal-action btn-flat waves-effect waves-light">Open</a>
+	    		</div>
 	    		</div>
 	    	</div>
 	    </div>
