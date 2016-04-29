@@ -23,9 +23,18 @@ $(function() {
 				removeFromToyChest(item_id);
 				// removeDisplayToyChestItem(item_id.split('-').slice(-1)[0]);
 			} else if (tab == 'wishlist') {
-				undoMessage = "Remove from wishlist";
+				undoMessage = "Delete from wishlist";
 				removeFromWishlist(item_id);
 			}
+		} else if ($(this).hasClass('shop')) {
+			undoMessage = "Purchase";
+			var wishlist_item_id = item_id.split('-').splice(-1)[0];
+			rootRef.child('items').child(wishlist_item_id).on('value', function(snap){
+				var item = snap.val();
+				moveFromWishlistToToychest(item.id, item.name, item.img_src, item_id);
+				// target_url = item.url;
+				// openExternalPage();
+			});
 		}
 		$(this).parents('.item-col').fadeOut({
 			complete: function() {
@@ -35,6 +44,7 @@ $(function() {
 				$('#toychest-undo').fadeOut();
 				$('#wishlist-undo').fadeOut();
 				// Set the appropriate tab's undo
+				console.log(tab, undoMessage);
 				$('#'+tab+'-undo-action').text(undoMessage);
 				$('#'+tab+'-undo').fadeIn();
 			}
@@ -48,15 +58,16 @@ $(function() {
 		}
 	}
 
-	var shopAction = function() {
-		var id = $(this).parents('.card')[0].id.split('-').splice(-1)[0];
-		rootRef.child('items').child(id).on('value', function(snap){
-			var specificChild = snap.val();
-			target_url = specificChild.url;
-			openExternalPage();
-		});
-
-	}
+	// var shopAction = function() {
+	// 	var id = $(this).parents('.card')[0].id;
+	// 	var item_id = id.split('-').splice(-1)[0];
+	// 	rootRef.child('items').child(item_id).on('value', function(snap){
+	// 		var item = snap.val();
+	// 		moveFromWishlistToToychest(item.id, item.name, item.img_src, id);
+	// 		// target_url = item.url;
+	// 		// openExternalPage();
+	// 	});
+	// }
 
 	// Firebase code
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
@@ -76,7 +87,7 @@ $(function() {
                        + '<i class="material-icons right waves-effect tooltipped return" data-position="left" data-delay="50" data-tooltip="Delete from wishlist">clear</i>'
                        + '</div></div></div>';
         $("#wishlist").append(html_str);
-        $("#wishlist-item-"+item.id+"> .card-action > .shop").click(shopAction);
+        $("#wishlist-item-"+item.id+"> .card-action > .shop").click(deleteAction);
     	$("#wishlist-item-"+item.id+"> .card-action > .return").click(deleteAction);
     	$("#wishlist-item-"+item.id+"> .card-action > .tooltipped").tooltip({'data-delay':50});
 	}
@@ -196,6 +207,29 @@ $(function() {
 		selected_child.donated.push({id: index, name: toy_name, img_src: img_src});
 		rootRef.child('children').child(selected_child.id).child('donated').set(selected_child.donated);
 		return index;
+	}
+
+	var moveFromWishlistToToychest = function(item_id, toy_name, img_src, id, display = true) {
+		// console.log("here");
+		// var item_id = id.split('-').slice(-1)[0];
+		// console.log(item_id, selected_child.wishlist);
+		// var arr = selected_child.wishlist;
+		// var index = -1;
+		// for (var i = 0; i < arr.length; i++) {
+		// 	if (arr[i] == item_id) {
+		// 		index = i;
+		// 		break;
+		// 	}
+		// }
+		// var toy_name = arr[index].name;
+		// var img_src = arr[index].img_src;
+		console.log(toy_name, img_src);
+		var toychest_id = addToToychest(toy_name, img_src);
+		removeFromWishlist(id);
+		if (display) {
+			displayToychestItem({id: toychest_id, name:toy_name, img_src: img_src});
+		}
+		return toychest_index;
 	}
 
 	var moveToToychest = function(id, display = true) {
@@ -354,6 +388,12 @@ $(function() {
 			var id = lastDeleted[0].getElementsByClassName('card')[0].id;
 			var toy_id = id.split('-').splice(-1)[0];
 			addToWishlist(toy_id);
+			if ($(this).text().split(' ').splice(-1)[0] == "'Purchase'") {
+				// remove from toychest
+				removeFromToyChest('toychest-item-' + toychest_index);
+				// remove toychest display
+				removeDisplayToyChestItem(toychest_index);
+			}
 		}
 	});
 

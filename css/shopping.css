@@ -209,11 +209,6 @@ input:focus {
 	margin:5px;
 }
 
-/*.modal-footer {
-	top:0 !important;
-	border-top:none !important;
-	border-bottom: 1px solid rgba(0,0,0,0.1);
-}*/
 .back {
 	font-size: 2rem;
 	color:#5a5a5a;
@@ -226,4 +221,14 @@ input:focus {
 .back-hover {
 	color: #fff;
 	cursor:pointer;
+}
+
+.filter-btn-icon{
+	font-size:16px;
+	padding-top:9px;
+	margin-right:8px !important;
+}
+
+.chip {
+	margin-bottom:5px;
 }
