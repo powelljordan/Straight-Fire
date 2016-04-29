@@ -278,8 +278,8 @@ $(function() {
     		child = children[i];
     		if (children[i].id == child_id) {
     			selected_child = child;
-				toychest_index = child.toyChest[child.toyChest.length-1].id;
-				donated_index = child.donated[child.donated.length-1].id;
+				toychest_index = (child.toyChest == undefined) ? 0 : child.toyChest[child.toyChest.length-1].id;
+				donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
 				updateChildParams(child);
 				loadAndDisplayChildInfo(child);
 			} else {
@@ -306,14 +306,20 @@ $(function() {
 	};
     
 	var loadAndDisplayChildInfo = function(c) {
-		for (var i = 0; i < c.wishlist.length; i++) {
-			rootRef.child('items').child(c.wishlist[i]).on('value', function(snap){
-				var item = snap.val();
-				displayWishlistItem(item);
-			});
+		if (c.wishlist) {
+			for (var i = 0; i < c.wishlist.length; i++) {
+				rootRef.child('items').child(c.wishlist[i]).on('value', function(snap){
+					var item = snap.val();
+					displayWishlistItem(item);
+				});
+			}
 		}
-		displayToychest(c.toyChest);
-		displayDonated(c.donated);
+		if (c.toyChest) {
+			displayToychest(c.toyChest);
+		}
+		if (c.donated) {
+			displayDonated(c.donated);
+		}
 	};
 
     $('.shop-link').hover(function(){$('.shop-link').addClass('shop-link-hover')}, function(){$('.shop-link').removeClass('shop-link-hover') });
