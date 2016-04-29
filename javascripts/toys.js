@@ -248,9 +248,7 @@ $(function() {
 		displayDonated(c.donated);
 	};
 
-	$('.thumbnail-overlay').click(function() {
-        $('.inactive-child').addClass('activated');
-    });
+    $('.shop').hover(function(){$('.shop').addClass('shop-hover')}, function(){$('.shop').removeClass('shop-hover') });
 
 	// Load all children
 	var children = [];

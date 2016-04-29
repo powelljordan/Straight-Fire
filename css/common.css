@@ -137,23 +137,28 @@ body {
 .child-thumbnail {
     position: relative;
     width: 20%;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
-.child-thumbnail.inactive-child {
-    transform: translateX(-40px) scale(0.4);
+.menu-item {
+    transform: translateX(-40px) scale(0.5);
+    width: 10% !important;
     opacity: 0;
     transition: all .25s ease-in-out;
     -moz-transition: all .25s ease-in-out;
     -webkit-transition: all .25s ease-in-out;
 }
 
-.child-thumbnail.activated {
-    transform: translateX(0px) scale(1) !important;
-    opacity: 1 !important;
+.manage-profiles-btn:hover {
+    color: #fff;
+    cursor: pointer;
 }
 
-.child-thumbnail:hover .thumbnail-overlay {
+.child-thumbnail.activated:hover {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
+}
+
+#selected-child.static:hover .thumbnail-overlay {
     opacity: 1;
 }
 
@@ -167,9 +172,13 @@ body {
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 300;
     background: rgba(255, 255, 255, 0.87);
+}
+
+.inactive-child .child-name {
+    font-size: 1rem;
 }
 
 .thumbnail-overlay {
@@ -185,7 +194,7 @@ body {
     -webkit-transition: opacity .25s ease-in-out;
 }
 
-.thumbnail-overlay:hover {
+.child-thumbnail:hover {
     cursor: pointer;
 }
 
