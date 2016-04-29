@@ -256,13 +256,13 @@ $(function() {
     	$('.item-col').remove();
     }
 
-    var switchChild = function(child_id) {
-    	child_id = child_id;
+    var switchChild = function(c_id) {
+    	child_id = c_id;
     	clearChildSpecificFields();
     	var child;
     	for (var i = 0; i < children.length; i++) {
     		child = children[i];
-    		if (children[i].id == child_id) {
+    		if (children[i].id == c_id) {
     			selected_child = child;
 				toychest_index = (child.toyChest == undefined) ? 0 : child.toyChest[child.toyChest.length-1].id;
 				donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
@@ -276,9 +276,15 @@ $(function() {
 
     var bindInactiveChild = function() {
 	    $('.inactive-child').click(function(event) {
+<<<<<<< HEAD
 	    	var child_id = event.toElement.id.split('-')[1];
 	    	toggleChildMenu(null, true);
 	    	switchChild(child_id);
+=======
+	    	var c_id = event.toElement.id.split('-')[1];
+	    	toggleChildMenu(null, true);
+	    	switchChild(c_id);
+>>>>>>> d52424d76f397b2d16e4a2ec913aa8a89a8a8151
 	    });
     }
 

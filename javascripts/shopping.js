@@ -101,9 +101,15 @@ $(function() {
     };
     var bindInactiveChild = function() {
         $('.inactive-child').click(function(event) {
+<<<<<<< HEAD
             var child_id = event.toElement.id.split('-')[1];
             toggleChildMenu(null, true);
             switchChild(child_id);
+=======
+            var c_id = event.toElement.id.split('-')[1];
+            toggleChildMenu(null, true);
+            switchChild(c_id);
+>>>>>>> d52424d76f397b2d16e4a2ec913aa8a89a8a8151
         });
     }
 
@@ -112,13 +118,13 @@ $(function() {
 		$('.interest-btn').remove();
 	}
 
-	var switchChild = function(child_id) {
-		child_id = child_id;
+	var switchChild = function(c_id) {
+		child_id = c_id;
 		clearChildSpecificFields();
 		var child;
 		for (var i = 0; i < children.length; i++) {
 			child = children[i];
-			if (child.id == child_id) {
+			if (child.id == c_id) {
 				selected_child = child;
 				updateChildParams(child);
 			} else {
@@ -199,6 +205,7 @@ $(function() {
 	$(".back").click(function(event) {
 		window.location.href = "toys.html?id=" + child_id;
 	});
+<<<<<<< HEAD
 	// Autocomplete
 	var availableTags = [
 		'Star Wars',
@@ -213,6 +220,9 @@ $(function() {
 	// $( "#search" ).autocomplete({
  //      source: availableTags
  //    });
+=======
+
+>>>>>>> d52424d76f397b2d16e4a2ec913aa8a89a8a8151
 	var filter_by = function(filter) {
 		// TODO;
 	}
@@ -229,9 +239,12 @@ $(function() {
 		filter_by(new_filter);
 		display_new_filter(new_filter);
 		$("#search").val("");
+<<<<<<< HEAD
 
 		// Make sure border reaches end of the row
 		// $("#interests-wrapper").css('height',$("#filters-wrapper").css('height'));
+=======
+>>>>>>> d52424d76f397b2d16e4a2ec913aa8a89a8a8151
 	}
 
 	$("#btn-add-filter").click(function(event) {
