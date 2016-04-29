@@ -101,6 +101,15 @@ $(function() {
         }
     });
 
+    $(document).on('click', function(event) {
+        if ($('#selected-child').hasClass('activated')) {
+            var inChildMenu = $(event.target).parents('.col.s8').length;
+            if (!inChildMenu) {
+                toggleChildMenu();
+            }
+        }
+    });
+
     //Code for switching children
     toggleChildMenu = function(event, switching) {
         if (switching) {
