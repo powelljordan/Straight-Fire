@@ -101,9 +101,9 @@ $(function() {
     };
     var bindInactiveChild = function() {
         $('.inactive-child').click(function(event) {
-            var child_id = event.toElement.id.split('-')[1];
+            var c_id = event.toElement.id.split('-')[1];
             toggleChildMenu(null, true);
-            switchChild(child_id);
+            switchChild(c_id);
         });
     }
 
@@ -112,13 +112,13 @@ $(function() {
 		$('.interest-btn').remove();
 	}
 
-	var switchChild = function(child_id) {
-		child_id = child_id;
+	var switchChild = function(c_id) {
+		child_id = c_id;
 		clearChildSpecificFields();
 		var child;
 		for (var i = 0; i < children.length; i++) {
 			child = children[i];
-			if (child.id == child_id) {
+			if (child.id == c_id) {
 				selected_child = child;
 				updateChildParams(child);
 			} else {
@@ -199,20 +199,7 @@ $(function() {
 	$(".back").click(function(event) {
 		window.location.href = "toys.html?id=" + child_id;
 	});
-	// Autocomplete
-	var availableTags = [
-		'Star Wars',
-		'Arts & Crafts',
-		'Water colors',
-		'paint',
-		'painting',
-		'LEGOs',
-		'action figures'
-	];
 
-	// $( "#search" ).autocomplete({
- //      source: availableTags
- //    });
 	var filter_by = function(filter) {
 		// TODO;
 	}
@@ -229,9 +216,6 @@ $(function() {
 		filter_by(new_filter);
 		display_new_filter(new_filter);
 		$("#search").val("");
-
-		// Make sure border reaches end of the row
-		// $("#interests-wrapper").css('height',$("#filters-wrapper").css('height'));
 	}
 
 	$("#btn-add-filter").click(function(event) {
