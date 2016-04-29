@@ -14,10 +14,8 @@ nav {
 input:focus {
     border-bottom: 1px solid #26a69a !important;
 }
-
-#left-arrow{
-	color:#5a5a5a;
-	cursor:pointer;
+.modal-dialog{
+	width:2000px;
 }
 
 .modal-body{
@@ -182,7 +180,6 @@ input:focus {
 #search-nav{
 	/*background-color:white;*/
 }
-
 .input-field > span {
 	display:none;
 }
@@ -217,3 +214,16 @@ input:focus {
 	border-top:none !important;
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 }*/
+.back {
+	font-size: 2rem;
+	color:#5a5a5a;
+}
+
+.back-text {
+    margin-left: -15px;
+}
+
+.back-hover {
+	color: #fff;
+	cursor:pointer;
+}

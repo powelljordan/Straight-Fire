@@ -100,4 +100,34 @@ $(function() {
             alert("Removed " + selected.length + " toy(s) from wishlist");
         }
     });
+
+    //Code for switching children
+    var toggleChildMenu = function() {
+        var time = 0;
+        if ($('#selected-child').hasClass('static')) {
+            $('#selected-child').removeClass('static');
+            $('.child-thumbnail').addClass('activated');
+            $('.menu-item').each( function () {
+                $(this).velocity(
+                    { opacity: "1", scaleX: "1", scaleY: "1", translateY: "0", translateX: '0'},
+                    { duration: 80, delay: time });
+                time += 40;
+            });
+        } else {
+            $('.child-thumbnail').removeClass('activated');
+            $('#selected-child').addClass('static');
+            $('.menu-item').each( function () {
+                $(this).velocity(
+                    {opacity: "0", scaleX: ".5", scaleY: ".5", translateY: "0", translateX: '-40px'},
+                    {duration: 80, delay: time});
+                time += 40;
+            });
+        }
+    };
+
+    $('.thumbnail-overlay').click(toggleChildMenu);
+
+    $(".manage-profiles-btn").click(function(event) {
+        window.location.href = "index.html";
+    });
 });

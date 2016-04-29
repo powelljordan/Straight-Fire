@@ -47,7 +47,7 @@ $(function() {
 				img_src:"../images/color_fingers.jpg"
 			}],
 			interests:["Biking", "Arts & Crafts", "Star Wars"],
-			wishlist: [0,1]
+			wishlist: [3,4]
 		}
 
 	david = {id: "Two",

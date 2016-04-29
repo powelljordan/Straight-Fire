@@ -49,7 +49,6 @@ $(function() {
 	}
 
 	var shopAction = function() {
-		console.log($(this).parents('.card')[0]);
 		var id = $(this).parents('.card')[0].id.split('-').splice(-1)[0];
 		rootRef.child('items').child(id).on('value', function(snap){
 			var specificChild = snap.val();
@@ -209,6 +208,7 @@ $(function() {
 		if (display) {
 			displayToychestItem({id: new_toy_id, name:toy_name, img_src: toy_img_src});
 		}
+		return new_toy_id;
 	}
 
 	var moveToDonations = function(id, display = true, donated_id = -1) {
@@ -221,21 +221,54 @@ $(function() {
 		if (display) {
 			displayDonatedItem({id: new_toy_id, name:toy_name, img_src: toy_img_src});
 		}
+		return new_toy_id;
 	}
 
 	var updateChildParams = function(child) {
 		// Update the header to display selected child
 		$("#selected-child img").attr('src',child.img_src);
 		$("#selected-child .child-name").text(child.name);
-	}
+	};
 
-	var displayChild = function(child) {
-		var html_str = '<div class="col s2 valign-wrapper" style="display: none;">'+
-		'<div class="child-thumbnail valign"><img src="'+child.img_src+'" class="responsive-img child-image">'+
-		'<span class="child-name">'+child.name+'</span></div></div>';
-		$("#child-header").append(html_str);
-	}
+    // Child header - Switching child functionality
+    var clearChildSpecificFields = function() {
+    	$('.inactive-child').remove();
+    	$('.item-col').remove();
+    }
 
+    var switchChild = function(child_id) {
+    	clearChildSpecificFields();
+    	var child;
+    	for (var i = 0; i < children.length; i++) {
+    		child = children[i];
+    		if (children[i].id == child_id) {
+    			selected_child = child;
+				toychest_index = child.toyChest[child.toyChest.length-1].id;
+				donated_index = child.donated[child.donated.length-1].id;
+				updateChildParams(child);
+				loadAndDisplayChildInfo(child);
+			} else {
+				displayInactiveChild(child);
+    		}
+    	}
+    }
+
+    var bindInactiveChild = function() {
+	    $('.inactive-child').click(function(event) {
+	    	var child_id = event.toElement.id.split('-')[1];
+	    	switchChild(child_id);
+	    });
+    }
+
+	var displayInactiveChild = function(child) {
+		var html_str = '<div id=child-' + child.id + ' class="child-thumbnail inactive-child menu-item valign">'
+            + '<img src="'+ child.img_src + '" class="responsive-img child-image">'
+            + '<span class="child-name">'+ child.name + '</span>'
+        	+ '</div>';
+		$("#child-header > .col > #selected-child").after(html_str);
+		bindInactiveChild();
+	};
+    
 	var loadAndDisplayChildInfo = function(c) {
 		for (var i = 0; i < c.wishlist.length; i++) {
 			rootRef.child('items').child(c.wishlist[i]).on('value', function(snap){
@@ -245,7 +278,9 @@ $(function() {
 		}
 		displayToychest(c.toyChest);
 		displayDonated(c.donated);
-	}
+	};
+
+    $('.shop').hover(function(){$('.shop').addClass('shop-hover')}, function(){$('.shop').removeClass('shop-hover') });
 
 	// Load all children
 	var children = [];
@@ -260,7 +295,7 @@ $(function() {
 			updateChildParams(child);
 			loadAndDisplayChildInfo(child);
 		} else {
-			displayChild(child);
+			displayInactiveChild(child);
 		}
 	});
 
@@ -274,15 +309,17 @@ $(function() {
 			var img_src = $("#"+id+" > .card-image > img").attr("src");
 			var toy_name = $("#"+id+" > .card-image > .card-title").text();
 			var donations_id = id.split('-').slice(-1)[0];
+			var index;
 			var toychest_id = toychest_index; // Last item is undo item
 			if ($(this).text().split(' ').splice(-1)[0] == "donated'") {
 				// Add back to donated list
-				addToDonated(toy_name, img_src, donations_id);
+				index = addToDonated(toy_name, img_src, donations_id);
 			} else {
 				// Move from toychest to donated
-				moveToDonations("#toychest-item-"+toychest_id, false, donations_id);
+				index = moveToDonations("#toychest-item-"+toychest_id, false);
 				removeDisplayToyChestItem(toychest_id);
 			}
+			$("#"+lastDeleted[0].children[0].id).attr('id', 'donations-item-'+index);
 		}
 	});
 
@@ -295,14 +332,16 @@ $(function() {
 			var toy_name = $("#"+id+" > .card-image > .card-title").text();
 			var toychest_toy_id = id.split('-').splice(-1)[0];
 			var donations_toy_id = donated_index; // Last item in donated list is the undo toy
+			var index;
 			if ($(this).text().split(' ').splice(-1)[0] == "donations'") {
 				// Move from donations list back to toychest
-				moveToToychest("#donations-item-"+donations_toy_id, false, toychest_toy_id);
+				index = moveToToychest("#donations-item-"+donations_toy_id, false);
 				removeDisplayDonatedItem(donations_toy_id);
 			} else {
 				// Add back to toychest
-				addToToychest(toy_name, img_src, toychest_toy_id);
+				index = addToToychest(toy_name, img_src, toychest_toy_id);
 			}
+			$("#"+lastDeleted[0].children[0].id).attr('id', 'toychest-item-'+index);
 		}
 	});
 
@@ -312,10 +351,9 @@ $(function() {
 			$(this).fadeOut();
 			var id = lastDeleted[0].getElementsByClassName('card')[0].id;
 			var toy_id = id.split('-').splice(-1)[0];
-			console.log(id, toy_id, 'HERE');
 			addToWishlist(toy_id);
 		}
-	})
+	});
 
     $('.add-toy-card').leanModal();
 
