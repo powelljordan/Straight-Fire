@@ -117,17 +117,29 @@
 	padding-top:16%;
 }
 
+.brightness {
+    display: inline-block;
+    cursor:pointer;
 
+}
 .brightness:hover {
+	background: #4fc3f7;
 	cursor:pointer;
     opacity: .5;
-    color:blue;
-    border:3px;
-    border-color:blue;
 }
 
 #create-profile-modal-footer{
 	text-align:center;
+}
+
+.select-file-image{
+	pointer-events: none;
+	display: block;
+}
+
+.file-image-text{
+	pointer-events: none;
+	display:block;
 }
 
 #btn-open-file{}

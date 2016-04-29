@@ -103,7 +103,7 @@ $(function() {
 
 
 	var images = [jill, annie];
-
+	var selectedImage;
 
 	var children = [john, david];
 	var firstItem = true;
@@ -167,11 +167,11 @@ $(function() {
 			      '</div>'+
 			      '<div class = "card-content" style="text-align:center">'+
 			         '<span class="card-title activator name"></span>'+
-			         '<div class="btn-group" style="text-align:center">'+
-			            '<a href = "toys.html?name='+ child.name +'" class = "btn btn-default btn-toychest" role = "button">'+
+			         '<div class="" style="text-align:center">'+
+			            '<a href = "toys.html?name='+ child.name +'" class = "btn btn-toychest" role = "button">'+
 			               'Toys'+
 			            '</a> '+
-			            '<a href="shopping.html?name='+child.name+'" id="btn-start-shopping" class="btn btn-default" role = "button">' + 
+			            '<a href="shopping.html?name='+child.name+'" id="btn-start-shopping" class="btn" role = "button">' + 
 			            	' Shop'+
 			            '</a>' +
 			          '</div>'+  
@@ -193,8 +193,8 @@ $(function() {
 
 	$("#profiles").append(
 		'<div id="btn-new-profile" class = "col s4 m4" id="btn-create-profile">'+
-			'<div class="card small">'+
-		      '<div class = "card-image waves-effect waves-block waves-light">'+
+			'<div class="card small waves-effect waves-block waves-light">'+
+		      '<div class = "card-image ">'+
 		      '<i class="material-icons large add-icon">add</i>'+
 		      '</div>'+
 		      '<div id="addToyText" class="card-title" style="text-align:center; ">Add another child</div>'+
@@ -225,13 +225,13 @@ $(function() {
 		$("#file-dropdown").append('<option id="default-option" value="" disabled selected>File Name</option>');
 		images.forEach(function(image, index){
 			$("#localImages").append(
-			'<div >'+
-			'<div class="card col s2 m2 select-file-image">'+			    
-				'<div class="card-image   waves-effect waves-block waves-light">'+
-		      '<img class="responsive-img brightness" width="15%" height="15%" style="float:left"src="'+image.img_src+'" alt="" >'+
+			'<div class="brightness col s4 m4" value="'+image.name+'"">'+
+			'<div class="card col s6 m6 select-file-image">'+			    
+				'<div class="card-image waves-effect waves-block waves-light">'+
+		      '<img class="responsive-img" width="15%" height="15%" style="float:left"src="'+image.img_src+'" alt="" >'+
 		    '</div>'+
 		  '</div>'+
-		    '<div class="col s2 m2">'+
+		    '<div class="col s6 m6 file-image-text">'+
 		      '<p><span>'+image.name+'</span><br>'+
 		      	'PNG<br>'+
 		        '<span class="image-size">'+image.size+'</span>'+
@@ -244,19 +244,37 @@ $(function() {
     	$('select').material_select();
 
 		});
+
+		$(".brightness").click(function(event){
+			console.log($(event.target));
+			if(selectedImage){
+				selectedImage.css("background-color", "#ffffff");
+				selectedImage.css("border-color", "#ffffff");
+			}
+			selectedImage = $(event.target);
+			$(event.target).css("background-color", "#e1f5fe");
+			$(event.target).css("border-style", "solid");
+			$(event.target).css("border-width", "2px");
+			$(event.target).css("border-color", "#b3e5fc")
+			$(event.target).css("opacity", "1");
+			$("#default-option").html($(this).attr("value"));
+			$('select').material_select();
+			console.log($(this).attr("value"));
+		});
 	})
 
-
-	$(".brightness").click(function(event){
-		console.log(event.target);
-		event.target.css("border", "3px");
-	});
 
 	$("#btn-cancel-file").click(function(){
 		$("#choose-file-modal").closeModal();
 	});
 
 	$("#btn-open-file").click(function(){
+		console.log("soething");
+		if(selectedImage){
+			console.log($("#file-path"));
+			$("#file-path").val("test");
+		}
+		
 		$("#choose-file-modal").closeModal();
 	});
 
