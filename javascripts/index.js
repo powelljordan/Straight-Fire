@@ -96,8 +96,8 @@ $(function() {
 	}	
 
 	annie = {
-		name:"Annie",
-		img_src: "../images/annie.png",
+		name:"Lisa",
+		img_src: "../images/lisa.png",
 		size: "5.56KB" 
 	}	
 

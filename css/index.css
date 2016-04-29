@@ -172,3 +172,8 @@
 	pointer-events: none;
 }
 
+
+.name{
+	text-align: center;
+	pointer-events: none;
+}
