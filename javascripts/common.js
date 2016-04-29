@@ -102,11 +102,24 @@ $(function() {
     });
 
     //Code for switching children
-    toggleChildMenu = function() {
+    toggleChildMenu = function(event, switching) {
+        if (switching) {
+            $('.child-thumbnail').removeClass('activated');
+            $('#selected-child').addClass('static');
+            $('.manage-profiles-btn').hide();
+            $('.menu-item').each( function () {
+                $(this).velocity(
+                    {opacity: "0", scaleX: ".5", scaleY: ".5", translateY: "0", translateX: '-40px'},
+                    {duration: 80, delay: time});
+                time += 40;
+            });
+            return;
+        }
         var time = 0;
         if ($('#selected-child').hasClass('static')) {
             $('#selected-child').removeClass('static');
             $('.child-thumbnail').addClass('activated');
+            $('.manage-profiles-btn').show();
             $('.menu-item').each( function () {
                 $(this).velocity(
                     { opacity: "1", scaleX: "1", scaleY: "1", translateY: "0", translateX: '0'},
@@ -123,6 +136,10 @@ $(function() {
                 time += 40;
             });
         }
+    };
+
+    hideManageChildren = function() {
+        $('.manage-profiles-btn').css({opacity: 0});
     };
 
     $('.thumbnail-overlay').click(toggleChildMenu);
