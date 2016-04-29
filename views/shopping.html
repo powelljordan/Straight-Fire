@@ -44,39 +44,47 @@
 	</div>
 </div>
 
-<div class="row">
+<!-- <div class="row"> -->
    <nav>
-    <div class="nav-wrapper">
-      <div class="col m6 offset-m3">
-        <div class="input-field">
-          <input id="search" type="search" required>
-          <label for="search"><i id="search-icon" class="material-icons icon-blue">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </div>
+    <div class="nav-wrapper row">
+      	<div class="col m6 offset-m3">
+	        <div class="input-field">
+	          <input id="search" type="search" required>
+	          <label for="search">
+	          	<!-- <i id="search-icon" class="material-icons icon-blue">search</i> -->
+	          	+ Filter
+	          </label>
+	          <i id="btn-add-filter" class="material-icons">add</i>
+	        </div>
+	  	</div>
+<!-- 	    <div class="col m3">
+	      	<a id="btn-add-filter" class="btn-floating btn-large waves-	effect waves-light"><i class="material-icons">add</i></a>
+	    </div> -->
     </div>
   </nav>
+<!-- </div> -->
+<div class="row" style="height:0;"></div>
+<div class="row">
+	<div class="col s8 offset-s2"><span class="filter-header">Interests:</span></div>
 </div>
-<!--  <div class="row">
-    <form class="col m6 offset-m3">
-      <div class="row">
-        <div class="input-field col m12">
-          	<i class="material-icons prefix">search</i>
-          <input id="search" class="search"></input>
-        </div>
-      </div>
-    </form>
-</div> -->
-
-	<div class="row" id="filters-row">
-		<div id="filters-wrapper" class="col m6 offset-m3">
-		</div>
+<div class="row">
+<!-- 	<div class="col s2"><span class="filter-header">Interests:</span></div> -->
+	<div id="interests-wrapper" class="col s8 offset-s2 filters-row">
 	</div>
-
-
-	<div id="search-content">
-	   	
+</div>
+<div class="row">
+	<div class="col s8 offset-s2"><span class="filter-header">Filters:</span></div>
+</div>
+<div class="row" style="height: 37px">
+	<!-- <div class="col s2"><span class="filter-header">Filters:</span></div> -->
+	<div id="filters-wrapper" class="col s8 offset-s2 filters-row">
 	</div>
+</div>
+
+
+<div id="search-content">
+   	
+</div>
 
 
 <!-- Modal -->
@@ -139,10 +147,6 @@
 	    </div>
 	</div>
     </div>
-<!--     <div class="modal-footer">
-      <p class="modal-title item-title">Modal Header</h4>
-      </p>
-    </div> -->
 </div>
 
   <script src="../jquery/js/jquery-1.12.3.min.js"></script>

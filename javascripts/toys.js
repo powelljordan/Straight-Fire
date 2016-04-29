@@ -32,8 +32,8 @@ $(function() {
 			rootRef.child('items').child(wishlist_item_id).on('value', function(snap){
 				var item = snap.val();
 				moveFromWishlistToToychest(item.id, item.name, item.img_src, item_id);
-				// target_url = item.url;
-				// openExternalPage();
+				target_url = item.url;
+				openExternalPage();
 			});
 		}
 		$(this).parents('.item-col').fadeOut({
