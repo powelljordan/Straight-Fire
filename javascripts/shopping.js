@@ -73,11 +73,14 @@ $(function() {
 	}
 
 	var fillInterests = function(child) {
+		if (!child.interests) {
+			return;
+		}
 		for (var i = 0; i < child.interests.length; i++) {
-			$("#filters-wrapper").append("<a class='chip filter-btn selected' id='"+ i + "-filter'><i class='fa fa-tag left filter-btn-icon'></i>"+child.interests[i]+"</div>");
+			$("#interests-wrapper").append("<a class='chip interest-btn selected' id='"+ i + "-interest'><i class='fa fa-tag left interest-btn-icon'></i>"+child.interests[i]+"</a>");
 		}
 		// TODO: actually filter
-		$(".filter-btn").click(function(event) {
+		$(".interest-btn").click(function(event) {
 			// If filter is selected, remove the selected class
 			if ($.inArray('selected', event.toElement.classList) != -1) {
 				$("#"+event.toElement.id).removeClass('selected');
@@ -99,14 +102,14 @@ $(function() {
     var bindInactiveChild = function() {
         $('.inactive-child').click(function(event) {
             var child_id = event.toElement.id.split('-')[1];
-            toggleChildMenu();
+            toggleChildMenu(null, true);
             switchChild(child_id);
         });
     }
 
 	var clearChildSpecificFields = function() {
 		$('.inactive-child').remove();
-		$('.filter-btn').remove();
+		$('.interest-btn').remove();
 	}
 
 	var switchChild = function(child_id) {
@@ -207,34 +210,40 @@ $(function() {
 		'action figures'
 	];
 
-	$( "#search" ).autocomplete({
-      source: availableTags
-    });
+	// $( "#search" ).autocomplete({
+ //      source: availableTags
+ //    });
+	var filter_by = function(filter) {
+		// TODO;
+	}
+
+	var display_new_filter = function(filter) {
+		var html_str = '<div id="'+filter+'-filter" class="chip filter-btn">'
+					+filter+'<i class="material-icons">close</i></div>';
+		$('#filters-wrapper').append(html_str);
+	}
+
+	var add_new_filter = function() {
+		var new_filter = $("#search").val();
+		if (new_filter == '') return;
+		filter_by(new_filter);
+		display_new_filter(new_filter);
+		$("#search").val("");
+
+		// Make sure border reaches end of the row
+		// $("#interests-wrapper").css('height',$("#filters-wrapper").css('height'));
+	}
+
+	$("#btn-add-filter").click(function(event) {
+		add_new_filter();
+	});
+
+	$("#search").keypress(function(e) {
+		if (e.which == 13) {
+			add_new_filter();
+		}
+	})
 
 	$('.back').hover(function(){$('.back').addClass('back-hover')}, function(){$('.back').removeClass('back-hover') });
-          
-	// // Code from: http://miles-by-motorcycle.com/fv-b-8-670/stacking-bootstrap-dialogs-using-event-callbacks
-	// $('.modal').on('hidden.bs.modal', function(event) {
- //        $(this).removeClass( 'fv-modal-stack' );
- //        $('body').data( 'fv_open_modals', $('body').data( 'fv_open_modals' ) - 1 );
- //    });
-
-	// $( '.modal' ).on('shown.bs.modal', function(event) {  
- //    	// keep track of the number of open modals
- //    	if (typeof( $('body').data('fv_open_modals')) == 'undefined') {
- //        	$('body').data( 'fv_open_modals', 0 );
- //       	}       
-	// 	// if the z-index of this modal has been set, ignore.
- //    	if ($(this).hasClass('fv-modal-stack')) {
- //            return;
- //        } 
- //    	$(this).addClass('fv-modal-stack');
- //    	$('body').data( 'fv_open_modals', $('body').data('fv_open_modals') + 1 );
- //    	$(this).css('z-index', 1040 + (10 * $('body').data('fv_open_modals')));
- //    	$('.modal-backdrop').not( '.fv-modal-stack' )
- //            .css('z-index', 1039 + (10 * $('body').data('fv_open_modals')));
- //    	$('.modal-backdrop').not('fv-modal-stack')
- //            .addClass('fv-modal-stack'); 
- //     });
 	
 });

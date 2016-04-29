@@ -332,7 +332,6 @@ $(function() {
 		  	'<i class="edit_'+child.id+' material-icons large edit-icon ">edit</i>'+
 		  '</div>'+
 		  '<div class="card-title edit-icon-text">Edit Profile</div>')
-				$("#"+child.id).find(".card-content").find(".name").css("color", "white");
 				editingList.push($(this).find(".card-content").find(".name"));	
 				$("#manageProfiles").text("Done");
 				$(document.body).css("overflow", "hidden");
