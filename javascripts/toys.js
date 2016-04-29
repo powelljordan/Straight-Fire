@@ -282,7 +282,7 @@ $(function() {
 		displayDonated(c.donated);
 	};
 
-    $('.shop').hover(function(){$('.shop').addClass('shop-hover')}, function(){$('.shop').removeClass('shop-hover') });
+    $('.shop-link').hover(function(){$('.shop-link').addClass('shop-link-hover')}, function(){$('.shop-link').removeClass('shop-link-hover') });
 
 	// Load all children
 	var children = [];
@@ -359,7 +359,7 @@ $(function() {
 
     $('.add-toy-card').leanModal();
 
-    $(".shop").click(function(event) {
+    $(".shop-link, .shop").click(function(event) {
     	window.location.href = "shopping.html?id=" + child_id;
     });
 
