@@ -230,11 +230,43 @@ $(function() {
 		$("#selected-child .child-name").text(child.name);
 	};
 
-	var displayChild = function(child) {
-		var html_str = '<div class="col s2 valign-wrapper" style="display: none;">'+
-		'<div class="child-thumbnail valign"><img src="'+child.img_src+'" class="responsive-img child-image">'+
-		'<span class="child-name">'+child.name+'</span></div></div>';
-		$("#child-header").append(html_str);
+    // Child header - Switching child functionality
+    var clearChildSpecificFields = function() {
+    	$('.inactive-child').remove();
+    	$('.item-col').remove();
+    }
+
+    var switchChild = function(child_id) {
+    	clearChildSpecificFields();
+    	var child;
+    	for (var i = 0; i < children.length; i++) {
+    		child = children[i];
+    		if (children[i].id == child_id) {
+    			selected_child = child;
+				toychest_index = child.toyChest[child.toyChest.length-1].id;
+				donated_index = child.donated[child.donated.length-1].id;
+				updateChildParams(child);
+				loadAndDisplayChildInfo(child);
+			} else {
+				displayInactiveChild(child);
+    		}
+    	}
+    }
+
+    var bindInactiveChild = function() {
+	    $('.inactive-child').click(function(event) {
+	    	var child_id = event.toElement.id.split('-')[1];
+	    	switchChild(child_id);
+	    });
+    }
+
+	var displayInactiveChild = function(child) {
+		var html_str = '<div id=child-' + child.id + ' class="child-thumbnail inactive-child menu-item valign">'
+            + '<img src="'+ child.img_src + '" class="responsive-img child-image">'
+            + '<span class="child-name">'+ child.name + '</span>'
+        	+ '</div>';
+		$("#child-header > .col > #selected-child").after(html_str);
+		bindInactiveChild();
 	};
     
 	var loadAndDisplayChildInfo = function(c) {
@@ -263,7 +295,7 @@ $(function() {
 			updateChildParams(child);
 			loadAndDisplayChildInfo(child);
 		} else {
-			displayChild(child);
+			displayInactiveChild(child);
 		}
 	});
 
@@ -321,7 +353,7 @@ $(function() {
 			var toy_id = id.split('-').splice(-1)[0];
 			addToWishlist(toy_id);
 		}
-	})
+	});
 
     $('.add-toy-card').leanModal();
 

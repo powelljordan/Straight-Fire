@@ -36,7 +36,7 @@ $(function() {
 			selected_child = child;
 			updateChildParams(child);
 		} else {
-			displayChild(child);
+			displayInactiveChild(child);
 		}
 	});
 
@@ -88,12 +88,39 @@ $(function() {
 			}
 		});
 	}
+	
+    var displayInactiveChild = function(child) {
+        var html_str = '<div id=child-' + child.id + ' class="child-thumbnail inactive-child menu-item valign">'
+            + '<img src="'+ child.img_src + '" class="responsive-img child-image">'
+            + '<span class="child-name">'+ child.name + '</span>'
+            + '</div>';
+        $("#child-header > .col > #selected-child").after(html_str);
+        bindInactiveChild();
+    };
+    var bindInactiveChild = function() {
+        $('.inactive-child').click(function(event) {
+            var child_id = event.toElement.id.split('-')[1];
+            switchChild(child_id);
+        });
+    }
 
-	var displayChild = function(child) {
-		var html_str = '<div class="col s2 valign-wrapper" style="display: none;">'+
-		'<div class="child-thumbnail valign"><img src="'+child.img_src+'" class="responsive-img child-image">'+
-		'<span class="child-name">'+child.name+'</span></div></div>';
-		$("#child-header").append(html_str);
+	var clearChildSpecificFields = function() {
+		$('.inactive-child').remove();
+		$('.filter-btn').remove();
+	}
+
+	var switchChild = function(child_id) {
+		clearChildSpecificFields();
+		var child;
+		for (var i = 0; i < children.length; i++) {
+			child = children[i];
+			if (child.id == child_id) {
+				selected_child = child;
+				updateChildParams(child);
+			} else {
+				displayInactiveChild(child);
+			}
+		}
 	}
 
 	var updateChildParams = function(child) {
