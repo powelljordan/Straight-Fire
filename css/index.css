@@ -103,6 +103,7 @@
 .edit-icon-text{
 	text-align:center;
 	padding-top:5%;
+	pointer-events: none;
 }
 
 .add-icon{
@@ -151,3 +152,19 @@
 .child-panel-card .thumbnail img {
 	height:250px;
 }
+
+
+.bottom-sheet{
+	max-height: 100% !important;
+	height:100% !important;
+}
+
+.create-profile-padding{
+	padding-left: 25%;
+	padding-right: 25%;
+}
+
+#new-profile-modal{
+	opacity:0.95 !important;
+}
+
