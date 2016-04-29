@@ -167,6 +167,10 @@ input:focus {
 	padding-bottom:10px;
 }
 
+#filters-wrapper {
+	padding-bottom:10px;
+}
+
 .selected{
 	box-shadow: none !important;
 	background-color:rgba(38, 166, 154, 0.39) !important;
