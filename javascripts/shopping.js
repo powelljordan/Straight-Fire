@@ -26,7 +26,7 @@ $(function() {
 	});
 
 	// TODO: get child index
-	var child_id = "Two";
+	var child_id = (location.search == '') ? "Two" : location.search.split('=')[1];
 
 	var children = [];
 	rootRef.child("children").on("child_added", function(snapshot){
@@ -74,8 +74,7 @@ $(function() {
 
 	var fillInterests = function(child) {
 		for (var i = 0; i < child.interests.length; i++) {
-			// $("#filters-wrapper").append("<a class='btn z-depth-0 filter-btn' id='"+ i + "-filter'>"+child.interests[i]+"</div>");
-			$("#filters-wrapper").append("<a class='chip filter-btn selected' id='"+ i + "-filter'><i class='material-icons chip-icon left'>loyalty</i>"+child.interests[i]+"</div>");
+			$("#filters-wrapper").append("<a class='chip filter-btn selected' id='"+ i + "-filter'><i class='fa fa-tag left filter-btn-icon'></i>"+child.interests[i]+"</div>");
 		}
 		// TODO: actually filter
 		$(".filter-btn").click(function(event) {
@@ -88,7 +87,7 @@ $(function() {
 			}
 		});
 	}
-	
+
     var displayInactiveChild = function(child) {
         var html_str = '<div id=child-' + child.id + ' class="child-thumbnail inactive-child menu-item valign">'
             + '<img src="'+ child.img_src + '" class="responsive-img child-image">'
@@ -100,6 +99,7 @@ $(function() {
     var bindInactiveChild = function() {
         $('.inactive-child').click(function(event) {
             var child_id = event.toElement.id.split('-')[1];
+            toggleChildMenu();
             switchChild(child_id);
         });
     }
@@ -110,6 +110,7 @@ $(function() {
 	}
 
 	var switchChild = function(child_id) {
+		child_id = child_id;
 		clearChildSpecificFields();
 		var child;
 		for (var i = 0; i < children.length; i++) {
@@ -193,7 +194,7 @@ $(function() {
 
 	// Go back to toychest view
 	$(".back").click(function(event) {
-		window.location.href = "toys.html";
+		window.location.href = "toys.html?id=" + child_id;
 	});
 	// Autocomplete
 	var availableTags = [

@@ -1,14 +1,14 @@
-.shop {
+.shop-link {
     font-size: 2rem;
     color:#5a5a5a;
 }
 
-.shop-text {
+.shop-link-text {
     margin-right: -15px;
     margin-left: 15px;
 }
 
-.shop-hover {
+.shop-link-hover {
     color: #fff;
     cursor:pointer;
 }

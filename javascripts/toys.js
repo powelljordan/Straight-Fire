@@ -23,9 +23,18 @@ $(function() {
 				removeFromToyChest(item_id);
 				// removeDisplayToyChestItem(item_id.split('-').slice(-1)[0]);
 			} else if (tab == 'wishlist') {
-				undoMessage = "Remove from wishlist";
+				undoMessage = "Delete from wishlist";
 				removeFromWishlist(item_id);
 			}
+		} else if ($(this).hasClass('shop')) {
+			undoMessage = "Purchase";
+			var wishlist_item_id = item_id.split('-').splice(-1)[0];
+			rootRef.child('items').child(wishlist_item_id).on('value', function(snap){
+				var item = snap.val();
+				moveFromWishlistToToychest(item.id, item.name, item.img_src, item_id);
+				// target_url = item.url;
+				// openExternalPage();
+			});
 		}
 		$(this).parents('.item-col').fadeOut({
 			complete: function() {
@@ -35,6 +44,7 @@ $(function() {
 				$('#toychest-undo').fadeOut();
 				$('#wishlist-undo').fadeOut();
 				// Set the appropriate tab's undo
+				console.log(tab, undoMessage);
 				$('#'+tab+'-undo-action').text(undoMessage);
 				$('#'+tab+'-undo').fadeIn();
 			}
@@ -48,20 +58,21 @@ $(function() {
 		}
 	}
 
-	var shopAction = function() {
-		var id = $(this).parents('.card')[0].id.split('-').splice(-1)[0];
-		rootRef.child('items').child(id).on('value', function(snap){
-			var specificChild = snap.val();
-			target_url = specificChild.url;
-			openExternalPage();
-		});
-
-	}
+	// var shopAction = function() {
+	// 	var id = $(this).parents('.card')[0].id;
+	// 	var item_id = id.split('-').splice(-1)[0];
+	// 	rootRef.child('items').child(item_id).on('value', function(snap){
+	// 		var item = snap.val();
+	// 		moveFromWishlistToToychest(item.id, item.name, item.img_src, id);
+	// 		// target_url = item.url;
+	// 		// openExternalPage();
+	// 	});
+	// }
 
 	// Firebase code
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
 	// TODO: Get child ID somehow (from URL?)
-	var child_id = "Two";
+	var child_id = (location.search == '') ? "Two" : location.search.split('=')[1];
 	var selected_child;
 	var toychest_index;
 	var donated_index;
@@ -76,7 +87,7 @@ $(function() {
                        + '<i class="material-icons right waves-effect tooltipped return" data-position="left" data-delay="50" data-tooltip="Delete from wishlist">clear</i>'
                        + '</div></div></div>';
         $("#wishlist").append(html_str);
-        $("#wishlist-item-"+item.id+"> .card-action > .shop").click(shopAction);
+        $("#wishlist-item-"+item.id+"> .card-action > .shop").click(deleteAction);
     	$("#wishlist-item-"+item.id+"> .card-action > .return").click(deleteAction);
     	$("#wishlist-item-"+item.id+"> .card-action > .tooltipped").tooltip({'data-delay':50});
 	}
@@ -175,7 +186,7 @@ $(function() {
 		}
 	}
 
-	var addToToychest = function(toy_name, img_src, id = -1) {
+	var addToToychest = function(toy_name, img_src) {
 		toychest_index += 1;
 		var index = toychest_index;
 		var new_toy = {id: index, name: toy_name, img_src: img_src};
@@ -189,7 +200,7 @@ $(function() {
 		rootRef.child('children').child(selected_child.id).child('wishlist').set(selected_child.wishlist);
 	}
 
-	var addToDonated = function(toy_name, img_src, id = -1) {
+	var addToDonated = function(toy_name, img_src) {
 		donated_index += 1;
 		var index = donated_index;
 		var new_toy = {id: index, name: toy_name, img_src: img_src};
@@ -198,26 +209,49 @@ $(function() {
 		return index;
 	}
 
-	var moveToToychest = function(id, display = true, toychest_id = -1) {
+	var moveFromWishlistToToychest = function(item_id, toy_name, img_src, id, display = true) {
+		// console.log("here");
+		// var item_id = id.split('-').slice(-1)[0];
+		// console.log(item_id, selected_child.wishlist);
+		// var arr = selected_child.wishlist;
+		// var index = -1;
+		// for (var i = 0; i < arr.length; i++) {
+		// 	if (arr[i] == item_id) {
+		// 		index = i;
+		// 		break;
+		// 	}
+		// }
+		// var toy_name = arr[index].name;
+		// var img_src = arr[index].img_src;
+		console.log(toy_name, img_src);
+		var toychest_id = addToToychest(toy_name, img_src);
+		removeFromWishlist(id);
+		if (display) {
+			displayToychestItem({id: toychest_id, name:toy_name, img_src: img_src});
+		}
+		return toychest_index;
+	}
+
+	var moveToToychest = function(id, display = true) {
 		var toy_id = id.split('-').slice(-1)[0];
 		var index = findIndexById(toy_id, selected_child.donated);
 		var toy_name = selected_child.donated[index].name;
 		var toy_img_src = selected_child.donated[index].img_src;
 		removeFromDonated(id);
-		var new_toy_id = addToToychest(toy_name, toy_img_src, toychest_id);
+		var new_toy_id = addToToychest(toy_name, toy_img_src);
 		if (display) {
 			displayToychestItem({id: new_toy_id, name:toy_name, img_src: toy_img_src});
 		}
 		return new_toy_id;
 	}
 
-	var moveToDonations = function(id, display = true, donated_id = -1) {
+	var moveToDonations = function(id, display = true) {
 		var toy_id = id.split('-').slice(-1)[0];
 		var index = findIndexById(toy_id, selected_child.toyChest);
 		var toy_name = selected_child.toyChest[index].name;
 		var toy_img_src = selected_child.toyChest[index].img_src;
 		removeFromToyChest(id);
-		var new_toy_id = addToDonated(toy_name, toy_img_src, donated_id);
+		var new_toy_id = addToDonated(toy_name, toy_img_src);
 		if (display) {
 			displayDonatedItem({id: new_toy_id, name:toy_name, img_src: toy_img_src});
 		}
@@ -237,14 +271,15 @@ $(function() {
     }
 
     var switchChild = function(child_id) {
+    	child_id = child_id;
     	clearChildSpecificFields();
     	var child;
     	for (var i = 0; i < children.length; i++) {
     		child = children[i];
     		if (children[i].id == child_id) {
     			selected_child = child;
-				toychest_index = child.toyChest[child.toyChest.length-1].id;
-				donated_index = child.donated[child.donated.length-1].id;
+				toychest_index = (child.toyChest == undefined) ? 0 : child.toyChest[child.toyChest.length-1].id;
+				donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
 				updateChildParams(child);
 				loadAndDisplayChildInfo(child);
 			} else {
@@ -256,6 +291,7 @@ $(function() {
     var bindInactiveChild = function() {
 	    $('.inactive-child').click(function(event) {
 	    	var child_id = event.toElement.id.split('-')[1];
+	    	toggleChildMenu();
 	    	switchChild(child_id);
 	    });
     }
@@ -270,17 +306,23 @@ $(function() {
 	};
     
 	var loadAndDisplayChildInfo = function(c) {
-		for (var i = 0; i < c.wishlist.length; i++) {
-			rootRef.child('items').child(c.wishlist[i]).on('value', function(snap){
-				var item = snap.val();
-				displayWishlistItem(item);
-			});
+		if (c.wishlist) {
+			for (var i = 0; i < c.wishlist.length; i++) {
+				rootRef.child('items').child(c.wishlist[i]).on('value', function(snap){
+					var item = snap.val();
+					displayWishlistItem(item);
+				});
+			}
 		}
-		displayToychest(c.toyChest);
-		displayDonated(c.donated);
+		if (c.toyChest) {
+			displayToychest(c.toyChest);
+		}
+		if (c.donated) {
+			displayDonated(c.donated);
+		}
 	};
 
-    $('.shop').hover(function(){$('.shop').addClass('shop-hover')}, function(){$('.shop').removeClass('shop-hover') });
+    $('.shop-link').hover(function(){$('.shop-link').addClass('shop-link-hover')}, function(){$('.shop-link').removeClass('shop-link-hover') });
 
 	// Load all children
 	var children = [];
@@ -352,13 +394,19 @@ $(function() {
 			var id = lastDeleted[0].getElementsByClassName('card')[0].id;
 			var toy_id = id.split('-').splice(-1)[0];
 			addToWishlist(toy_id);
+			if ($(this).text().split(' ').splice(-1)[0] == "'Purchase'") {
+				// remove from toychest
+				removeFromToyChest('toychest-item-' + toychest_index);
+				// remove toychest display
+				removeDisplayToyChestItem(toychest_index);
+			}
 		}
 	});
 
     $('.add-toy-card').leanModal();
 
-    $(".shop").click(function(event) {
-    	window.location.href = "shopping.html";
+    $(".shop-link, .shop").click(function(event) {
+    	window.location.href = "shopping.html?id=" + child_id;
     });
 
     $("#add-toy-form").submit(function(event) {
