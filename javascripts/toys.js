@@ -175,7 +175,7 @@ $(function() {
 		}
 	}
 
-	var addToToychest = function(toy_name, img_src, id = -1) {
+	var addToToychest = function(toy_name, img_src) {
 		toychest_index += 1;
 		var index = toychest_index;
 		var new_toy = {id: index, name: toy_name, img_src: img_src};
@@ -189,7 +189,7 @@ $(function() {
 		rootRef.child('children').child(selected_child.id).child('wishlist').set(selected_child.wishlist);
 	}
 
-	var addToDonated = function(toy_name, img_src, id = -1) {
+	var addToDonated = function(toy_name, img_src) {
 		donated_index += 1;
 		var index = donated_index;
 		var new_toy = {id: index, name: toy_name, img_src: img_src};
@@ -198,26 +198,26 @@ $(function() {
 		return index;
 	}
 
-	var moveToToychest = function(id, display = true, toychest_id = -1) {
+	var moveToToychest = function(id, display = true) {
 		var toy_id = id.split('-').slice(-1)[0];
 		var index = findIndexById(toy_id, selected_child.donated);
 		var toy_name = selected_child.donated[index].name;
 		var toy_img_src = selected_child.donated[index].img_src;
 		removeFromDonated(id);
-		var new_toy_id = addToToychest(toy_name, toy_img_src, toychest_id);
+		var new_toy_id = addToToychest(toy_name, toy_img_src);
 		if (display) {
 			displayToychestItem({id: new_toy_id, name:toy_name, img_src: toy_img_src});
 		}
 		return new_toy_id;
 	}
 
-	var moveToDonations = function(id, display = true, donated_id = -1) {
+	var moveToDonations = function(id, display = true) {
 		var toy_id = id.split('-').slice(-1)[0];
 		var index = findIndexById(toy_id, selected_child.toyChest);
 		var toy_name = selected_child.toyChest[index].name;
 		var toy_img_src = selected_child.toyChest[index].img_src;
 		removeFromToyChest(id);
-		var new_toy_id = addToDonated(toy_name, toy_img_src, donated_id);
+		var new_toy_id = addToDonated(toy_name, toy_img_src);
 		if (display) {
 			displayDonatedItem({id: new_toy_id, name:toy_name, img_src: toy_img_src});
 		}
@@ -282,7 +282,7 @@ $(function() {
 		displayDonated(c.donated);
 	};
 
-    $('.shop-link').hover(function(){$('.shop-link').addClass('shop-link-hover')}, function(){$('.shop-link').removeClass('shop-link-hover') });
+    $('.shop').hover(function(){$('.shop').addClass('shop-hover')}, function(){$('.shop').removeClass('shop-hover') });
 
 	// Load all children
 	var children = [];
@@ -359,7 +359,7 @@ $(function() {
 
     $('.add-toy-card').leanModal();
 
-    $(".shop-link, .shop").click(function(event) {
+    $(".shop").click(function(event) {
     	window.location.href = "shopping.html?id=" + child_id;
     });
 

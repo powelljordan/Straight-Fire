@@ -168,10 +168,10 @@ $(function() {
 			      '<div class = "card-content" style="text-align:center">'+
 			         '<span class="card-title activator name"></span>'+
 			         '<div class="" style="text-align:center">'+
-			            '<a href = "toys.html?name='+ child.id +'" class = "btn btn-toychest" role = "button">'+
+			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest" role = "button">'+
 			               'Toys'+
 			            '</a> '+
-			            '<a href="shopping.html?name='+child.id+'" id="btn-start-shopping" class="btn" role = "button">' + 
+			            '<a href="shopping.html?id='+child.id+'" id="btn-start-shopping" class="btn" role = "button">' + 
 			            	' Shop'+
 			            '</a>' +
 			          '</div>'+  
