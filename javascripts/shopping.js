@@ -88,7 +88,7 @@ $(function() {
 			}
 		});
 	}
-	
+
     var displayInactiveChild = function(child) {
         var html_str = '<div id=child-' + child.id + ' class="child-thumbnail inactive-child menu-item valign">'
             + '<img src="'+ child.img_src + '" class="responsive-img child-image">'
@@ -100,6 +100,7 @@ $(function() {
     var bindInactiveChild = function() {
         $('.inactive-child').click(function(event) {
             var child_id = event.toElement.id.split('-')[1];
+            toggleChildMenu();
             switchChild(child_id);
         });
     }

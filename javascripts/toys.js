@@ -256,6 +256,7 @@ $(function() {
     var bindInactiveChild = function() {
 	    $('.inactive-child').click(function(event) {
 	    	var child_id = event.toElement.id.split('-')[1];
+	    	toggleChildMenu();
 	    	switchChild(child_id);
 	    });
     }

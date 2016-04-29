@@ -102,7 +102,7 @@ $(function() {
     });
 
     //Code for switching children
-    var toggleChildMenu = function() {
+    toggleChildMenu = function() {
         var time = 0;
         if ($('#selected-child').hasClass('static')) {
             $('#selected-child').removeClass('static');
