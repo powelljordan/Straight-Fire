@@ -61,7 +61,7 @@ $(function() {
 	// Firebase code
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
 	// TODO: Get child ID somehow (from URL?)
-	var child_id = "Two";
+	var child_id = (location.search == '') ? "Two" : location.search.split('=')[1];
 	var selected_child;
 	var toychest_index;
 	var donated_index;
@@ -237,6 +237,7 @@ $(function() {
     }
 
     var switchChild = function(child_id) {
+    	child_id = child_id;
     	clearChildSpecificFields();
     	var child;
     	for (var i = 0; i < children.length; i++) {
@@ -359,7 +360,7 @@ $(function() {
     $('.add-toy-card').leanModal();
 
     $(".shop").click(function(event) {
-    	window.location.href = "shopping.html";
+    	window.location.href = "shopping.html?id=" + child_id;
     });
 
     $("#add-toy-form").submit(function(event) {
