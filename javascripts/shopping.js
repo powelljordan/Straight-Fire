@@ -73,6 +73,9 @@ $(function() {
 	}
 
 	var fillInterests = function(child) {
+		if (!child.interests) {
+			return;
+		}
 		for (var i = 0; i < child.interests.length; i++) {
 			$("#filters-wrapper").append("<a class='chip filter-btn selected' id='"+ i + "-filter'><i class='fa fa-tag left filter-btn-icon'></i>"+child.interests[i]+"</div>");
 		}
