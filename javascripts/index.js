@@ -202,21 +202,23 @@ $(function() {
 		$("#"+child.id).find(".card-content").find(".name").text(child.name);
 		$("#"+child.id).find(".card-reveal").find(".name").html(child.name);
 
-	});
-
-
-
-	$(".profile").click(function(event){
+			$(".profile").click(function(event){
 		// console.log(event.target);
-		if (event.target.classList[0] == "btn") return;
-		var profile = event.target.parentElement;
-		if (profile.classList[0] != 'profile') {
-			profile = profile.parentElement;
-		}
-		// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
-		console.log("ID", event.target.classList[0].split("_"));
-		window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
+				if (event.target.classList[0] == "btn") return;
+				var profile = event.target.parentElement;
+				if (profile.classList[0] != 'profile') {
+					profile = profile.parentElement;
+				}
+				// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
+				console.log("ID", event.target.classList[0].split("_"));
+				window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
+			});
+
 	});
+
+
+
+
 
 	$("#btn-new-profile").click(function(event) {
 		$("#new-profile-modal").openModal();
@@ -303,6 +305,7 @@ $(function() {
 				wishlist:[]
 				});
 			$("#new-profile-modal").closeModal();
+			window.location.href = "toys.html?id="+name;
 		}
 	});
 
