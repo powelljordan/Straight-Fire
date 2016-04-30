@@ -302,7 +302,7 @@ $(function() {
 			}
 		}
 		if (c.toyChest) {
-			// displayToychest(c.toyChest);
+			displayToychest(c.toyChest);
 		}
 		if (c.donated) {
 			displayDonated(c.donated);
@@ -323,7 +323,6 @@ $(function() {
 			donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
 			updateChildParams(child);
 			loadAndDisplayChildInfo(child);
-			addToyChestListener();
 		} else {
 			displayInactiveChild(child);
 		}
@@ -406,13 +405,7 @@ $(function() {
 
 
 
-    /**
-    	choose-file-modal methods
-    	I also added a listener to update the view when a new toy chest item is added to the db
-    	Feel free to remove it and implement it another way. I just wanted to see it all come together
-    	I commented out the for loop where you add toys to the page and instead handled it with that listener
-    	In case breaks something I just wanted to give you a heads up
-    */
+    //choose-file-modal methods
 
 
     toyStory = {
@@ -481,20 +474,19 @@ $(function() {
 		$("#choose-file-modal").closeModal();
 	});
 
-	$("#btn-open-file").click(function(){;
+	$("#btn-open-file").click(function(){
 		if(selectedImage){
 			addToToychest(selectedImage.attr("value"),
 				selectedImage.find(".card").find(".card-image").find("img").attr("src"));
+			displayToychestItem({id:toychest_index,
+								name:selectedImage.attr("value"),
+								img_src:selectedImage.find(".card").find(".card-image").find("img").attr("src")}
+								);
 		}
+
 		
 		$("#choose-file-modal").closeModal();
 	});
-
-	var addToyChestListener = function(){
-		toyChestDB = rootRef.child("children").child(selected_child.id).child("toyChest").on("child_added", function(snap){
-			displayToychestItem(snap.val());
-		});
-	}
 
 
 
