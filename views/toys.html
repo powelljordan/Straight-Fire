@@ -59,7 +59,7 @@
                 <span class="undo" id="toychest-undo">Undo '<span id="toychest-undo-action">Queue for donation</span>'</span>
             </div>
             <div class="col s6 l2">
-                <div class="card add-card add-toy-card" href="#add-toy-modal">
+                <div class="card add-card add-toy-card" href="#choose-file-modal">
                     <div class="card-image add-icon-container waves-effect">
                         <i class="material-icons large add-icon">add</i>
                     </div>
@@ -113,6 +113,34 @@
     <div class="modal-footer">
         <input form="add-toy-form" type="submit" value="Submit" class="btn-flat waves-effect">
         <a class="modal-action modal-close btn-flat" data-dismiss="modal">Cancel</a>
+    </div>
+</div>
+
+<div id="choose-file-modal" class="modal" role="dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Open</h4>
+        </div>
+        <div id="localImages" class="row">
+
+          </div>
+            <div id="create-profile-modal-footer" class="modal-footer">
+                <div class="row">
+                  <div class="input-field col s8 m8">
+                    <input placeholder="File name" id="file-name" type="text" class="validate">
+                  </div>
+                  <div class="input-field col s4 m4">
+                    <select>
+                      <option value="" disabled selected>All Files(*.*)</option>
+                      <option value="1">.png</option>
+                    </select>
+                  </div>
+                <div class="col s12 m12">
+            <a id="btn-cancel-file" class="modal-action btn-flat waves-effect waves-light">Cancel</a>
+            <a id="btn-open-file"class="modal-action btn-flat waves-effect waves-light">Open</a>
+            </div>
+            </div>
+        </div>
     </div>
 </div>
 

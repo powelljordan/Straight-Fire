@@ -1,4 +1,5 @@
 $(function() {
+	$('select').material_select();
 	var lastDeleted;
 	var target_url;
 
@@ -301,7 +302,7 @@ $(function() {
 			}
 		}
 		if (c.toyChest) {
-			displayToychest(c.toyChest);
+			// displayToychest(c.toyChest);
 		}
 		if (c.donated) {
 			displayDonated(c.donated);
@@ -322,6 +323,7 @@ $(function() {
 			donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
 			updateChildParams(child);
 			loadAndDisplayChildInfo(child);
+			addToyChestListener();
 		} else {
 			displayInactiveChild(child);
 		}
@@ -401,6 +403,99 @@ $(function() {
     	// tODO: how to get image?
     	// var img_src = 
     })
+
+
+
+    /**
+    	choose-file-modal methods
+    	I also added a listener to update the view when a new toy chest item is added to the db
+    	Feel free to remove it and implement it another way. I just wanted to see it all come together
+    	I commented out the for loop where you add toys to the page and instead handled it with that listener
+    	In case breaks something I just wanted to give you a heads up
+    */
+
+
+    toyStory = {
+		name:"Toy Story Doll",
+		img_src: "../images/toyStory.jpg",
+		size: "132KB" 
+	}	
+
+	mickey = {
+		name:"Mickey Mouse",
+		img_src: "../images/mickey.jpg",
+		size: "32.2KB" 
+	}	
+
+	panda = {
+		name:"Designer",
+		img_src: "../images/panda.jpg",
+		size: "33.0KB"
+	}
+
+
+	var images = [toyStory, mickey, panda];
+	var selectedImage;
+
+    	$(".add-toy-card").click(function(){
+			$("#choose-file-modal").openModal();
+			$("#localImages").html("");
+			$("#file-dropdown").html("");
+			$("#file-dropdown").append('<option id="default-option" value="" disabled selected>File Name</option>');
+			images.forEach(function(image, index){
+				$("#localImages").append(
+				'<div class="brightness col s6 m4" value="'+image.name+'"">'+
+				'<div class="card col s6 m6 select-file-image">'+			    
+					'<div class="card-image waves-effect waves-block waves-light">'+
+			      '<img class="responsive-img" width="15%" height="15%" style="float:left"src="'+image.img_src+'" alt="" >'+
+			    '</div>'+
+			  '</div>'+
+			    '<div class="col s6 m6 file-image-text">'+
+			      '<p><span>'+image.name+'</span><br>'+
+			      	'PNG<br>'+
+			        '<span class="image-size">'+image.size+'</span>'+
+			      '</p>'+
+		      '</div>'+
+		     '</div>'
+				)
+			});
+
+			$(".brightness").click(function(event){
+			if(selectedImage){
+				selectedImage.css("background-color", "#ffffff");
+				selectedImage.css("border-color", "#ffffff");
+			}
+			selectedImage = $(event.target);
+			$(event.target).css("background-color", "#e1f5fe");
+			$(event.target).css("border-style", "solid");
+			$(event.target).css("border-width", "2px");
+			$(event.target).css("border-color", "#b3e5fc")
+			$(event.target).css("opacity", "1");
+			$("#file-name").val($(this).attr("value"));
+		});
+		});
+
+
+
+    $("#btn-cancel-file").click(function(){
+		$("#choose-file-modal").closeModal();
+	});
+
+	$("#btn-open-file").click(function(){;
+		if(selectedImage){
+			addToToychest(selectedImage.attr("value"),
+				selectedImage.find(".card").find(".card-image").find("img").attr("src"));
+		}
+		
+		$("#choose-file-modal").closeModal();
+	});
+
+	var addToyChestListener = function(){
+		toyChestDB = rootRef.child("children").child(selected_child.id).child("toyChest").on("child_added", function(snap){
+			displayToychestItem(snap.val());
+		});
+	}
+
 
 
 });

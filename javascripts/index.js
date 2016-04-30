@@ -150,7 +150,7 @@ $(function() {
 	//we can add those later
 
 	$("#profiles").append(
-	'<div id="btn-new-profile" class = "col s4 m4" id="btn-create-profile">'+
+	'<div id="btn-new-profile" class = "col s4 m4">'+
 		'<div class="card small waves-effect waves-block waves-light">'+
 	      '<div class = "card-image ">'+
 	      '<i class="material-icons large add-icon">add</i>'+
@@ -164,16 +164,9 @@ $(function() {
 	childrenDB.on("child_added", function(snapshot){
 		// console.log(firstItem);
 		var child = snapshot.val();
-		offset = "";
-		if(firstItem){
-			offset="offset-m2";
-			firstItem = false;
-		}else{
-			firstItem = true;
-		}
 
 		$("#btn-new-profile").before(
-			'<div class = "col s4 m4 " id="'+child.id+'">'+
+			'<div class = "col s6 m4 " id="'+child.id+'">'+
 				'<div class="card small">'+
 			      '<div class = "profile-image card-image waves-effect waves-block waves-light">'+
 			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
@@ -202,11 +195,12 @@ $(function() {
 		$("#"+child.id).find(".card-content").find(".name").text(child.name);
 		$("#"+child.id).find(".card-reveal").find(".name").html(child.name);
 
+
 			$(".profile").click(function(event){
 		// console.log(event.target);
-				if (event.target.classList[0] == "btn") return;
+				if (event.target.classList[0] === "btn") return;
 				var profile = event.target.parentElement;
-				if (profile.classList[0] != 'profile') {
+				if (profile.classList[0] !== 'profile') {
 					profile = profile.parentElement;
 				}
 				// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
@@ -231,7 +225,7 @@ $(function() {
 		$("#file-dropdown").append('<option id="default-option" value="" disabled selected>File Name</option>');
 		images.forEach(function(image, index){
 			$("#localImages").append(
-			'<div class="brightness col s4 m4" value="'+image.name+'"">'+
+			'<div class="brightness col s6 m4" value="'+image.name+'"">'+
 			'<div class="card col s6 m6 select-file-image">'+			    
 				'<div class="card-image waves-effect waves-block waves-light">'+
 		      '<img class="responsive-img" width="15%" height="15%" style="float:left"src="'+image.img_src+'" alt="" >'+
@@ -283,13 +277,17 @@ $(function() {
 	$("#btn-create-profile").click(function(event) {
 		var name = $("#create-name").val();
 		var age = $("#create-age").val();
-		var img_src = selectedImage.find(".card").find(".card-image").find("img").attr("src");
-		console.log(img_src);
-		var interests = $("#create-interests").val();
-		var interestsList = $("#create-interests").val().split(",");
-		if (name == "" || age == "") {
-			alert("Please fill out Name and Age.");
+		if(name === "" || age === ""){
+			if (name === "") {
+				Materialize.toast('Please fill out the name field', 5000);
+			}
+			if(age === ""){
+				Materialize.toast('Please fill out the age field', 5000);
+			}
 		} else {
+				var img_src = selectedImage.find(".card").find(".card-image").find("img").attr("src");
+				var interests = $("#create-interests").val();
+				var interestsList = $("#create-interests").val().split(",");
 			// window.location.href = "profile.html?name="+name+"&age="+age+"&interests="+interests;
 			// $("#create-profile-form").find('.form-group').find('input').each(function(index, elem){
 			// 	($(elem)).val('');
