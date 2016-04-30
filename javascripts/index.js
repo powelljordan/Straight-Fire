@@ -150,7 +150,7 @@ $(function() {
 	//we can add those later
 
 	$("#profiles").append(
-	'<div id="btn-new-profile" class = "col s4 m4">'+
+	'<div id="btn-new-profile" class = "col s6 m4">'+
 		'<div class="card small waves-effect waves-block waves-light">'+
 	      '<div class = "card-image ">'+
 	      '<i class="material-icons large add-icon">add</i>'+
@@ -174,10 +174,10 @@ $(function() {
 			      '<div class = "card-content" style="text-align:center">'+
 			         '<span class="card-title name"></span>'+
 			         '<div class="" style="text-align:center">'+
-			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest" role = "button">'+
+			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col m5 s10" role = "button">'+
 			               'Toys'+
 			            '</a> '+
-			            '<a href="shopping.html?id='+child.id+'" id="btn-start-shopping" class="btn" role = "button">' + 
+			            '<a href="shopping.html?id='+child.id+'" id="btn-start-shopping" class="btn col m5 s10" role = "button">' + 
 			            	' Shop'+
 			            '</a>' +
 			          '</div>'+  

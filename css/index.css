@@ -61,6 +61,7 @@
 }
 
 #btn-new-profile{
+	/*float:initial;*/
 /*	border:3px solid #999;
 	color:#999;
 	margin:25px;
@@ -80,6 +81,7 @@
 
 #profiles [class*="col"],
 #profiles [class*="div"]{
+	white-space: normal;
 	display:inline-block;
 	float:none;
 }
