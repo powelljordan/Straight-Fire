@@ -162,13 +162,12 @@ $(function() {
 
 
 	childrenDB.on("child_added", function(snapshot){
-		// console.log(firstItem);
 		var child = snapshot.val();
 
 		$("#btn-new-profile").before(
 			'<div class = "col s6 m4 " id="'+child.id+'">'+
-				'<div class="card small">'+
-			      '<div class = "profile-image card-image waves-effect waves-block waves-light">'+
+				'<div class="card small waves-effect waves-block waves-light">'+
+			      '<div class = "profile-image card-image">'+
 			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
 			      '</div>'+
 			      '<div class = "card-content" style="text-align:center">'+
