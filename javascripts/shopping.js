@@ -5,6 +5,7 @@ $(function() {
 	var selected_child;
 	var data = [];
 	var activeFilters = []
+	var userFilters = []
 	var display_item = function(d, i) {
 		var row_num = Math.floor(i/5);
 		if (i%5 == 0) {
@@ -284,10 +285,12 @@ $(function() {
 	}
 
 	var display_new_filter = function(filter) {
-		var html_str = '<div id="'+filter+'-filter" class="chip filter-btn"><span class="unselectable">'
+		var id = userFilters.length;
+		userFilters[id] = filter;
+		var html_str = '<div id="'+id+'-filter" class="chip filter-btn"><span class="unselectable">'
 					+filter+'</span><i class="material-icons">close</i></div>';
 		$('#filters-wrapper').append(html_str);
-		bindFilterRemove('#'+filter+'-filter > .material-icons');
+		bindFilterRemove('#'+id+'-filter > .material-icons');
 	}
 
 	var add_new_filter = function(filter) {
@@ -310,7 +313,8 @@ $(function() {
 
 	var bindFilterRemove = function(id) {
 		$(id).click(function(event) {
-			var filter = $(this)[0].parentElement.id.split('-')[0];
+			var filter_id = parseInt($(this)[0].parentElement.id.split('-')[0]);
+			var filter = userFilters[filter_id];
 			remove_filter(filter);
 		});
 	}
