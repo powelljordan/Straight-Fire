@@ -4,24 +4,24 @@ $(function() {
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
 	var selected_child;
 	var data = [];
-	var activeFilters = []
-	var userFilters = []
+	var activeFilters = [];
+	var userFilters = [];
 	var display_item = function(d, i) {
 		var row_num = Math.floor(i/5);
 		if (i%5 == 0) {
 			$("#search-content").append("<div class='row' id='row-"+ row_num + "'></div>");
 		}
 		if (i%5 == 0) {
-			var div_text = '<div id="item-wrapper-'+i+'" class="col m2 offset-m1"><div class="card item-card">';
+			var div_text = '<div id="item-wrapper-'+d.id+'" class="col m2 offset-m1"><div class="card item-card">';
 		} else {
-			var div_text = '<div id="item-wrapper-'+i+'" class="col m2"><div class="card item-card">';
+			var div_text = '<div id="item-wrapper-'+d.id+'" class="col m2"><div class="card item-card">';
 		}
 	    
 	    var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
 	    var caption_text = '<div class="card-action">' + "<span class='seller'>"+ d.seller + "</span>"+d.name+'</div>';
 	    var str = div_text + img_text + caption_text + '</div>';
 		$("#row-"+row_num).append(str);
-		bind_modal("#item-wrapper-"+i);
+		bind_modal("#item-wrapper-"+d.id);
 	};
 
 	var item_index = 0;
@@ -48,12 +48,12 @@ $(function() {
 		}
 	});
 
-	var openExternalPage = function() {
-		var confirmation = confirm("You will be directed to an external page to complete your transaction.");
-		if (confirmation){
-			open($("#modal-buttons").data().url, "_blank");
-		}
-	}
+	// var openExternalPage = function() {
+	// 	var confirmation = confirm("You will be directed to an external page to complete your transaction.");
+	// 	if (confirmation){
+	// 		open($("#modal-buttons").data().url, "_blank");
+	// 	}
+	// }
 	var resetWidths = function() {
 		$(".shaded-star").each(function(index, elem) {
 			$(this).css({width:24})
@@ -174,6 +174,7 @@ $(function() {
 			$("#reviews-body").html(reviews_str);
 			$("#modal-buttons").data("url", data[index].url);
 			$("#modal-buttons").data("id", data[index].id);
+			$("#modal-buttons").data("name", data[index].name);
 			$("#myModal").data("index", index);
 
 			if ($.inArray(index, selected_child.wishlist) != -1) {
@@ -200,7 +201,7 @@ $(function() {
 	var purchaseConfirm = function() {
 		purchase_state = true;
 		$("#btn-continue").text("Ok");
-		$("#continue-desc").text("This to has been moved to " + selected_child.name + "'s toyChest.");
+		$("#continue-desc").text($("#modal-buttons").data("name") + " has been moved to " + selected_child.name + "'s toyChest.");
 		$("#btn-cancel").css({"display":"None"});
 	}
 
@@ -250,7 +251,7 @@ $(function() {
 
 	$("#btn-wishlist").click(function(event) {
 		var item_id = $("#modal-buttons").data().id;
-		var wishlist = selected_child.wishlist;
+		var wishlist = (selected_child.wishlist == undefined) ? [] : selected_child.wishlist;
 		if ($(this).hasClass('disabled-btn')) {
 			// Remove from wishlist
 			wishlist.splice(wishlist.indexOf(item_id), 1);

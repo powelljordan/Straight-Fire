@@ -28,29 +28,85 @@ $(function() {
 				removeFromWishlist(item_id);
 			}
 		} else if ($(this).hasClass('shop')) {
-			undoMessage = "Purchase";
+			// undoMessage = "Purchase";
 			var wishlist_item_id = item_id.split('-').splice(-1)[0];
 			rootRef.child('items').child(wishlist_item_id).on('value', function(snap){
 				var item = snap.val();
-				moveFromWishlistToToychest(item.id, item.name, item.img_src, item_id);
+				shopConfirm();
+				$("#confirm-modal").data("item_id", item.id);
+				$("#confirm-modal").data("name", item.name);
+				$("#confirm-modal").data("img_src", item.img_src);
+				$("#confirm-modal").data("id", item_id);
+				// moveFromWishlistToToychest(item.id, item.name, item.img_src, item_id);
 				target_url = item.url;
-				openExternalPage();
+				// openExternalPage();
 			});
 		}
-		$(this).parents('.item-col').fadeOut({
-			complete: function() {
-				lastDeleted = $(this).addClass('item-hidden');
-				// Hide all other undo's
-				$('#donations-undo').fadeOut();
-				$('#toychest-undo').fadeOut();
-				$('#wishlist-undo').fadeOut();
-				// Set the appropriate tab's undo
-				console.log(tab, undoMessage);
-				$('#'+tab+'-undo-action').text(undoMessage);
-				$('#'+tab+'-undo').fadeIn();
-			}
-		});
+		if (!$(this).hasClass('shop')) {
+			$(this).parents('.item-col').fadeOut({
+				complete: function() {
+					lastDeleted = $(this).addClass('item-hidden');
+					// Hide all other undo's
+					$('#donations-undo').fadeOut();
+					$('#toychest-undo').fadeOut();
+					$('#wishlist-undo').fadeOut();
+					// Set the appropriate tab's undo
+					console.log(tab, undoMessage);
+					$('#'+tab+'-undo-action').text(undoMessage);
+					$('#'+tab+'-undo').fadeIn();
+				}
+			});
+		}
 	};
+
+	var purchase_state = false;
+
+	var purchaseConfirm = function() {
+		purchase_state = true;
+		$("#btn-continue").text("Ok");
+		$("#continue-desc").text($("#confirm-modal").data("name") + " has been moved to " + selected_child.name + "'s toyChest.");
+		$("#btn-cancel").css({"display":"None"});
+	}
+
+	var shopConfirm = function() {
+		$("#continue-desc").text('You will be directed to an external page to complete your transaction.');
+		$("#btn-cancel").css({"display":"block"});
+		$("#btn-continue").text("Continue");
+		$("#confirm-modal").openModal();
+	}
+
+	$("#btn-continue").click(function(event) {
+		if (!purchase_state) {
+			undoMessage = "Purchase";
+			var id = $("#confirm-modal").data("id");
+			moveFromWishlistToToychest($("#confirm-modal").data("item_id"), 
+					$("#confirm-modal").data("name"), 
+					$("#confirm-modal").data("img_src"), 
+					id
+				);
+			open(target_url, "_blank");
+			$("#"+id).parents('.item-col').fadeOut({
+				complete: function() {
+					lastDeleted = $(this).addClass('item-hidden');
+					// Hide all other undo's
+					$('#donations-undo').fadeOut();
+					$('#toychest-undo').fadeOut();
+					$('#wishlist-undo').fadeOut();
+					// Set the appropriate tab's undo
+					$('#wishlist-undo-action').text(undoMessage);
+					$('#wishlist-undo').fadeIn();
+				}
+			});
+			purchaseConfirm();
+		} else {
+			$("#confirm-modal").closeModal();
+			purchase_state = false;
+		}
+	});
+
+	$("#btn-cancel").click(function(event) {
+		$("#confirm-modal").closeModal();
+	})
 
 	var openExternalPage = function() {
 		var confirmation = confirm("You will be directed to an external page to complete your transaction.");
@@ -267,6 +323,15 @@ $(function() {
     			selected_child = child;
 				toychest_index = (child.toyChest == undefined) ? 0 : child.toyChest[child.toyChest.length-1].id;
 				donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
+				if (!child.toyChest) {
+					selected_child.toyChest = [];
+				}
+				if (!child.wishlist) {
+					selected_child.wishlist = [];
+				}
+				if (!child.donated) {
+					selected_child.donated =[];
+				}
 				updateChildParams(child);
 				loadAndDisplayChildInfo(child);
 			} else {
@@ -321,6 +386,15 @@ $(function() {
 			selected_child = child;
 			toychest_index = (child.toyChest == undefined) ? 0 : child.toyChest[child.toyChest.length-1].id;
 			donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
+			if (!child.toyChest) {
+				selected_child.toyChest = [];
+			}
+			if (!child.wishlist) {
+				selected_child.wishlist = [];
+			}
+			if (!child.donated) {
+				selected_child.donated =[];
+			}
 			updateChildParams(child);
 			loadAndDisplayChildInfo(child);
 		} else {
@@ -487,7 +561,6 @@ $(function() {
 		
 		$("#choose-file-modal").closeModal();
 	});
-
 
 
 });
