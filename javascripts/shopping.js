@@ -4,6 +4,7 @@ $(function() {
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
 	var selected_child;
 	var data = [];
+	var activeFilters = []
 	var display_item = function(d, i) {
 		var row_num = Math.floor(i/5);
 		if (i%5 == 0) {
@@ -83,15 +84,18 @@ $(function() {
 		}
 		for (var i = 0; i < child.interests.length; i++) {
 			$("#interests-wrapper").append("<div class='chip interest-btn selected' id='"+ i + "-interest'><i class='fa fa-tag left interest-btn-icon'></i><span class='unselectable'>"+child.interests[i]+"</span></div>");
+			activeFilters.push(child.interests[i]);
 		}
 		// TODO: actually filter
 		$(".interest-btn").click(function(event) {
 			// If filter is selected, remove the selected class
 			if ($.inArray('selected', event.toElement.classList) != -1) {
 				$("#"+event.toElement.id).removeClass('selected');
+				remove_filter($(event.target).find("span").text());
 				// TODO: call updateShoppingResults();
 			} else {
 				$("#"+event.toElement.id).addClass('selected');
+				add_new_filter($(event.target).find("span").text());
 			}
 		});
 	}
@@ -268,6 +272,19 @@ $(function() {
 
 	var filter_by = function(filter) {
 		// TODO;
+
+	}
+
+	var updateResults = function(){
+		$("#search-content").html("");
+		var loadResults = function(results){
+			console.log(results);
+			results.forEach(function(result, index){
+				display_item(result, index);
+			});
+		}
+		mergeResults(activeFilters, loadResults)
+
 	}
 
 	var display_new_filter = function(filter) {
@@ -276,24 +293,93 @@ $(function() {
 		$('#filters-wrapper').append(html_str);
 	}
 
-	var add_new_filter = function() {
-		var new_filter = $("#search").val();
-		if (new_filter == '') return;
-		filter_by(new_filter);
-		display_new_filter(new_filter);
-		$("#search").val("");
+	var add_new_filter = function(filter) {
+		activeFilters.push(filter)
+		filter_by(filter);
+		updateResults();
+		console.log(activeFilters)
+	}
+
+	var remove_filter = function(filter){
+		activeFilters.splice(activeFilters.indexOf(filter), 1);
+		updateResults();
+		console.log(activeFilters);
 	}
 
 	$("#btn-add-filter").click(function(event) {
-		add_new_filter();
+		var new_filter = $("#search").val();
+		if (new_filter == '') return;
+		add_new_filter(new_filter);
+		display_new_filter(new_filter);
+		$("#search").val("");
 	});
 
 	$("#search").keypress(function(e) {
 		if (e.which == 13) {
-			add_new_filter();
+			var new_filter = $("#search").val();
+			if (new_filter == '') return;
+			add_new_filter(new_filter);
+			display_new_filter(new_filter);
+			$("#search").val("");
 		}
 	})
 
 	$('.back').hover(function(){$('.back').addClass('back-hover')}, function(){$('.back').removeClass('back-hover') });
+
+
+	/**
+		Passes a list items that have the given tag to the callback function
+	*/
+	var queryForTag = function(tag, callback){
+		var matchedItems = [];
+		rootRef.child("items")
+			.on("value", function(snap){
+				snap.val().forEach(function(item, index, array){
+					if(item.tags){
+						if(item.tags[tag]){
+							matchedItems.push(item);				
+						}
+					}
+					if(index === array.length - 1){
+						callback(matchedItems);
+					}
+				});
+			});
+	}
+
+	/**
+		Merges results of multi tag filter. Takes a list of tags to search for as an argument
+	*/
+	var mergeResults = function(tags, callback){
+		var results = [];
+		tags.forEach(function(tag, ind, arr){
+			var addToResults = function(matches){
+				console.log(matches);
+				matches.forEach(function(match, ind2, arr2){
+					console.log("called");
+					console.log(match);
+					if(!results[match.id]){
+						results[match.id] = match;
+					}
+					if(ind2 === arr2.length - 1){
+						if(ind === arr.length - 1){
+							callback(results);
+						}
+					}
+				});
+
+			}
+			queryForTag(tag, addToResults);
+		});
+	}
+
+	$("#test").click(function(){
+		var printResults = function(array){
+			console.log(array);
+		}
+		// queryForTag("star wars", printResults);
+		mergeResults(["star wars", "biking"], printResults);
+
+	});
 	
 });
