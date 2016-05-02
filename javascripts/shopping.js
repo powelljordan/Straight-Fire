@@ -5,11 +5,16 @@ $(function() {
 	var selected_child;
 	var data = [];
 	var display_item = function(d, i) {
-		var row_num = Math.floor(i/4);
-		if (i%4 == 0) {
+		var row_num = Math.floor(i/5);
+		if (i%5 == 0) {
 			$("#search-content").append("<div class='row' id='row-"+ row_num + "'></div>");
 		}
-	    var div_text = '<div id="item-wrapper-'+i+'" class="col m3"><div class="card item-card">';
+		if (i%5 == 0) {
+			var div_text = '<div id="item-wrapper-'+i+'" class="col m2 offset-m1"><div class="card item-card">';
+		} else {
+			var div_text = '<div id="item-wrapper-'+i+'" class="col m2"><div class="card item-card">';
+		}
+	    
 	    var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
 	    var caption_text = '<div class="card-action">'+d.name+'</div>';
 	    var str = div_text + img_text + caption_text + '</div>';
@@ -77,7 +82,7 @@ $(function() {
 			return;
 		}
 		for (var i = 0; i < child.interests.length; i++) {
-			$("#interests-wrapper").append("<a class='chip interest-btn selected' id='"+ i + "-interest'><i class='fa fa-tag left interest-btn-icon'></i>"+child.interests[i]+"</a>");
+			$("#interests-wrapper").append("<div class='chip interest-btn selected' id='"+ i + "-interest'><i class='fa fa-tag left interest-btn-icon'></i><span class='unselectable'>"+child.interests[i]+"</span></div>");
 		}
 		// TODO: actually filter
 		$(".interest-btn").click(function(event) {
@@ -146,7 +151,10 @@ $(function() {
 			$(".item-title").text(elem.find(".card-action").text());
 			$("#modal-price").text("$"+data[index].price);
 			$("#seller").text(data[index].seller);
-			(data[index].description.length < 200) ? $("#description").text(data[index].description) : $("#description").html(data[index].description.slice(0,200) + "... <a href='" + data[index].url + "' target='_blank'>Read more</a>");
+			(data[index].description.length < 200) ? $("#description").text(data[index].description) : $("#description").html(data[index].description.slice(0,200) 
+				// + "... <a href='" + data[index].url + "' target='_blank'>Read more</a>");
+				+ "... <a id='btn-read-more' href='#'>Read more</a>");
+			bindReadMoreBtn();
 			$("#age").text(data[index].age);
 			var reviews = data[index].reviews;
 			var reviews_str = "";
@@ -182,8 +190,22 @@ $(function() {
 	})
 
 	$("#btn-purchase").click(function(event) {
-		openExternalPage();
+		// openExternalPage();
+		$("#continue-desc").text('You will be directed to an external page to complete your transaction.');
+		$("#confirm-modal").openModal();
 	});
+
+	$("#btn-continue").click(function(event) {
+		// $("#confirm-modal").closeModal();
+		open($("#modal-buttons").data().url, "_blank");
+	});
+
+	var bindReadMoreBtn = function() {
+		$("#btn-read-more").click(function(event) {
+			$("#continue-desc").text('You will be directed to an external page for the full description.');
+			$("#confirm-modal").openModal();
+		});
+	}
 
 	$("#btn-wishlist").click(function(event) {
 		var item_id = $("#modal-buttons").data().id;
@@ -205,8 +227,8 @@ $(function() {
 	}
 
 	var display_new_filter = function(filter) {
-		var html_str = '<div id="'+filter+'-filter" class="chip filter-btn">'
-					+filter+'<i class="material-icons">close</i></div>';
+		var html_str = '<div id="'+filter+'-filter" class="chip filter-btn"><span class="unselectable">'
+					+filter+'</span><i class="material-icons">close</i></div>';
 		$('#filters-wrapper').append(html_str);
 	}
 
