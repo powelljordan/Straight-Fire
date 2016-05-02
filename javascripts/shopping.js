@@ -171,11 +171,11 @@ $(function() {
 			$("#myModal").data("index", index);
 
 			if ($.inArray(index, selected_child.wishlist) != -1) {
-				$("#btn-wishlist").prop("disabled",true);
+				// $("#btn-wishlist").prop("disabled",true);
 				$("#btn-wishlist").addClass("z-depth-0");
 				$("#btn-wishlist").addClass("disabled-btn");
 			} else {
-				$("#btn-wishlist").prop("disabled",false);
+				// $("#btn-wishlist").prop("disabled",false);
 				$("#btn-wishlist").removeClass("z-depth-0");
 				$("#btn-wishlist").removeClass("disabled-btn");
 			}
@@ -189,15 +189,50 @@ $(function() {
 		$("#myModal").closeModal();
 	})
 
+	var purchase_state = false;
+
+	var purchaseConfirm = function() {
+		purchase_state = true;
+		$("#btn-continue").text("Ok");
+		$("#continue-desc").text("This to has been moved to " + selected_child.name + "'s toyChest.");
+		$("#btn-cancel").css({"display":"None"});
+	}
+
 	$("#btn-purchase").click(function(event) {
 		// openExternalPage();
 		$("#continue-desc").text('You will be directed to an external page to complete your transaction.');
+		$("#btn-cancel").css({"display":"block"});
+		$("#btn-continue").text("Continue");
 		$("#confirm-modal").openModal();
 	});
 
+	var moveToToychest = function(id) {
+		var index = -1;
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].id == id) {
+				index = i;
+				break;
+			}
+		}
+		var new_item = {name: data[index].name, img_src: data[index].img_src, id: selected_child.toyChest.length};
+		selected_child.toyChest.push(new_item);
+		rootRef.child('children').child(selected_child.id).child('toyChest').set(selected_child.toyChest);
+	}
+
 	$("#btn-continue").click(function(event) {
 		// $("#confirm-modal").closeModal();
-		open($("#modal-buttons").data().url, "_blank");
+		if (!purchase_state) {
+			open($("#modal-buttons").data().url, "_blank");
+			moveToToychest($("#modal-buttons").data("id"));
+			purchaseConfirm();
+		} else {
+			$("#confirm-modal").closeModal();
+			purchase_state = false;
+		}
+	});
+
+	$("#btn-cancel").click(function(event) {
+		$("#confirm-modal").closeModal();
 	});
 
 	var bindReadMoreBtn = function() {
@@ -210,11 +245,20 @@ $(function() {
 	$("#btn-wishlist").click(function(event) {
 		var item_id = $("#modal-buttons").data().id;
 		var wishlist = selected_child.wishlist;
-		wishlist.push(item_id);
-		rootRef.child('children').child(selected_child.id).child('wishlist').set(wishlist);
-		$("#btn-wishlist").prop("disabled",true);
-		$("#btn-wishlist").addClass("z-depth-0");
-		$("#btn-wishlist").addClass("disabled-btn");
+		if ($(this).hasClass('disabled-btn')) {
+			// Remove from wishlist
+			wishlist.splice(wishlist.indexOf(item_id), 1);
+			rootRef.child('children').child(selected_child.id).child('wishlist').set(wishlist);
+			$("#btn-wishlist").removeClass("z-depth-0");
+			$("#btn-wishlist").removeClass("disabled-btn");
+		} else {
+			// Add to wishlist
+			wishlist.push(item_id);
+			rootRef.child('children').child(selected_child.id).child('wishlist').set(wishlist);
+			// $("#btn-wishlist").prop("disabled",true);
+			$("#btn-wishlist").addClass("z-depth-0");
+			$("#btn-wishlist").addClass("disabled-btn");
+		}
 	});
 
 	// Go back to toychest view
