@@ -57,12 +57,6 @@ $(function() {
 		}
 	});
 
-	// var openExternalPage = function() {
-	// 	var confirmation = confirm("You will be directed to an external page to complete your transaction.");
-	// 	if (confirmation){
-	// 		open($("#modal-buttons").data().url, "_blank");
-	// 	}
-	// }
 	var resetWidths = function() {
 		$(".shaded-star").each(function(index, elem) {
 			$(this).css({width:24})
@@ -267,6 +261,7 @@ $(function() {
 			rootRef.child('children').child(selected_child.id).child('wishlist').set(wishlist);
 			$("#btn-wishlist").removeClass("z-depth-0");
 			$("#btn-wishlist").removeClass("disabled-btn");
+			Materialize.toast ("Item has been removed from wishlist", 3000);
 		} else {
 			// Add to wishlist
 			wishlist.push(item_id);
@@ -274,6 +269,7 @@ $(function() {
 			// $("#btn-wishlist").prop("disabled",true);
 			$("#btn-wishlist").addClass("z-depth-0");
 			$("#btn-wishlist").addClass("disabled-btn");
+			Materialize.toast ("Item has been added to wishlist", 3000);
 		}
 	});
 
