@@ -4,24 +4,24 @@ $(function() {
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
 	var selected_child;
 	var data = [];
-	var activeFilters = []
-	var userFilters = []
+	var activeFilters = [];
+	var userFilters = [];
 	var display_item = function(d, i) {
 		var row_num = Math.floor(i/5);
 		if (i%5 == 0) {
 			$("#search-content").append("<div class='row' id='row-"+ row_num + "'></div>");
 		}
 		if (i%5 == 0) {
-			var div_text = '<div id="item-wrapper-'+i+'" class="col m2 offset-m1"><div class="card item-card">';
+			var div_text = '<div id="item-wrapper-'+d.id+'" class="col m2 offset-m1"><div class="card item-card">';
 		} else {
-			var div_text = '<div id="item-wrapper-'+i+'" class="col m2"><div class="card item-card">';
+			var div_text = '<div id="item-wrapper-'+d.idi+'" class="col m2"><div class="card item-card">';
 		}
 	    
 	    var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
 	    var caption_text = '<div class="card-action">' + "<span class='seller'>"+ d.seller + "</span>"+d.name+'</div>';
 	    var str = div_text + img_text + caption_text + '</div>';
 		$("#row-"+row_num).append(str);
-		bind_modal("#item-wrapper-"+i);
+		bind_modal("#item-wrapper-"+d.id);
 	};
 
 	var item_index = 0;
@@ -249,7 +249,7 @@ $(function() {
 
 	$("#btn-wishlist").click(function(event) {
 		var item_id = $("#modal-buttons").data().id;
-		var wishlist = selected_child.wishlist;
+		var wishlist = (selected_child.wishlist == undefined) ? [] : selected_child.wishlist;
 		if ($(this).hasClass('disabled-btn')) {
 			// Remove from wishlist
 			wishlist.splice(wishlist.indexOf(item_id), 1);
