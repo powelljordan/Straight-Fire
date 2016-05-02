@@ -63,6 +63,7 @@
     transform: translateY(-50%);
     width: 100%;
     text-align: center;
+    color: #5a5a5a;
 }
 
 .add-label {
@@ -71,20 +72,18 @@
     text-align: center;
 }
 
-
 /*choose-file-modal styling*/
 
 .brightness {
     display: inline-block;
     cursor:pointer;
-
 }
+
 .brightness:hover {
     background: #4fc3f7;
-    cursor:pointer;
+    cursor: pointer;
     opacity: .5;
 }
-
 .modal-title{
     font-size:18px;
 }
