@@ -274,3 +274,11 @@ input:focus {
 #confirm-modal > .modal-content{
 	margin-top:20px !important;
 }
+
+.seller {
+	position:absolute;
+	font-size:.75rem;
+	bottom:5px;
+	right:5px;
+	color:grey;
+}
