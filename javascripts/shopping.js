@@ -124,6 +124,7 @@ $(function() {
 	}
 
 	var switchChild = function(c_id) {
+		activeFilters = [];
 		child_id = c_id;
 		clearChildSpecificFields();
 		var child;
@@ -280,7 +281,7 @@ $(function() {
 	var updateResults = function(){
 		$("#search-content").html("");
 		var loadResults = function(results){
-			// console.log(results);
+			console.log(results);
 			var i = 0;
 			results.forEach(function(result, index){
 				display_item(result, i);
@@ -336,6 +337,7 @@ $(function() {
 	*/
 	var queryForTag = function(tag, callback){
 		var matchedItems = [];
+		console.log("queryForTag");
 		rootRef.child("items")
 			.on("value", function(snap){
 				snap.val().forEach(function(item, index, array){
@@ -360,13 +362,14 @@ $(function() {
 		var results = [];
 		tags.forEach(function(tag, ind, arr){
 			var addToResults = function(matches){
-				console.log(matches);
+				console.log("addToResults");
 				matches.forEach(function(match, ind2, arr2){
 					if(!results[match.id]){
 						results[match.id] = match;
 					}
 					if(ind2 === arr2.length - 1){
 						if(ind === arr.length - 1){
+							("finishes addToResults");
 							callback(results);
 						}
 					}
