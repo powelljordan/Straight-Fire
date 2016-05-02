@@ -18,7 +18,10 @@ $(function() {
 				author:"jojoy",
 				author_desc:"",
 				rating:5
-			}]
+			}],
+			tags:{
+				"star wars": true
+				}
 		},
 		{
 			id:1,
@@ -45,7 +48,10 @@ $(function() {
 				author:"Very smooth",
 				author_desc:"Student",
 				rating:5
-			}]
+			}],
+			tags:{
+				"biking":true
+				}
 		},
 		{
 			id:2,
@@ -154,7 +160,11 @@ $(function() {
 				author:"bbcbob",
 				author_desc:"Collector, Education Oriented, First Time Parent, Working Parent",
 				rating:5
-			}]
+			}],
+			tags:{
+				"star wars":true,
+				"action figures":true
+			}
 		},
 		{
 			id:6,
