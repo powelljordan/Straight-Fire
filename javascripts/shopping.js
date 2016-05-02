@@ -41,6 +41,15 @@ $(function() {
 		children.push(child);
 		if (child.id == child_id) {
 			selected_child = child;
+			if (!child.toyChest) {
+				selected_child.toyChest = [];
+			}
+			if (!child.wishlist) {
+				selected_child.wishlist = [];
+			}
+			if (!child.donated) {
+				selected_child.donated = [];
+			}
 			updateChildParams(child);
 			updateResults();
 		} else {
