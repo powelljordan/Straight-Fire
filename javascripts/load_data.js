@@ -20,7 +20,14 @@ $(function() {
 				rating:5
 			}],
 			tags:{
-				"star wars": true
+				"star wars": true,
+				"light saber":true,
+				"wand":true,
+				"luke skywalker":true,
+				"light":true,
+				"lights":true,
+				"flashlight":true,
+				"cosplay":true
 				}
 		},
 		{
@@ -50,7 +57,10 @@ $(function() {
 				rating:5
 			}],
 			tags:{
-				"biking":true
+				"biking":true,
+				"scooter":true,
+				"outdoors":true,
+				"active":true,
 				}
 		},
 		{
@@ -78,7 +88,7 @@ $(function() {
 				"crafts": true,
 				"crafting": true,
 				"drawing": true,
-				"painting": true
+				"painting": true,
 			}
 		},
 		{
@@ -225,7 +235,9 @@ $(function() {
 			}],
 			tags:{
 				"blaster":true,
-				"games":true
+				"games":true,
+				"fighting":true,
+				"darts":true,
 			}
 		},
 		{
@@ -276,7 +288,38 @@ $(function() {
 				"star wars":true,
 				"action figures":true,
 			}
-		}
+		},
+		{
+			id:8,
+			name: "Hot Wheels Lights", 
+			url: "http://www.toysrus.com/product/index.jsp?productId=29285276&cp=2255956.2273442.2255971.3252102.57486126.57521716&parentPage=family",
+			img_src: "../images/hot_wheels.jpg",
+			item: "hot wheels",
+			price: 13.59,
+			rating: 5,
+			seller: "Toys-R-Us",
+			description:"Bringing lights & sounds excitement to classic Hot Wheels cars. Buckle up and let your imagination run wild driving will never be the same!",
+			age:"3+",
+			notes:"",
+			reviews:[{
+				summary:"Great Toy",
+				content:"I bought this for my two year old daughter because she saw it in the store. She is now turning four and it is still one of her favorite toys.",
+				author:"handyman2722",
+				author_desc:"Parent Of Two Or More Children",
+				rating:5
+			},
+			{
+				summary:"Son loves it",
+				content:"Great, inexpensive, awesome car! The quality for the price is perfect. The chomping it makes as it drives around is hilarious. My son loves it. Big hit on Christmas morning.",
+				author:"BugABoo",
+				author_desc:"First Time Parent",
+				rating:5
+			}],
+			tags:{
+				"cars":true,
+				"hot wheels":true,
+				}
+		},
 	];
 
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
