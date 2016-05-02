@@ -151,7 +151,7 @@ $(function() {
 
 	$("#profiles").append(
 	'<div id="btn-new-profile" class = "col s6 m4">'+
-		'<div class="card small waves-effect waves-block waves-light">'+
+		'<div class="card medium waves-effect waves-block waves-light">'+
 	      '<div class = "card-image ">'+
 	      '<i class="material-icons large add-icon">add</i>'+
 	      '</div>'+
@@ -166,7 +166,7 @@ $(function() {
 
 		$("#btn-new-profile").before(
 			'<div class = "col s6 m4 " id="'+child.id+'">'+
-				'<div class="card small waves-effect waves-block waves-light">'+
+				'<div class="card medium waves-effect waves-block" style="max-height:80%"> '+
 			      '<div class = "profile-image card-image">'+
 			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
 			      '</div>'+
@@ -365,66 +365,4 @@ $(function() {
 			}
 		});
 	});
-
-
-
-	/**
-		Testing Queries
-		Tried to do it the fancy firebase way, but that was taking too long lol
-	*/
-
-
-	/**
-		Passes a list items that have the given tag to the callback function
-	*/
-	var queryForTag = function(tag, callback){
-		var matchedItems = [];
-		rootRef.child("items")
-			.on("value", function(snap){
-				snap.val().forEach(function(item, index, array){
-					if(item.tags){
-						if(item.tags[tag]){
-							matchedItems.push(item);				
-						}
-					}
-					if(index === array.length - 1){
-						callback(matchedItems);
-					}
-				});
-			});
-	}
-
-	/**
-		Merges results of multi tag filter. Takes a list of tags to search for as an argument
-	*/
-	var mergeResults = function(tags, callback){
-		var results = [];
-		tags.forEach(function(tag, ind, arr){
-			var addToResults = function(matches){
-				matches.forEach(function(match, ind2, arr2){
-					if(!results[match.id]){
-						results[match.id] = match;
-					}
-					if(ind2 === arr2.length - 1){
-						if(ind === arr.length - 1){
-							callback(results);
-						}
-					}
-				});
-
-			}
-			queryForTag(tag, addToResults);
-		});
-	}
-
-	$("#test").click(function(){
-		var printResults = function(array){
-			console.log(array);
-		}
-		// queryForTag("star wars", printResults);
-		mergeResults(["star wars", "biking"], printResults);
-
-	});
-	
-
 });
