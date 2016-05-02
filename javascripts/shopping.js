@@ -16,7 +16,7 @@ $(function() {
 		}
 	    
 	    var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
-	    var caption_text = '<div class="card-action">' + "<span class='seller'>Toys 'R Us</span>"+d.name+'</div>';
+	    var caption_text = '<div class="card-action">' + "<span class='seller'>"+ d.seller + "</span>"+d.name+'</div>';
 	    var str = div_text + img_text + caption_text + '</div>';
 		$("#row-"+row_num).append(str);
 		bind_modal("#item-wrapper-"+i);
