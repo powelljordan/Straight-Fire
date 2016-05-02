@@ -64,11 +64,14 @@ $(function() {
 	var purchaseConfirm = function() {
 		purchase_state = true;
 		$("#btn-continue").text("Ok");
-		$("#continue-desc").text("This to has been moved to " + selected_child.name + "'s toyChest.");
+		$("#continue-desc").text($("#confirm-modal").data("name") + " has been moved to " + selected_child.name + "'s toyChest.");
 		$("#btn-cancel").css({"display":"None"});
 	}
 
 	var shopConfirm = function() {
+		$("#continue-desc").text('You will be directed to an external page to complete your transaction.');
+		$("#btn-cancel").css({"display":"block"});
+		$("#btn-continue").text("Continue");
 		$("#confirm-modal").openModal();
 	}
 

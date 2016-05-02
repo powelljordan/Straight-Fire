@@ -173,6 +173,7 @@ $(function() {
 			$("#reviews-body").html(reviews_str);
 			$("#modal-buttons").data("url", data[index].url);
 			$("#modal-buttons").data("id", data[index].id);
+			$("#modal-buttons").data("name", data[index].name);
 			$("#myModal").data("index", index);
 
 			if ($.inArray(index, selected_child.wishlist) != -1) {
@@ -199,7 +200,7 @@ $(function() {
 	var purchaseConfirm = function() {
 		purchase_state = true;
 		$("#btn-continue").text("Ok");
-		$("#continue-desc").text("This to has been moved to " + selected_child.name + "'s toyChest.");
+		$("#continue-desc").text($("#modal-buttons").data("name") + " has been moved to " + selected_child.name + "'s toyChest.");
 		$("#btn-cancel").css({"display":"None"});
 	}
 
