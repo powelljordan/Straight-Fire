@@ -320,6 +320,185 @@ $(function() {
 				"hot wheels":true,
 				}
 		},
+		{
+			id:9,
+			name: "Code Master Logic Game", 
+			url: "http://www.amazon.com/Code-Master-Programming-Logic-Game/dp/B014993TCI/ref=sr_1_1?s=toys-and-games&ie=UTF8&qid=1462224326&sr=1-1&keywords=coding",
+			img_src: "../images/code_master.jpg",
+			item: "code master",
+			price: 20.99,
+			rating: 4.8,
+			seller: "Amazon",
+			description:"The ultimate coding board game. Teaches basic to complex coding concepts",
+			age:"8+",
+			notes:"",
+			reviews:[{
+				summary:"awesome game",
+				content:"The game itself is absolutely awesome- very challenging, very fun. It ramps up in difficulty very smoothly- and my 6 year old was able to play it no problem.",
+				author:"solidwhetstone",
+				author_desc:"Verified Purchase",
+				rating:4
+			},
+			{
+				summary:"Educational game",
+				content:"This is a great intro to coding for kids because it's something tangible they can see and feel, where coding is usually a strictly digital thing that can be hard for kids to wrap their minds around at first. Great concept!",
+				author:"Emily Evert",
+				author_desc:"Verified Purchase",
+				rating:5
+			},
+			{
+				summary:"It is easy to figure out",
+				content:"This game creates a 'gaming' atmosphere without having him stare at a screen. He has to use logic and problem solving skills. It is easy to figure out, without a ton of directions (so it kept his interest right off the bat), but it gets challenging so it can keep him entertained for a while.",
+				author:"KB",
+				author_desc:"Verified Purchase",
+				rating:5
+			}],
+			tags:{
+				"coding":true,
+				"logic":true,
+				"educational":true,
+				"technology":true,
+				"board games":true,
+				"board game":true,
+				"problem solving":true
+				}
+		},
+		{
+			id:10,
+			name: "littleBits Electronics Arduino Coding Kit", 
+			url: "http://www.amazon.com/littleBits-Electronics-Arduino-Coding-Kit/dp/B00KQ0HQZG/ref=sr_1_2?s=toys-and-games&ie=UTF8&qid=1462224326&sr=1-2&keywords=coding",
+			img_src: "../images/arduino.jpg",
+			item: "arduino kit",
+			price: 88.99,
+			rating: 3.9,
+			seller: "Amazon",
+			description:"Snap modules easily to 3 inputs and 3 outputs on the Arduino module, as well as additional I/O for advanced hardware interaction",
+			age:"14+",
+			notes:"",
+			reviews:[{
+				summary:"Alot of fun!",
+				content:"The Arduino kit is alot of fun. I mostly use it with the LittleBits Korg Synth Kit. I have a couple of projects at littlebits.cc that use the LittleBits Arduino.",
+				author:"mrpeter58",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"Fun way to learn code",
+				content:"I've been a developer for a long time but never used arduino. This is by far the most fun I've had coding in a long time. It's hard to mess up and easy to make hardware do neat stuff! I'd say this is good for age 8+",
+				author:"Julian",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"Awful, every good review is wrong!",
+				content:"I'm the kid who got the present, and let me say it is the worst thing ever! When you go online to see the projects that other people made with the arduino, you need to buy at least an extra $50 worth of parts. It doesn't come with enough materials, cauising you to speend more money. ",
+				author:"Mrs Smith",
+				author_desc:"",
+				rating:1
+			}],
+			tags:{
+				"coding":true,
+				"logic":true,
+				"educational":true,
+				"technology":true,
+				"problem solving":true,
+				"arduino":true,
+				"electronics":true,
+				"hardware":true,
+				}
+		},
+		{
+			id:11,
+			name: "Makey Makey - An Invention Kit for Everyone", 
+			url: "http://www.amazon.com/Makey-Invention-Kit-Everyone/dp/B008SFLEPE/ref=sr_1_4?s=toys-and-games&ie=UTF8&qid=1462224326&sr=1-4&keywords=coding",
+			img_src: "../images/invention_kit.jpg",
+			item: "invention kit",
+			price: 49.95,
+			rating: 4.6,
+			seller: "Amazon",
+			description:"Turn everyday objects like bananas into touchpads! Connect the world around you to your computer! Setup takes just seconds.",
+			age:"8+",
+			notes:"",
+			reviews:[{
+				summary:"So fun, so easy, so cool!",
+				content:"At my University I gave this to students. They had so much fun that, well, I'm not getting it back anytime soon.",
+				author:"MarkC",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"Impressive!",
+				content:"Wow! This thing is great. My kids ages 4 and 9, LOVE this so much. The instructions had great starter ideas that really inspired them. Now all they do is try to come up with ideas. Highly recommended!",
+				author:"Tony R.L.",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"Lots of quick easy fun.",
+				content:"This is great. The kids have a lot of fun playing online flash games with improvised controllers. The only shortcoming is that since a human is always involved, you either have to hold one end of a banana clip or somehow attach it to your body.",
+				author:"Jonathan Ashbrook",
+				author_desc:"Verified purchase",
+				rating:4
+			}],
+			tags:{
+				"coding":true,
+				"logic":true,
+				"educational":true,
+				"technology":true,
+				"problem solving":true,
+				"invention":true,
+				"games":true,
+				"computers":true,
+				"computer":true,
+				}
+		},
+		{
+			id:12,
+			name: "Aurora 0 World Lil Benny Phant", 
+			url: "http://www.amazon.com/Aurora-World-Benny-Phant-Plush/dp/B00SUEEFOK/ref=sr_1_5?s=toys-and-games&ie=UTF8&qid=1462225512&sr=1-5&keywords=stuffed+animals",
+			img_src: "../images/elephant_plus.jpg",
+			item: "elephant plush",
+			price: 10.17,
+			rating: 4.9,
+			seller: "Amazon",
+			description:"Super-soft plush and huggable body. Endearing facial expression and body position",
+			age:"1-15",
+			notes:"",
+			reviews:[{
+				summary:"Adorable!",
+				content:"much bigger than i thought it would be but its very adorable",
+				author:"Mother of 2 Angels",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"So cute!",
+				content:"So cute! He's very soft. His arms are a little softer than his legs, so it positions well into the sitting position pictured in the product page.",
+				author:"M. Gregory",
+				author_desc:"Verified purchase",
+				rating:5
+			},
+			{
+				summary:"Sweet",
+				content:"Really sweet Soft and fllexible.. Bought one for a toddler after reading and being satisfied with the safety comments. A certain family member loved it and wanted to keep it, and i had to buy another for the toddler.",
+				author:"rs",
+				author_desc:"Verified purchase",
+				rating:5
+			}],
+			tags:{
+				"stuffed animal":true,
+				"stuffed animals":true,
+				"plush":true,
+				"stuffed animals":true,
+				"cuddles":true,
+				"cuddly":true,
+				"elephant":true,
+				"elephants":true,
+				"animal":true,
+				"animals":true,
+				"soft":true,
+				}
+		},
 	];
 
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");
