@@ -87,8 +87,6 @@ $(function() {
 			$("#interests-wrapper").append("<div class='chip interest-btn selected' id='"+ i + "-interest'><i class='fa fa-tag left interest-btn-icon'></i><span class='unselectable'>"+child.interests[i]+"</span></div>");
 			activeFilters.push(child.interests[i].toLowerCase());
 		}
-		console.log(activeFilters);
-		// TODO: actually filter
 		$(".interest-btn").click(function(event) {
 			// If filter is selected, remove the selected class
 			if ($.inArray('selected', event.toElement.classList) != -1) {
@@ -272,15 +270,9 @@ $(function() {
 		window.location.href = "toys.html?id=" + child_id;
 	});
 
-	var filter_by = function(filter) {
-		// TODO;
-
-	}
-
 	var updateResults = function(){
 		$("#search-content").html("");
 		var loadResults = function(results){
-			// console.log(results);
 			var i = 0;
 			results.forEach(function(result, index){
 				display_item(result, i);
@@ -295,19 +287,17 @@ $(function() {
 		var html_str = '<div id="'+filter+'-filter" class="chip filter-btn"><span class="unselectable">'
 					+filter+'</span><i class="material-icons">close</i></div>';
 		$('#filters-wrapper').append(html_str);
+		bindFilterRemove('#'+filter+'-filter > .material-icons');
 	}
 
 	var add_new_filter = function(filter) {
 		activeFilters.push(filter.toLowerCase());
-		filter_by(filter);
 		updateResults();
-		// console.log(activeFilters);
 	}
 
 	var remove_filter = function(filter){
 		activeFilters.splice(activeFilters.indexOf(filter.toLowerCase()), 1);
 		updateResults();
-		// console.log(activeFilters);
 	}
 
 	$("#btn-add-filter").click(function(event) {
@@ -317,6 +307,13 @@ $(function() {
 		display_new_filter(new_filter);
 		$("#search").val("");
 	});
+
+	var bindFilterRemove = function(id) {
+		$(id).click(function(event) {
+			var filter = $(this)[0].parentElement.id.split('-')[0];
+			remove_filter(filter);
+		});
+	}
 
 	$("#search").keypress(function(e) {
 		if (e.which == 13) {
@@ -334,20 +331,18 @@ $(function() {
 	/**
 		Passes a list items that have the given tag to the callback function
 	*/
-	var queryForTag = function(tag, callback){
+	var queryForTag = function(tag, addToResults, last){
 		var matchedItems = [];
 		rootRef.child("items")
 			.on("value", function(snap){
 				snap.val().forEach(function(item, index, array){
 					if(item.tags){
-						// console.log(item.tags, tag);
 						if(item.tags[tag]){
-							// console.log('MATCH', item, tag);
 							matchedItems.push(item);				
 						}
 					}
 					if(index === array.length - 1){
-						callback(matchedItems);
+						addToResults(matchedItems, last);
 					}
 				});
 			});
@@ -356,24 +351,24 @@ $(function() {
 	/**
 		Merges results of multi tag filter. Takes a list of tags to search for as an argument
 	*/
-	var mergeResults = function(tags, callback){
+	var mergeResults = function(tags, loadResults){
 		var results = [];
-		tags.forEach(function(tag, ind, arr){
-			var addToResults = function(matches){
-				console.log(matches);
-				matches.forEach(function(match, ind2, arr2){
-					if(!results[match.id]){
-						results[match.id] = match;
-					}
-					if(ind2 === arr2.length - 1){
-						if(ind === arr.length - 1){
-							callback(results);
-						}
-					}
-				});
-
+		var addToResults = function(matches, last){
+			if (matches.length == 0 && last) {
+				loadResults(results);
 			}
-			queryForTag(tag, addToResults);
+			matches.forEach(function(match, ind, matches){
+				if(!results[match.id]){
+					results[match.id] = match;
+				}
+				if(last && ind === matches.length - 1){
+					loadResults(results);
+				}
+			});
+		}
+		tags.forEach(function(tag, ind, tags){
+			last = (ind == tags.length-1) ? true : false;
+			queryForTag(tag, addToResults, last);
 		});
 	}
 	
