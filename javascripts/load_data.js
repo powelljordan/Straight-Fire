@@ -71,8 +71,15 @@ $(function() {
 				author:"The Nana",
 				author_desc:"Daycare Provider/ Educator",
 				rating:4
-
-			}]
+			}],
+			tags:{
+				"art":true,
+				"arts & crafts": true,
+				"crafts": true,
+				"crafting": true,
+				"drawing": true,
+				"painting": true
+			}
 		},
 		{
 			id:3,
@@ -107,7 +114,15 @@ $(function() {
 				author_desc:"Education Oriented",
 				rating:5
 
-			}]
+			}],
+			tags:{
+				"lego":true,
+				"batman":true,
+				"legos":true,
+				"building":true,
+				"engineering":true,
+				"action figures":true,
+			}
 		},
 		{
 			id:4,
@@ -133,7 +148,13 @@ $(function() {
 				author:"Beckie",
 				author_desc:"Value Oriented",
 				rating:5
-			}]
+			}],
+			tags:{
+				"arts":true,
+				"arts & crafts": true,
+				"painting": true,
+				"coloring": true
+			}
 		},
 		{
 			id:5,
@@ -163,7 +184,10 @@ $(function() {
 			}],
 			tags:{
 				"star wars":true,
-				"action figures":true
+				"legos":true,
+				"lego":true,
+				"building":true,
+				"engineering":true
 			}
 		},
 		{
@@ -198,8 +222,11 @@ $(function() {
 				author:"Smax24",
 				author_desc:"",
 				rating:5
+			}],
+			tags:{
+				"blaster":true,
+				"games":true
 			}
-			]
 		},
 		{
 			id:7,
@@ -240,7 +267,15 @@ $(function() {
 				author:"gigi",
 				author_desc:"Parent",
 				rating:5
-			}]
+			}],
+			tags:{
+				"lego":true,
+				"legos":true,
+				"building":true,
+				"engineering":true,
+				"star wars":true,
+				"action figures":true,
+			}
 		}
 	];
 

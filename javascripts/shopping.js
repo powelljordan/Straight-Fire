@@ -41,6 +41,7 @@ $(function() {
 		if (child.id == child_id) {
 			selected_child = child;
 			updateChildParams(child);
+			updateResults();
 		} else {
 			displayInactiveChild(child);
 		}
@@ -84,8 +85,9 @@ $(function() {
 		}
 		for (var i = 0; i < child.interests.length; i++) {
 			$("#interests-wrapper").append("<div class='chip interest-btn selected' id='"+ i + "-interest'><i class='fa fa-tag left interest-btn-icon'></i><span class='unselectable'>"+child.interests[i]+"</span></div>");
-			activeFilters.push(child.interests[i]);
+			activeFilters.push(child.interests[i].toLowerCase());
 		}
+		console.log(activeFilters);
 		// TODO: actually filter
 		$(".interest-btn").click(function(event) {
 			// If filter is selected, remove the selected class
@@ -278,9 +280,11 @@ $(function() {
 	var updateResults = function(){
 		$("#search-content").html("");
 		var loadResults = function(results){
-			console.log(results);
+			// console.log(results);
+			var i = 0;
 			results.forEach(function(result, index){
-				display_item(result, index);
+				display_item(result, i);
+				i++;
 			});
 		}
 		mergeResults(activeFilters, loadResults)
@@ -294,16 +298,16 @@ $(function() {
 	}
 
 	var add_new_filter = function(filter) {
-		activeFilters.push(filter)
+		activeFilters.push(filter.toLowerCase());
 		filter_by(filter);
 		updateResults();
-		console.log(activeFilters)
+		// console.log(activeFilters);
 	}
 
 	var remove_filter = function(filter){
-		activeFilters.splice(activeFilters.indexOf(filter), 1);
+		activeFilters.splice(activeFilters.indexOf(filter.toLowerCase()), 1);
 		updateResults();
-		console.log(activeFilters);
+		// console.log(activeFilters);
 	}
 
 	$("#btn-add-filter").click(function(event) {
@@ -336,7 +340,9 @@ $(function() {
 			.on("value", function(snap){
 				snap.val().forEach(function(item, index, array){
 					if(item.tags){
+						// console.log(item.tags, tag);
 						if(item.tags[tag]){
+							// console.log('MATCH', item, tag);
 							matchedItems.push(item);				
 						}
 					}
@@ -356,8 +362,6 @@ $(function() {
 			var addToResults = function(matches){
 				console.log(matches);
 				matches.forEach(function(match, ind2, arr2){
-					console.log("called");
-					console.log(match);
 					if(!results[match.id]){
 						results[match.id] = match;
 					}
@@ -372,14 +376,5 @@ $(function() {
 			queryForTag(tag, addToResults);
 		});
 	}
-
-	$("#test").click(function(){
-		var printResults = function(array){
-			console.log(array);
-		}
-		// queryForTag("star wars", printResults);
-		mergeResults(["star wars", "biking"], printResults);
-
-	});
 	
 });
