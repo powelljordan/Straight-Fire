@@ -14,7 +14,7 @@ $(function() {
 		if (i%5 == 0) {
 			var div_text = '<div id="item-wrapper-'+d.id+'" class="col m2 offset-m1"><div class="card item-card">';
 		} else {
-			var div_text = '<div id="item-wrapper-'+d.idi+'" class="col m2"><div class="card item-card">';
+			var div_text = '<div id="item-wrapper-'+d.id+'" class="col m2"><div class="card item-card">';
 		}
 	    
 	    var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
@@ -48,12 +48,12 @@ $(function() {
 		}
 	});
 
-	var openExternalPage = function() {
-		var confirmation = confirm("You will be directed to an external page to complete your transaction.");
-		if (confirmation){
-			open($("#modal-buttons").data().url, "_blank");
-		}
-	}
+	// var openExternalPage = function() {
+	// 	var confirmation = confirm("You will be directed to an external page to complete your transaction.");
+	// 	if (confirmation){
+	// 		open($("#modal-buttons").data().url, "_blank");
+	// 	}
+	// }
 	var resetWidths = function() {
 		$(".shaded-star").each(function(index, elem) {
 			$(this).css({width:24})

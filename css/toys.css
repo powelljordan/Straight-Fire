@@ -84,3 +84,7 @@
     cursor:pointer;
     opacity: .5;
 }
+
+.modal-title{
+    font-size:18px;
+}
