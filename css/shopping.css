@@ -102,10 +102,6 @@ input:focus {
 	font-size:18px;
 }
 
-#modal-thumbnail {
-	width:350px;
-}
-
 #modal-ratings{
 	position:relative;
 	/*float:left;*/
