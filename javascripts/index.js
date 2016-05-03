@@ -297,13 +297,12 @@ $(function() {
 				Materialize.toast('Please fill out the age field', 5000);
 			}
 		} else {
-				var img_src = selectedImage.find(".card").find(".card-image").find("img").attr("src");
-				var interests = $("#create-interests").val();
-				var interestsList = $("#create-interests").val().split(",");
-			// window.location.href = "profile.html?name="+name+"&age="+age+"&interests="+interests;
-			// $("#create-profile-form").find('.form-group').find('input').each(function(index, elem){
-			// 	($(elem)).val('');
-			// });
+			var img_src = selectedImage.find(".card").find(".card-image").find("img").attr("src");
+			var interests = $("#create-interests").val();
+			var interestsList = [];
+			$("#create-interests").val().split(",").forEach(function(elem, ind) {
+				interestsList.push(elem.trim());
+			});
 			childrenDB.child(name).set(
 				{age: age,
 				donated: [],

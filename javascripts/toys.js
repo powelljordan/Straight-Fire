@@ -51,7 +51,6 @@ $(function() {
 					$('#toychest-undo').fadeOut();
 					$('#wishlist-undo').fadeOut();
 					// Set the appropriate tab's undo
-					console.log(tab, undoMessage);
 					$('#'+tab+'-undo-action').text(undoMessage);
 					$('#'+tab+'-undo').fadeIn();
 				}

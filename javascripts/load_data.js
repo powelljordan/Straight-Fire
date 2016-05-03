@@ -661,7 +661,7 @@ $(function() {
 				"ball":true
 				}
 		},
-			{
+		{
 			id:17,
 			name: "Wilson Sporting Goods Traditional Black/White Soccer Ball, Size 3", 
 			url: "http://www.walmart.com/ip/Wilson-Traditional-Black-White-Soccer-Ball-Size-3/27104388?reviews_limit=10&	",
@@ -700,6 +700,48 @@ $(function() {
 				"wilson":true,
 				"sporty":true,
 				"sport":true
+				}
+		},
+		{
+			id:18,
+			name: "Fisher Price Musical Lion Walker", 
+			url: "http://www.walmart.com/ip/Fisher-Price-Musical-Lion-Walker/23583152",
+			img_src: "../images/lion_walker.jpg",
+			item: "lion_walker",
+			price: 19.99,
+			rating: 4,
+			seller: "Walmart",
+			description:"Sturdy, lion character themed walker",
+			age:"6mths+",
+			notes:"",
+			reviews:[{
+				summary:"Shafee's SOCCER BALL Review",
+				content:"my grandaughter loves the lion head and the music. she dances to it....it does still flip over for toddlers just learning to walk ",
+				author:"kajnqtnana46",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"Do not recommend at all!!!!!",
+				content:"I'm extremely disappointed, fisher price at usually a good company But this item is horrible!!!!! At this stage you need to control the baby's walking and this walker does Not have the stages you need so they don't fall on their face",
+				author:"Beth",
+				author_desc:"",
+				rating:2
+			},
+			{
+				summary:"Great",
+				content:"My 7 mouth love it and I do too",
+				author_desc:"",
+				rating:5
+			}],
+			tags:{
+				"walking":true,
+				"toddler":true,
+				"baby":true,
+				"lion":true,
+				"learning":true,
+				"young":true,
+				"walker":true
 				}
 		},
 	];

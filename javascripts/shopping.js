@@ -346,7 +346,6 @@ $(function() {
 	*/
 	var queryForTag = function(tag, addToResults, last){
 		var matchedItems = [];
-		console.log("queryForTag");
 		rootRef.child("items")
 			.on("value", function(snap){
 				snap.val().forEach(function(item, index, array){
