@@ -7,9 +7,11 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 		<link rel="stylesheet" href="../css/index.css"/>
+		<link rel="stylesheet" href="../css/profile.css"/>
 		<script src="../jquery/js/jquery-1.12.3.min.js"></script>
 		<!-- <script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script> -->
 		<script src="../javascripts/index.js"></script>
+		<script src="../javascripts/profile.js"></script>
 		<script src="../javascripts/common.js"></script>
 		<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
@@ -23,7 +25,7 @@
 		<div id="new-profile-modal" class="modal bottom-sheet" role="dialog">
 	    <div class="modal-content col s6 m6 l6">
 	    	<div class="modal-header">
-	    		<h4 class="modal-title center">Create new profile<i class="material-icons right modal-close">close</i></h4>
+	    		<h4 class="modal-title center">Create New Profile<i class="material-icons right modal-close">close</i></h4>
 
 	    	</div>
 	    	<div class="row create-profile-padding">
@@ -89,6 +91,73 @@
 	    </div>
 		</div>
 
+		    <!-- Modal -->
+    <div id="edit-profile-modal" class="modal bottom-sheet" role="dialog">
+        <div class="modal-content col s6 m6 l6">
+            <div class="modal-header">
+                <h4 class="modal-title center">Edit Profile<i class="material-icons right modal-close">close</i></h4>
+            </div>
+            <div class="container" >
+                <div class="row">
+                    <div class="col s5 m5 l5 center offset-s1 offset-m1 offset-l1">
+                        <table>
+                            <tr align="center">
+                                <td>
+                                    <div class="col s12 m12 l12">
+                                        <h4 id="name">David</h4>
+                                        <img id="avatarImage" class="responsive-img" src="../images/john.png">
+                                        <div class="thumbnail col s2">
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table> <!-- end of first half of page -->
+                    </div>
+
+
+                    <div class="col s5 m5 l5">
+                        <div class="row" id='profile-table'>
+                            <div class="col s12 m12 l12">
+                                <br><br>
+                                <div class="col s12 m12 l12">
+	                                    <input type='text' class="form-control" id='nameField-input' value="David" onClick='this.select()'>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m12 l12">
+                                    <input type='number' class="form-control" id='ageField-input' value= "8" onClick='this.select()'>
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m12 l12" style="color:blue"><h5>Interests</h5></div>
+                                <div class="col s12 m12 l12 new-interest">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="interest-input">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" id="add-interest" type="button"><i class="fa fa-plus"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- list of interests -->
+                                <div class="col s12 m12 l12">
+                                    <!--list of interests -->
+                                    <ul id="interest-list" class='collection'>
+                                        <li class="collection-item">
+                                            <span>Star Wars</span>
+                                            <span class="badge remove-interest"><i class="fa fa-close left"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col s6 m6 l6"><button id="btn-save-changes" class="btn btn-default">Save</button></div>
+                        </div>
+                    </div> <!-- end of second half of page -->
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

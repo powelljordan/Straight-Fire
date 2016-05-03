@@ -2,236 +2,141 @@
 <html>
 <head>
     <title>Profile</title>
-    <link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/toys.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script src="../jquery/js/jquery-1.12.3.min.js"></script>
-    <script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-    <!-- <link rel="stylesheet" href="../css/common.css" /> -->
-    <link rel="stylesheet" href="../css/profile.css" />
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../javascripts/toys.js"></script>
+    <script type="text/javascript" src="../javascripts/index.js"></script>
+    <script type="text/javascript" src="../javascripts/common.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">Home</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li  class="active"><a href="profile.html">Profile <span class="sr-only">(current)</span></a></li>
-                <li><a href="donations.html">Donations</a></li>
-                <li><a href="shopping.html">Shopping</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li id="name-present" class="dropdown">
-                    <a id="nav-bar-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventories<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="modal" data-target="#wishlist-modal">Wishlist</a></li>
-                        <li><a href="#" id="btn-toychest">ToyChest</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a class="btn-choose-child" href="#">Change child</a></li>
-                    </ul>
-                <li id="name-not-present"><a class="btn-choose-child" href="#" role="botton">Choose child</a></li>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
 
 <!-- end of nav bar and start of actual code -->
-<div class="container">
-    <div class="row">
-
-        <div class="col-md-offset-2 col-md-4">
-            <table>
-                <tr align="center">
-                    <td>
-                        <div>
-                            <h1 id="name">David</h1>
-                            <div class="thumbnail">
-                                <img id="avatarImage" src="../images/john.png">
-                            </div>
-                            <div class="btn-wrapper">
-                                <button class="btn btn-default" data-toggle="modal" data-target="#wishlist-modal">Wishlist</button>
-                                <button id="btn-start-shopping" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Start Shopping</button>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td>
-                        <input type="image" src="../images/toyChest.png"  data-toggle="modal" data-target="#toychest-modal">
-                    </td>
-                </tr>
-            </table> <!-- end of first half of page -->
-        </div>
-
-
-        <div class="col-md-6">
-            <div class="row" id='profile-table'>
-                <div class="col-md-12">
-                    <div class='col-md-12'><h4>Name</h4></div>
-                    <div class="col-md-9">
-                        <span id="nameField-span" class="edit-name h3">David</span>
-                        <input type='text' class="form-control" id='nameField-input' onClick='this.select()'>
-                        <span class="edit-name" id="name-pencil"><i class="fa fa-pencil"></i></span>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class='col-md-12'><h4>Age</h4></div>
-                    <div class="col-md-9"><span id="ageField-span" class="edit-age h3">8</span>
-                        <input type='number' class="form-control" id='ageField-input' onClick='this.select()'>
-                        <span class="edit-age" id="age-pencil"><i class="fa fa-pencil"></i></span>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-12"><h3>Interests</h3></div>
-                    <div class="col-md-9 new-interest">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="interest-input">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" id="add-interest" type="button"><i class="fa fa-plus"></i></button>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- list of interests -->
-                    <div class="col-md-9">
-                        <!--list of interests -->
-                        <ul id="interest-list" class='list-group'>
-                            <li class="list-group-item">
-                                <span>Star Wars</span>
-                                <span class="badge remove-interest"><i class="fa fa-close"></i></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3"><button id="btn-save-changes" class="btn btn-default">Save</button></div>
-            </div>
-        </div>
-
-    </div> <!-- end of second half of page -->
-</div>
-
-<div id="choose-child-modal" class="modal fade" data-keyboard="false" data-backdrop="static" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
+    <!-- Modal -->
+    <div id="edit-profile-modal" class="modal bottom-sheet" role="dialog">
+        <div class="modal-content col s6 m6 l6">
             <div class="modal-header">
-                <!--     <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                <h4 class="modal-title">Choose a child</h4>
+                <h4 class="modal-title center">Edit Profile<i class="material-icons right modal-close">close</i></h4>
             </div>
-            <div id="choose-child-body" class="modal-body">
+            <div class="container" >
                 <div class="row">
-                    <div id="profile-john" class="col-md-6">
-                        <div class="panel child-card">
-                            <div class="thumbnail">
-                                <img src="../images/john.png">
+                    <div class="col s5 m5 l5 center offset-s1 offset-m1 offset-l1">
+                        <table>
+                            <tr align="center">
+                                <td>
+                                    <div class="col s12 m12 l12">
+                                        <h1 id="name">David</h1>
+                                        <img id="avatarImage" class="responsive-img" src="../images/john.png">
+                                        <div class="thumbnail col s2">
+                                            
+                                        </div>
+                                        <div class="btn-wrapper col s12 m12 l12">
+                                            <button class="btn btn-default" data-toggle="modal" data-target="#wishlist-modal">Wishlist</button>
+                                            <button id="btn-start-shopping" class="btn btn-default" style="white-space:nowrap">Start Shopping</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table> <!-- end of first half of page -->
+                    </div>
+
+
+                    <div class="col s5 m5 l5">
+                        <div class="row" id='profile-table'>
+                            <div class="col s12 m12 l12">
+                                <br><br>
+                                <div class='col s12 m12 l12' style="color:blue"><h4>Name</h4></div>
+                                <div class="col s12 m12 l12">
+                                    <span id="nameField-span" class="edit-name h3">David</span>
+                                    <input type='text' class="form-control" id='nameField-input' onClick='this.select()'>
+                                    <span class="edit-name" id="name-pencil"><i class="fa fa-pencil"></i></span>
+                                </div>
                             </div>
-                            <div class="caption">John</div>
-                        </div>
-                    </div>
-                    <div id="profile-david" class="col-md-6">
-                        <div class="panel child-card">
-                            <div class="thumbnail">
-                                <img src="../images/david.png">
+                            <div class="col s12 m12 l12">
+                                <div class='col s12 m12 l12' style="color:blue"><h4>Age</h4></div>
+                                <div class="col s12 m12 l12"><span id="ageField-span" class="edit-age h3">8</span>
+                                    <input type='number' class="form-control" id='ageField-input' onClick='this.select()'>
+                                    <span class="edit-age" id="age-pencil"><i class="fa fa-pencil"></i></span>
+                                </div>
                             </div>
-                            <div class="caption">David</div>
+                            <div class="col s12 m12 l12">
+                                <div class="col s12 m12 l12" style="color:blue"><h4>Interests</h4></div>
+                                <div class="col s12 m12 l12 new-interest">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="interest-input">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" id="add-interest" type="button"><i class="fa fa-plus"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- list of interests -->
+                                <div class="col s12 m12 l12">
+                                    <!--list of interests -->
+                                    <ul id="interest-list" class='collection'>
+                                        <li class="collection-item">
+                                            <span>Star Wars</span>
+                                            <span class="badge remove-interest"><i class="fa fa-close left"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col s6 m6 l6"><button id="btn-save-changes" class="btn btn-default">Save</button></div>
                         </div>
-                    </div>
+                    </div> <!-- end of second half of page -->
+
                 </div>
             </div>
-            <div id="create-profile-modal-footer" class="modal-footer">
-            </div>
         </div>
-
     </div>
-</div>
 
-<!-- Toy Chest Modal  -->
-<div id="toychest-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
+
+        <!-- <div class="modal-content col s6 m6 l6">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><span id="toychest-name">John</span>'s Toy Chest</h4>
+                <h4 class="modal-title center">Edit Profile<i class="material-icons right modal-close">close</i></h4>
+
             </div>
-            <div class="toychest-modal-body row">
-                <div class="col-md-12 toy-section">
-                    <div class="col-md-1 col check-column">
-                        <p class="checkbox"><i class="fa fa-square-o"></i></p>
+            <div class="row create-profile-padding">
+              <div class="">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="create-name" placeholder="Name">
+              </div>
+              <div class="">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="create-age" placeholder="Numerical value">
+              </div>
+              <div class="">
+                <label for="interests">Interests</label>
+                <small class="text-muted">(Please separate interests with commas)</small>
+                <input type="text" class="form-control" id="create-interests" placeholder="Enter interests">
+              </div> 
+                    <! <label class="control-label">Select Toy Image</label> -->
+                  <!-- <form action="#">
+                    <div class="file-field input-field">
+                      <div id="addFile" class="btn">
+                        <span>File</span>
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input id="file-path" class=" validate" type="text" placeholder="Upload a picture">
+                      </div>
                     </div>
-                    <div class="col-md-6 col"><h3>Kylo Ren Ship</h3></div>
-                    <div class="col-md-3 col"><img src="../images/kyloren.jpg" class="toy-image center-block"></div>
-                    <div class="col-md-2 col">
-                        <button class="btn btn-primary delete-toy-btn">Delete</button>
-                    </div>
+                  </form>
+                  <button id="btn-create-profile" type="submit" class="btn right">Create</button>
                 </div>
-                <div class="col-md-12 toy-section">
-                    <div class="col-md-1 col check-column">
-                        <p class="checkbox"><i class="fa fa-square-o"></i></p>
-                    </div>
-                    <div class="col-md-6 col"><h3>Obi Wan Action Figure</h3></div>
-                    <div class="col-md-3 col"><img src="../images/obiwan.jpg" class="toy-image center-block"></div>
-                    <div class="col-md-2 col">
-                        <button class="btn btn-primary delete-toy-btn">Delete</button>
-                    </div>
-                </div>
-            </div>
-            <div id="toychest-modal-footer" class="modal-footer">
-                <button id="donate-selected-btn" type="submit" class="btn btn-primary">Donate Selected</button>
+
+                <div id="create-profile-modal-footer" class="modal-footer class="row create-profile-padding"">
+                
             </div>
         </div>
-    </div>
-</div>
-
-
-<!-- Wishlist Modal  -->
-<div id="wishlist-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><span id="wishlist-name">John</span>'s Wishlist</h4>
-            </div>
-            <div class="wishlist-modal-body row">
-                <div class="col-md-12 toy-section">
-                    <div class="col-md-1 col check-column">
-                        <p class="checkbox"><i class="fa fa-square-o"></i></p>
-                    </div>
-                    <div class="col-md-6 col"><h3>Fire Blaster</h3></div>
-                    <div class="col-md-3 col"><img src="../images/fireblaster.jpg" class="toy-image center-block"></div>
-                    <div class="col-md-2 col">
-                        <button class="btn btn-primary purchase-toy-btn">Purchase</button>
-                    </div>
-                </div>
-                <div class="col-md-12 toy-section">
-                    <div class="col-md-1 col check-column">
-                        <p class="checkbox"><i class="fa fa-square-o"></i></p>
-                    </div>
-                    <div class="col-md-6 col"><h3>Rex Dinosaur</h3></div>
-                    <div class="col-md-3 col"><img src="../images/dinosaur.jpg" class="toy-image center-block"></div>
-                    <div class="col-md-2 col">
-                        <button class="btn btn-primary purchase-toy-btn">Purchase</button>
-                    </div>
-                </div>
-            </div>
-            <div id="wishlist-modal-footer" class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="delete-selected-btn" type="submit" class="btn btn-primary">Delete Selected</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+         -->
 
 <script src="../javascripts/common.js"></script>
 <script src="../javascripts/profile.js"></script>
