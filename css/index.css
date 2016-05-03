@@ -146,17 +146,27 @@ body {
     border-left: 1px solid #fff;
 }
 
-.edit-icon{
-	display:block;
-	vertical-align: middle;
-	text-align:center;
-	padding-top: 20%;
+.edit-section {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: none;
 }
 
-.edit-icon-text{
-	text-align:center;
-	padding-top:5%;
-	pointer-events: none;
+.edit-section.show-edit:hover {
+    cursor: pointer;
+}
+
+.edit-icon-container {
+    position: relative;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.edit-icon-container:after {
+    padding-bottom: calc(100% + 36px);
+    display: block;
+    content: "";
 }
 
 .add-card {
@@ -167,6 +177,7 @@ body {
     position: relative;
     width: 100%;
     background: transparent;
+    transition: all .2s ease;
 }
 
 .add-card:hover {
@@ -191,7 +202,7 @@ body {
     content: "";
 }
 
-.add-icon {
+.add-icon, .edit-icon {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -204,6 +215,11 @@ body {
     text-align: center;
     line-height: 48px;
     color: #5a5a5a;
+    transition: all .2s ease;
+}
+
+.add-icon {
+    transition: all .2s ease;
 }
 
 .brightness {

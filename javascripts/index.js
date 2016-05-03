@@ -166,7 +166,7 @@ $(function() {
 
 		$("#btn-new-profile").before(
 			'<div class = "col s6 m3" id="'+child.id+'">'+
-				'<div class="card">'+
+				'<div class="card child-card">'+
 			      '<div class = "profile-image card-image">'+
 			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
 			      '</div>'+
@@ -181,37 +181,22 @@ $(function() {
 			          '</div>'+
 					  '<div class="card-title name"></div>' +
 			       '</div>'+
-			       '<div class="card-reveal style="text-align:center>'+
-			       	 '<span class="card-title grey-text text-darken-4 name"></span>'+ 
-			       	 '<div class = "card-image waves-effect waves-block waves-light">'+
-		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile ">edit</i>'+
+			       '<div class="edit-section">'+
+			       	 '<div class = "card-image waves-effect waves-block waves-light edit-icon-container">'+
+		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile">edit</i>'+
 		      		 '</div>'+
-		      		 '<div class="card-title edit-icon-text">Edit Profile</div>'+       
 			      '</div>'+
 			     '</div>'+
 		   	'</div>'
 			);
 		$("#"+child.id).find(".card-content").find(".name").text(child.name);
-		$("#"+child.id).find(".card-reveal").find(".name").html(child.name);
-
-
-			$(".profile").click(function(event){
-		// console.log(event.target);
-				if (event.target.classList[0] === "btn") return;
-				var profile = event.target.parentElement;
-				if (profile.classList[0] !== 'profile') {
-					profile = profile.parentElement;
-				}
-				// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
-				console.log("ID", event.target.classList[0].split("_"));
-				window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
-			});
 
 	});
 
-
-
-
+    $(document).on("click", ".edit-section.show-edit", function(event) {
+        var child = $(event.target).parents('.col.s6.m3').attr('id');
+        window.location.href = "profile.html?name="+dbChildren[child].name;
+    });
 
 	$("#btn-new-profile").click(function(event) {
 		$("#new-profile-modal").openModal();
@@ -250,13 +235,13 @@ $(function() {
 			$(event.target).css("background-color", "#e1f5fe");
 			$(event.target).css("border-style", "solid");
 			$(event.target).css("border-width", "2px");
-			$(event.target).css("border-color", "#b3e5fc")
+			$(event.target).css("border-color", "#b3e5fc");
 			$(event.target).css("opacity", "1");
 			console.log($("#file-name"));
 			$("#file-name").val($(this).attr("value"));
 			console.log($(this).attr("value"));
 		});
-	})
+	});
 
 
 	$("#btn-cancel-file").click(function(){
@@ -307,62 +292,15 @@ $(function() {
 	});
 
 	var editMode = false;
-	var editingList = [];
-
-	$(".card").click(function(){
-		$(this).find(".card-content").find(".name").css("color", "black");
-		var itemIndex = editingList.indexOf($(this).find(".card-content").find(".name"));
-		if(itemIndex > -1){
-			editingList.splice(itemIndex, 1);
-		}else{
-			// editingList.push($(this).find(".card-content").find(".name"));	
-		}
-		console.log(editingList);
-		
-
-		
-		if(editingList.length === 0){
-			$("manageProfiles").text("Manage Profiles");
-		}
-	})
 
 	$("#manageProfiles").click(function(event){
 		editMode = !editMode;
-		console.log(children)
-		children.forEach(function(child){
-			if(editMode){
-				$("#"+child.id).find(".card-content").find(".name").css("color", "white");
-				editingList.push($(this).find(".card-content").find(".name"));	
-				$("#manageProfiles").text("Done");
-				$(document.body).css("overflow", "hidden");
-				$("#"+child.id)
-				.find('.card')
-				.find('.card-reveal')
-				.css({ display: 'block'})
-				.velocity("stop", false)
-				.velocity({translateY: '-100%'}, {duration: 300, queue: false, easing: 'easeInOutQuad',
-					complete: function(){
-						$(document.body).css("overflow", "visible");
-					}
-				});
-				
-			}else{
-						$(document.body).css("overflow", "hidden");
-				    $("#"+child.id)
-				    .find('.card-reveal').velocity(
-				    {translateY: 0}, 
-				    {
-				      duration: 225,
-				      queue: false,
-				      easing: 'easeInOutQuad',
-				      complete: function() {
-				        $(this).css({ display: 'none'});
-				        $("#manageProfiles").text("Manage Profiles");
-				 				$("#"+child.id).find(".card-content").find(".name").css("color", "black");
-				 				$(document.body).css("overflow", "visible");
-				      }
-				    });
-			}
-		});
+        if (editMode) {
+            $("#manageProfiles").text("Done");
+            $('.edit-section', '.child-card').fadeIn().addClass('show-edit');
+        } else {
+            $("#manageProfiles").text("Manage Profiles");
+            $('.edit-section', '.child-card').fadeOut().removeClass('show-edit');
+        }
 	});
 });
