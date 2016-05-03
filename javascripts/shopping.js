@@ -142,7 +142,9 @@ $(function() {
 	}
 
 	var updateChildParams = function(child) {
+		activeFilters = [];
 		fillInterests(child);
+		updateResults();
 		// Update the header to display selected child
 		$("#selected-child img").attr('src',child.img_src);
 		$("#selected-child .child-name").text(child.name);
