@@ -287,6 +287,7 @@ $(function() {
 				"engineering":true,
 				"star wars":true,
 				"action figures":true,
+				"action figure":true
 			}
 		},
 		{
@@ -452,7 +453,7 @@ $(function() {
 				"computer":true,
 				}
 		},
-		{
+			{
 			id:12,
 			name: "Aurora 0 World Lil Benny Phant", 
 			url: "http://www.amazon.com/Aurora-World-Benny-Phant-Plush/dp/B00SUEEFOK/ref=sr_1_5?s=toys-and-games&ie=UTF8&qid=1462225512&sr=1-5&keywords=stuffed+animals",
@@ -497,6 +498,208 @@ $(function() {
 				"animal":true,
 				"animals":true,
 				"soft":true,
+				}
+		},
+			{
+			id:13,
+			name: "Dawn of Justice Superman Action Figure", 
+			url: "http://www.walmart.com/ip/DO-NOT-PUBLISH-Batman-vs.-Superman-Multiverse-Superman-Action-Figure/44932415?reviews_limit=10&",
+			img_src: "../images/superman.jpg",
+			item: "superman",
+			price: 29.99,
+			rating: 0,
+			seller: "Walmart",
+			description:"Celebrate the new Batman v Superman: Dawn of Justice movie and The Greatest Superhero Battle of All Time with six-inch figures of key characters featuring 20 points of articulation. Collect them all and connect the included pieces to build a themed replica weapon with a display base. Each sold separately, subject to availability.",
+			age:"3+",
+			notes:"This toy is not suitable for ages under 3 years. It contains one or more of the following items: marbles, small ball, or small parts.",
+			reviews:[],
+			tags:{
+				"action figure":true,
+				"action figures":true,
+				"DC":true,
+				"comic":true,
+				"superman":true,
+				"batman":true,
+				"movies":true,
+				"doll":true,
+				"superhero":true,
+				"tv":true,
+				}
+		},
+			{
+			id:14,
+			name: "12\" Kawasaki Kids' Bike with Training Wheels", 
+			url: "http://www.walmart.com/ip/Kawasaki-12-Kids-Bicycle-with-Training-Wheels/11064959?reviews_limit=10&",
+			img_src: "../images/bike.jpg",
+			item: "bike",
+			price: 63.35,
+			rating: 3.8,
+			seller: "Walmart",
+			description:"This 12\" kids' bike is the ideal way to introduce your little one to riding and it is easy to assemble, requiring minimal tools.",
+			age:"2-7",
+			notes:"",
+			reviews:[{
+				summary:"Perfect for our 3 yr old!",
+				content:"The bicycle arrived quickly and all pieces were in perfect order. My husband and I assembled it, together, in less than an hour. It is light weight, but feels and looks like a high quality bike. I love the full chain guard which will protect my overly curious toddler. She wanted a boys themed bike that she saw in the store, but we wanted something a little more feminine for her that didn't have a character on it. This bike is perfect for a Tom-boy. Pretty, but not the typical pink and purple! She loves it! She is only 3 and is able to ride it quite well all by herself. We are very pleased with this purchase! We may buy another for her little brother in a few years.",
+				author:"LeiaMom",
+				author_desc:"Verified Purchaser",
+				rating:5
+			},
+			{
+				summary:"Too cute",
+				content:"This bike was easy to assemble, looks nice and rides well. The colors are cute but not too over the top. We have only ridden it inside so far but we love it.",
+				author:"DDDD",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"Bike was a hit with the kids.",
+				content:"Bike was easy for first time rider. Durable, easy to handle.",
+				author:"Bikefor2",
+				author_desc:"Verified Purchaser",
+				rating:5
+			}],
+			tags:{
+				"biking":true,
+				"bikes":true,
+				"outside":true,
+				"bike":true,
+				"young":true,
+				"kids":true,
+				"active":true,
+				"healthy":true,
+				"bicycle":true,
+				"bicycles":true,
+				"Kawasaki":true,
+				}
+		},
+			{
+			id:15,
+			name: "Kawasaki KX12 12\" Boys Bike", 
+			url: "http://www.walmart.com/ip/Kawasaki-12-Monocoque-Boys-Bicycle/12575682?reviews_limit=10&",
+			img_src: "../images/boys-bike.jpg",
+			item: "boys-bike",
+			price: 79.99,
+			rating: 2.8,
+			seller: "Walmart",
+			description:"Give your child the memorable experience that every little boy or girl should have with this youth bike. Kids will enjoy riding around the driveway or with their neighborhood friends.",
+			age:"2-5",
+			notes:"",
+			reviews:[{
+				summary:"",
+				content:"i bought this bike for my sons birthday and when i got it, it was not what i expected. it was verry cheeply made for the brand and price you pay for it so i guess all you doing is paying for the name. the rims were bent on both tires and the bresks were mested up on it and to top it off it came with a bell that brok off as soon as you touch it..",
+				author:"kockler",
+				author_desc:"",
+				rating:3
+			},
+			{
+				summary:"Perfect for my Little Man",
+				content:"My 2 year old seems to love it, I'm just not quite sure about a hand brake for such a little man. A little confusing ,but I think He'll get the hang of it.",
+				author:"1stCaptain",
+				author_desc:"",
+				rating:4
+			}],
+			tags:{
+				"biking":true,
+				"bikes":true,
+				"outside":true,
+				"bike":true,
+				"young":true,
+				"kids":true,
+				"active":true,
+				"healthy":true,
+				"bicycle":true,
+				"bicycles":true,
+				"Kawasaki":true,
+				}
+		},
+			{
+			id:16,
+			name: "Spalding NBA Street Basketball", 
+			url: "http://www.walmart.com/ip/Spalding-NBA-Street-Basketball/10741221?reviews_limit=10&",
+			img_src: "../images/basketball.jpg",
+			item: "basketball",
+			price: 11.90,
+			rating: 4.6,
+			seller: "Walmart",
+			description:"The Spalding 63250 official size NBA street Basketball offers great feel and grip to make your game more exciting. This outdoor basketball is available in two sizes- 28.5 inch for intermediate and the NBA official size of 29.5 inch.",
+			age:"All ages",
+			notes:"",
+			reviews:[{
+				summary:"Best Rubber Basketball on the market today",
+				content:"I have 3 boys and I've played and coached basketball for 40 years and this is the best rubber basketball available today. I've tried every brand and multiple versions indoor/outdoor balls from every manufacturer but this Spalding NBA \"Street\" ball holds its grip forever. If you are playing outside on concrete there is no other ball to consider. Most of the inside/outside balls are great for inside but once you take them on the concrete you can forget about that nice tacky grip. This ball holds its grip forever and is the least expensive ball out there. Run, don't walk to get this ball if you can find it for under $15. I bought 3 simply because I know how often manufacturers change \"designs\" and are likely to ruin a good thing. You won't be disappointed with this inexpensive and yet very grippy outdoor basketball.",
+				author:"crowded6",
+				author_desc:"Verified Purchaser",
+				rating:5
+			},
+			{
+				summary:"Great, durable ball",
+				content:"Our 9 year old son wanted a basketball for Xmas. My husband wanted it to be a special-grip one. This is the ball. It's durable, and our son loves it. He noticed the special grip right away and thinks it's a fabulous aspect. Our kids would play basketball all day long if they could, and this ball stands up to all their playtime.",
+				author:"KDMtry",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"Great Outdoor Ball",
+				content:"I purchased this basketball for outdoor use. I'm in my 30s and was looking for a basketball to use at the court at the park. I was impressed with the grip this ball has, even after use. As it gets dirty, it looses some of its grip, but if you'll just wipe it off with a damp cloth, it'll almost be like new. It also has good bounce, and holds air well.",
+				author:"KDMtry",
+				author_desc:"",
+				rating:4
+			}],
+			tags:{
+				"basketball":true,
+				"bball":true,
+				"outdoors":true,
+				"nba":true,
+				"hoops":true,
+				"hoop":true,
+				"sports":true,
+				"healthy":true,
+				"team":true,
+				"spalding":true,
+				"sporty":true,
+				"ball":true
+				}
+		},
+			{
+			id:17,
+			name: "Wilson Sporting Goods Traditional Black/White Soccer Ball, Size 3", 
+			url: "http://www.walmart.com/ip/Wilson-Traditional-Black-White-Soccer-Ball-Size-3/27104388?reviews_limit=10&	",
+			img_src: "../images/soccer.jpg",
+			item: "soccer",
+			price: 12.47,
+			rating: 5,
+			seller: "Walmart",
+			description:"This Wilson Sporting Goods product is made with high-quality materials to improve your game!",
+			age:"All ages",
+			notes:"",
+			reviews:[{
+				summary:"Shafee's SOCCER BALL Review",
+				content:"I have a regulation size BADEN black and white soccer ball- the classic! Bought this \"Wilson Traditional Black/White Soccer Ball, Size 3\" as a gift and it was delivered on time. The feel and texture is comfortable. I wanted to keep it for myself, but like I said, this was gift. Feels expensive to the touch when it is brand new, but the shiny gloss will eventually wear off with usage and time. Great for children, and even adults who want to play \"hack-sack\" with a bigger and firm soccer ball.",
+				author:"SHAFEE",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"My son loved it.",
+				content:"Great.",
+				author:"Danared409",
+				author_desc:"",
+				rating:5
+			}],
+			tags:{
+				"soccer":true,
+				"soccer ball":true,
+				"outdoors":true,
+				"ball":true,
+				"goal":true,
+				"classic":true,
+				"sports":true,
+				"healthy":true,
+				"team":true,
+				"wilson":true,
+				"sporty":true,
+				"sport":true
 				}
 		},
 	];

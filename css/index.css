@@ -1,3 +1,11 @@
+body {
+    background: #f5f5f5;
+}
+
+.nav-wrapper {
+	padding-top: 35px;
+}
+
 .centered-col{
 	float:none;
 	margin: 0 auto;
@@ -82,8 +90,6 @@
 #profiles [class*="col"],
 #profiles [class*="div"]{
 	white-space: normal;
-	display:inline-block;
-	float:none;
 }
 
 
@@ -97,6 +103,7 @@
 	padding-right:5%;
 	padding-top:5%;
 	padding-bottom:5%;
+    background: #f5f5f5;
 }
 #manageProfiles:hover{
 	border-color:black;
@@ -106,29 +113,113 @@
 	opacity:0.9;
 }
 
-.edit-icon{
-	display:block;
-	vertical-align: middle;
-	text-align:center;
-	padding-top: 20%;
+.card-content {
+    padding: 0 !important;
 }
 
-.edit-icon-text{
-	text-align:center;
-	padding-top:5%;
-	pointer-events: none;
+.card {
+    background: transparent;
+    box-shadow: none;
 }
 
-.add-icon{
-	opacity:0.6; 
-	display:block; 
-	text-align:center; 
-	vertical-align:middle;
-	padding-top:27.5%;
+.profile-image {
+    background: #fff;
 }
 
-#addToyText{
-	padding-top:16%;
+.btn-row {
+    margin-bottom: 0;
+}
+
+.btn-start-shopping, .btn-toychest {
+    width: 49%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.btn-toychest {
+    border-right: 1px solid #fff;
+}
+
+.btn-start-shopping {
+    border-left: 1px solid #fff;
+}
+
+.edit-section {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: none;
+}
+
+.edit-section.show-edit:hover {
+    cursor: pointer;
+}
+
+.edit-icon-container {
+    position: relative;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.edit-icon-container:after {
+    padding-bottom: calc(100% + 36px);
+    display: block;
+    content: "";
+}
+
+.add-card {
+    box-shadow: none !important;
+}
+
+.add-icon-container {
+    position: relative;
+    width: 100%;
+    background: transparent;
+    transition: all .2s ease;
+}
+
+.add-card:hover {
+    cursor: pointer;
+}
+
+.add-card:hover .add-icon-container {
+    background: #fff;
+}
+
+.add-card:hover .add-label {
+    color: #000;
+}
+
+.add-card:hover .add-icon {
+    color: #000;
+}
+
+.add-icon-container:after {
+    padding-bottom: calc(100% + 36px);
+    display: block;
+    content: "";
+}
+
+.add-icon, .edit-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    color: #5a5a5a;
+}
+
+.add-label {
+    text-align: center;
+    line-height: 48px;
+    color: #5a5a5a;
+    transition: all .2s ease;
+}
+
+.add-icon {
+    transition: all .2s ease;
 }
 
 .brightness {

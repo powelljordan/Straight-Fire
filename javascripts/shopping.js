@@ -18,7 +18,7 @@ $(function() {
 		}
 	    
 	    var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
-	    var caption_text = '<div class="card-action">' + "<span class='seller'>"+ d.seller + "</span>"+d.name+'</div>';
+	    var caption_text = '<div class="card-action">' + "<span class='seller'>"+ d.seller + "</span><span class='item-name'>"+d.name+'</span></div>';
 	    var str = div_text + img_text + caption_text + '</div>';
 		$("#row-"+row_num).append(str);
 		bind_modal("#item-wrapper-"+d.id);
@@ -142,7 +142,9 @@ $(function() {
 	}
 
 	var updateChildParams = function(child) {
+		activeFilters = [];
 		fillInterests(child);
+		updateResults();
 		// Update the header to display selected child
 		$("#selected-child img").attr('src',child.img_src);
 		$("#selected-child .child-name").text(child.name);
@@ -157,7 +159,7 @@ $(function() {
 			var elem = $("#"+event.toElement.parentElement.id);
 			var src = elem.find(".card").find(".card-image").find("img").attr("src");
 			$("#modal-thumbnail").html("<img class='responsive-img' src='" + src +"'/>");
-			$(".item-title").text(elem.find(".card-action").text());
+			$(".item-title").text(elem.find(".card-action > .item-name").text());
 			$("#modal-price").text("$"+data[index].price);
 			$("#seller").text(data[index].seller);
 			(data[index].description.length < 200) ? $("#description").text(data[index].description) : $("#description").html(data[index].description.slice(0,200) 

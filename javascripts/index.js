@@ -150,12 +150,12 @@ $(function() {
 	//we can add those later
 
 	$("#profiles").append(
-	'<div id="btn-new-profile" class = "col s6 m4">'+
-		'<div class="card medium waves-effect waves-block waves-light">'+
-	      '<div class = "card-image ">'+
+	'<div id="btn-new-profile" class = "col s6 m3">'+
+		'<div class="card add-card">'+
+	      '<div class = "card-image add-icon-container">'+
 	      '<i class="material-icons large add-icon">add</i>'+
 	      '</div>'+
-	      '<div id="addToyText" class="card-title" style="text-align:center; ">Add another child</div>'+
+	      '<div id="addToyText" class="add-label">ADD CHILD</div>'+
 	    '</div>'+
    	'</div>'
 	);
@@ -165,28 +165,26 @@ $(function() {
 		var child = snapshot.val();
 
 		$("#btn-new-profile").before(
-			'<div class = "col s6 m4 " id="'+child.id+'">'+
-				'<div class="card medium waves-effect waves-block" style="max-height:80%"> '+
+			'<div class = "col s6 m3" id="'+child.id+'">'+
+				'<div class="card child-card">'+
 			      '<div class = "profile-image card-image">'+
 			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
 			      '</div>'+
-			      '<div class = "card-content" style="text-align:center">'+
-			         '<span class="card-title name"></span>'+
-			         '<div class="" style="text-align:center">'+
-			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col m5 s10" role = "button">'+
+			      '<div class = "card-content">'+
+			         '<div class="row btn-row">'+
+			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col s6" role = "button">'+
 			               'Toys'+
 			            '</a> '+
-			            '<a href="shopping.html?id='+child.id+'" id="btn-start-shopping" class="btn col m5 s10" role = "button">' + 
+			            '<a href="shopping.html?id='+child.id+'" class="btn btn-start-shopping col s6" role = "button">' +
 			            	' Shop'+
 			            '</a>' +
-			          '</div>'+  
+			          '</div>'+
+					  '<div class="card-title name"></div>' +
 			       '</div>'+
-			       '<div class="card-reveal style="text-align:center>'+
-			       	 '<span class="card-title grey-text text-darken-4 name"></span>'+ 
-			       	 '<div class = "card-image waves-effect waves-block waves-light">'+
-		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile ">edit</i>'+
+			       '<div class="edit-section">'+
+			       	 '<div class = "card-image waves-effect waves-block waves-light edit-icon-container">'+
+		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile">edit</i>'+
 		      		 '</div>'+
-		      		 '<div class="card-title edit-icon-text">Edit Profile</div>'+       
 			      '</div>'+
 			     '</div>'+
 		   	'</div>'
@@ -218,6 +216,15 @@ $(function() {
 		console.log("hello");
 		$("#edit-profile-modal").openModal();
 	});
+// =======
+
+// 	});
+
+//     $(document).on("click", ".edit-section.show-edit", function(event) {
+//         var child = $(event.target).parents('.col.s6.m3').attr('id');
+//         window.location.href = "profile.html?name="+dbChildren[child].name;
+//     });
+// >>>>>>> 6ce0bc6afa66275b64876f0bda077c24d7a9c369
 
 	$("#btn-new-profile").click(function(event) {
 		$("#new-profile-modal").openModal();
@@ -256,13 +263,13 @@ $(function() {
 			$(event.target).css("background-color", "#e1f5fe");
 			$(event.target).css("border-style", "solid");
 			$(event.target).css("border-width", "2px");
-			$(event.target).css("border-color", "#b3e5fc")
+			$(event.target).css("border-color", "#b3e5fc");
 			$(event.target).css("opacity", "1");
 			console.log($("#file-name"));
 			$("#file-name").val($(this).attr("value"));
 			console.log($(this).attr("value"));
 		});
-	})
+	});
 
 
 	$("#btn-cancel-file").click(function(){
@@ -313,62 +320,15 @@ $(function() {
 	});
 
 	var editMode = false;
-	var editingList = [];
-
-	$(".small").click(function(){
-		$(this).find(".card-content").find(".name").css("color", "black");
-		var itemIndex = editingList.indexOf($(this).find(".card-content").find(".name"));
-		if(itemIndex > -1){
-			editingList.splice(itemIndex, 1);
-		}else{
-			// editingList.push($(this).find(".card-content").find(".name"));	
-		}
-		console.log(editingList);
-		
-
-		
-		if(editingList.length === 0){
-			$("manageProfiles").text("Manage Profiles");
-		}
-	})
 
 	$("#manageProfiles").click(function(event){
 		editMode = !editMode;
-		console.log(children)
-		children.forEach(function(child){
-			if(editMode){
-				$("#"+child.id).find(".card-content").find(".name").css("color", "white");
-				editingList.push($(this).find(".card-content").find(".name"));	
-				$("#manageProfiles").text("Done");
-				$(document.body).css("overflow", "hidden");
-				$("#"+child.id)
-				.find('.card')
-				.find('.card-reveal')
-				.css({ display: 'block'})
-				.velocity("stop", false)
-				.velocity({translateY: '-100%'}, {duration: 300, queue: false, easing: 'easeInOutQuad',
-					complete: function(){
-						$(document.body).css("overflow", "visible");
-					}
-				});
-				
-			}else{
-						$(document.body).css("overflow", "hidden");
-				    $("#"+child.id)
-				    .find('.card-reveal').velocity(
-				    {translateY: 0}, 
-				    {
-				      duration: 225,
-				      queue: false,
-				      easing: 'easeInOutQuad',
-				      complete: function() {
-				        $(this).css({ display: 'none'});
-				        $("#manageProfiles").text("Manage Profiles");
-				 				$("#"+child.id).find(".card-content").find(".name").css("color", "black");
-				 				$(document.body).css("overflow", "visible");
-				      }
-				    });
-			}
-		});
+        if (editMode) {
+            $("#manageProfiles").text("Done");
+            $('.edit-section', '.child-card').fadeIn().addClass('show-edit');
+        } else {
+            $("#manageProfiles").text("Manage Profiles");
+            $('.edit-section', '.child-card').fadeOut().removeClass('show-edit');
+        }
 	});
 });
