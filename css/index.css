@@ -1,3 +1,11 @@
+body {
+    background: #f5f5f5;
+}
+
+.nav-wrapper {
+	padding-top: 35px;
+}
+
 .centered-col{
 	float:none;
 	margin: 0 auto;
@@ -82,8 +90,6 @@
 #profiles [class*="col"],
 #profiles [class*="div"]{
 	white-space: normal;
-	display:inline-block;
-	float:none;
 }
 
 
@@ -97,6 +103,7 @@
 	padding-right:5%;
 	padding-top:5%;
 	padding-bottom:5%;
+    background: #f5f5f5;
 }
 #manageProfiles:hover{
 	border-color:black;
@@ -104,6 +111,39 @@
 }
 .card-reveal{
 	opacity:0.9;
+}
+
+.card-content {
+    padding: 0 !important;
+}
+
+.card {
+    background: transparent;
+    box-shadow: none;
+}
+
+.profile-image {
+    background: #fff;
+}
+
+.btn-row {
+    margin-bottom: 0;
+}
+
+.btn-start-shopping, .btn-toychest {
+    width: 49%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.btn-toychest {
+    border-right: 1px solid #fff;
+}
+
+.btn-start-shopping {
+    border-left: 1px solid #fff;
 }
 
 .edit-icon{
@@ -119,16 +159,51 @@
 	pointer-events: none;
 }
 
-.add-icon{
-	opacity:0.6; 
-	display:block; 
-	text-align:center; 
-	vertical-align:middle;
-	padding-top:27.5%;
+.add-card {
+    box-shadow: none !important;
 }
 
-#addToyText{
-	padding-top:16%;
+.add-icon-container {
+    position: relative;
+    width: 100%;
+    background: transparent;
+}
+
+.add-card:hover {
+    cursor: pointer;
+}
+
+.add-card:hover .add-icon-container {
+    background: #fff;
+}
+
+.add-card:hover .add-label {
+    color: #000;
+}
+
+.add-card:hover .add-icon {
+    color: #000;
+}
+
+.add-icon-container:after {
+    padding-bottom: calc(100% + 36px);
+    display: block;
+    content: "";
+}
+
+.add-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    color: #5a5a5a;
+}
+
+.add-label {
+    text-align: center;
+    line-height: 48px;
+    color: #5a5a5a;
 }
 
 .brightness {

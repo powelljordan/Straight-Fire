@@ -150,12 +150,12 @@ $(function() {
 	//we can add those later
 
 	$("#profiles").append(
-	'<div id="btn-new-profile" class = "col s6 m4">'+
-		'<div class="card medium waves-effect waves-block waves-light">'+
-	      '<div class = "card-image ">'+
+	'<div id="btn-new-profile" class = "col s6 m3">'+
+		'<div class="card add-card">'+
+	      '<div class = "card-image add-icon-container">'+
 	      '<i class="material-icons large add-icon">add</i>'+
 	      '</div>'+
-	      '<div id="addToyText" class="card-title" style="text-align:center; ">Add another child</div>'+
+	      '<div id="addToyText" class="add-label">ADD CHILD</div>'+
 	    '</div>'+
    	'</div>'
 	);
@@ -165,21 +165,21 @@ $(function() {
 		var child = snapshot.val();
 
 		$("#btn-new-profile").before(
-			'<div class = "col s6 m4 " id="'+child.id+'">'+
-				'<div class="card medium waves-effect waves-block" style="max-height:80%"> '+
+			'<div class = "col s6 m3" id="'+child.id+'">'+
+				'<div class="card">'+
 			      '<div class = "profile-image card-image">'+
 			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
 			      '</div>'+
-			      '<div class = "card-content" style="text-align:center">'+
-			         '<span class="card-title name"></span>'+
-			         '<div class="" style="text-align:center">'+
-			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col m5 s10" role = "button">'+
+			      '<div class = "card-content">'+
+			         '<div class="row btn-row">'+
+			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col s6" role = "button">'+
 			               'Toys'+
 			            '</a> '+
-			            '<a href="shopping.html?id='+child.id+'" id="btn-start-shopping" class="btn col m5 s10" role = "button">' + 
+			            '<a href="shopping.html?id='+child.id+'" class="btn btn-start-shopping col s6" role = "button">' +
 			            	' Shop'+
 			            '</a>' +
-			          '</div>'+  
+			          '</div>'+
+					  '<div class="card-title name"></div>' +
 			       '</div>'+
 			       '<div class="card-reveal style="text-align:center>'+
 			       	 '<span class="card-title grey-text text-darken-4 name"></span>'+ 
@@ -309,7 +309,7 @@ $(function() {
 	var editMode = false;
 	var editingList = [];
 
-	$(".small").click(function(){
+	$(".card").click(function(){
 		$(this).find(".card-content").find(".name").css("color", "black");
 		var itemIndex = editingList.indexOf($(this).find(".card-content").find(".name"));
 		if(itemIndex > -1){
