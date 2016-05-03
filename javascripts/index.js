@@ -202,10 +202,10 @@ $(function() {
 			}
 			// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
 			console.log("ID", event.target.classList[0].split("_"));
-			var selectedChild = dbChildren[event.target.classList[0].split("_")]
-			var name = selectedChild.name;
-			var interests = selectedChild.interests;
-			$("#nameField-input").val(name);
+			// var selectedChild = dbChildren[event.target.classList[0].split("_")]
+			// var name = selectedChild.name;
+			// var interests = selectedChild.interests;
+			// $("#nameField-input").val(name);
 			$("#edit-profile-modal").openModal();
 			// window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
 		});
@@ -216,14 +216,13 @@ $(function() {
 		console.log("hello");
 		$("#edit-profile-modal").openModal();
 	});
-// =======
 
 // 	});
 
-//     $(document).on("click", ".edit-section.show-edit", function(event) {
-//         var child = $(event.target).parents('.col.s6.m3').attr('id');
-//         window.location.href = "profile.html?name="+dbChildren[child].name;
-//     });
+    $(document).on("click", ".edit-section.show-edit", function(event) {
+        var child = $(event.target).parents('.col.s6.m3').attr('id');
+        // window.location.href = "profile.html?name="+dbChildren[child].name;
+    });
 // >>>>>>> 6ce0bc6afa66275b64876f0bda077c24d7a9c369
 
 	$("#btn-new-profile").click(function(event) {
