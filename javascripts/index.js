@@ -340,6 +340,7 @@ $(function() {
 	var editMode = false;
 
 	$("#manageProfiles").click(function(event){
+		$('#index-undo').fadeOut();
 		editMode = !editMode;
         if (editMode) {
             $("#manageProfiles").text("Done");
