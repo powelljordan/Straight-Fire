@@ -87,3 +87,13 @@
 .modal-title{
     font-size:18px;
 }
+
+.select-file-image{
+    pointer-events: none;
+    display: block;
+}
+
+.file-image-text{
+    pointer-events: none;
+    display:block;
+}

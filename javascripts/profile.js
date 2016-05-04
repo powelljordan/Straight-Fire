@@ -28,6 +28,13 @@ $(function() {
 	// $("#nameField-input").css({display:"None"});
 	// $("#ageField-input").css({display:"None"});
 
+	// save button
+	function save() {
+
+		$('.nameField-input').replaceWith('<span class='+this.className+'>'+this.value+'</span>')
+		$('.ageField-input').replaceWith('<span class='+this.className+'>'+this.value+'</span>')
+	}
+
 	// // save button
 	function save() {
 		// make input text into solid text
@@ -141,7 +148,6 @@ $(function() {
 		var deletedInterest = $(event.target).parents('.collection-item').find('span')[0].innerText;
 		removeInterest(deletedInterest);
 		console.log(interests);
-
 	});
 
 	// $("#btn-start-shopping").click(function(event){
