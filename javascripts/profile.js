@@ -62,7 +62,7 @@ $(function() {
 			var listItem = $("<li class='collection-item'></li>");
 				// add interest
    			var itemName = $("<span>" + newInterest + "</span>");
-            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close' style='pointer-events:none'></i></span>");
+            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close material-icons' style='pointer-events:none'>close</i></span>");
    			// prepend new interest to top of list
    			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
    			$('#interestsField-input').val("");
@@ -80,7 +80,7 @@ $(function() {
 					var listItem = $("<li class='collection-item'></li>");
 						// add interest
 		   			var itemName = $("<span>" + newInterest + "</span>");
-		            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close' style='pointer-events:none'></i></span>");
+		            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close material-icons' style='pointer-events:none'>close</i></span>");
 		   			// prepend new interest to top of list
 		   			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
 		   			$('#interestsField-input').val("");
