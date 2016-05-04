@@ -308,7 +308,12 @@ $(function() {
 				Materialize.toast('Please fill out the age field', 5000);
 			}
 		} else {
-			var img_src = selectedImage.find(".card").find(".card-image").find("img").attr("src");
+			var img_src;
+			if(selectedImage){
+				img_src = selectedImage.find(".card").find(".card-image").find("img").attr("src");
+			}else{
+				img_src = $("#avatarImage").attr("src");
+			}
 			var interests = $("#create-interests").val();
 			var interestsList = [];
 			$("#create-interests").val().split(",").forEach(function(elem, ind) {
