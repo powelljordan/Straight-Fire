@@ -126,6 +126,7 @@ $(function() {
 
 	//For example I can add the two children I defined above to our firebase
 	var childrenDB = rootRef.child("children");
+	var localChildrenDB = {};
 	children.forEach(function(child){
 		rootRef.child('children').child(child.id).set(child);
 	})
@@ -133,6 +134,7 @@ $(function() {
 	//Then I can print them from the database as they're added by adding a listener and getting a snapshot
 	rootRef.child('children').on("value", function(snapshot){
 		dbChildren = snapshot.val();
+		localChildrenDB = dbChildren;
 		children = [];
 		for (var key in dbChildren) {
 	    // skip loop if the property is from prototype
@@ -163,7 +165,6 @@ $(function() {
 
 	childrenDB.on("child_added", function(snapshot){
 		var child = snapshot.val();
-
 		$("#btn-new-profile").before(
 			'<div class = "col s6 m3" id="'+child.id+'">'+
 				'<div class="card child-card">'+
@@ -200,30 +201,42 @@ $(function() {
 			if (profile.classList[0] !== 'profile') {
 				profile = profile.parentElement;
 			}
-			// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
-			console.log("ID", event.target.classList[0].split("_"));
-			// var selectedChild = dbChildren[event.target.classList[0].split("_")]
-			// var name = selectedChild.name;
-			// var interests = selectedChild.interests;
-			// $("#nameField-input").val(name);
-			$("#edit-profile-modal").openModal();
-			// window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
+			
 		});
 
 	});
 
-	$(".card-reveal").click(function(event) {
-		console.log("hello");
-		$("#edit-profile-modal").openModal();
-	});
-
-// 	});
+	function addInterest(newInterest) {
+		id = $(".remove-interest").length;
+		// make sure an interest is entered
+		if (newInterest) {
+			interests.push(newInterest);
+			// insert new row
+			var listItem = $("<li class='collection-item'></li>");
+				// add interest
+   			var itemName = $("<span>" + newInterest + "</span>");
+            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close'></i></span>");
+   			// prepend new interest to top of list
+   			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
+   			$('#interestsField-input').val("");
+		}
+	}
 
     $(document).on("click", ".edit-section.show-edit", function(event) {
         var child = $(event.target).parents('.col.s6.m3').attr('id');
-        // window.location.href = "profile.html?name="+dbChildren[child].name;
+        currentChild = child;
+        $("#interest-list").html("");
+        $("#nameField-input").val(localChildrenDB[child].name);
+        $("#ageField-input").val(localChildrenDB[child].age);
+        $("#avatarImage").attr("src", localChildrenDB[child].img_src);
+        interests = [];
+        localChildrenDB[child].interests.forEach(function(interest){
+        	addInterest(interest);
+        })
+        $("#edit-profile-modal").openModal();
     });
-// >>>>>>> 6ce0bc6afa66275b64876f0bda077c24d7a9c369
+
+
 
 	$("#btn-new-profile").click(function(event) {
 		$("#new-profile-modal").openModal();
@@ -331,3 +344,12 @@ $(function() {
         }
 	});
 });
+
+
+
+
+/**
+	Remove name over picture
+	Right align save button
+	Right align add interests button
+*/

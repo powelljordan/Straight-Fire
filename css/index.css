@@ -281,3 +281,8 @@ body {
 	text-align: center;
 	pointer-events: none;
 }
+
+#delete-profile{
+	width:90%;
+	background-color:#EC6A6A;
+}
