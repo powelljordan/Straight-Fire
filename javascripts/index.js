@@ -202,10 +202,38 @@ $(function() {
 			}
 			// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
 			console.log("ID", event.target.classList[0].split("_"));
-			// var selectedChild = dbChildren[event.target.classList[0].split("_")]
-			// var name = selectedChild.name;
-			// var interests = selectedChild.interests;
-			// $("#nameField-input").val(name);
+			var selectedChild = dbChildren[event.target.classList[0].split("_")[1]];
+			
+			var image = selectedChild.img_src;
+			var name = selectedChild.name;
+			var age = selectedChild.age;
+			var interests = selectedChild.interests;
+			
+			document.getElementById("name").innerHTML = name;
+			$("#avatarImage").attr("src",image);
+			$("#nameField-input").val(name);
+			$("#ageField-input").val(age);
+			
+			// loading interests
+			function addInterest(newInterest) {
+				id = $(".remove-interest").length;
+				// make sure an interest is entered
+				if (newInterest) {
+					// insert new row
+					var listItem = $("<li class='collection-item'></li>");
+						// add interest
+		   			var itemName = $("<span>" + newInterest + "</span>");
+		            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close left'></i></span>");
+		   			// prepend new interest to top of list
+		   			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
+		   			$('#interestsField-input').val("");
+				}
+			}
+
+			for (i = 0; i < interests.length; i++) {
+				addInterest(interests[i]);
+			}
+			
 			$("#edit-profile-modal").openModal();
 			// window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
 		});

@@ -23,6 +23,13 @@ $(function() {
 	// $("#nameField-input").css({display:"None"});
 	// $("#ageField-input").css({display:"None"});
 
+	// save button
+	function save() {
+
+		$('.nameField-input').replaceWith('<span class='+this.className+'>'+this.value+'</span>')
+		$('.ageField-input').replaceWith('<span class='+this.className+'>'+this.value+'</span>')
+	}
+
 	// // save button
 	// function save() {
 	// 	// make input text into solid text
@@ -85,16 +92,15 @@ $(function() {
 		// make sure an interest is entered
 		if (newInterest) {
 			// insert new row
-			var listItem = $("<li class='list-group-item'></li>");
+			var listItem = $("<li class='collection-item'></li>");
 				// add interest
    			var itemName = $("<span>" + newInterest + "</span>");
-            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close'></i></span>");
+            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close left'></i></span>");
    			// prepend new interest to top of list
    			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
    			$('#interestsField-input').val("");
 		}
 	}
-
 
 	// // only allow letters and white spaces to be typed for name and interests fields
 	// $("#interestsField-input").keypress(function(event){
@@ -152,24 +158,24 @@ $(function() {
 	// 	}
 	// };
 	
-	// // add an interest with enter key press
-	// $("#interest-input").keyup(function(event){
-	//     if(event.keyCode == 13){
-	//     	if ($("#interest-input").val()){
-	//     		addInterest($('#interest-input').val());
- //                $("#interest-input").val("");
-	//     	} else {
-	//     		save();
-	//     	}
-	//     }
-	// });
+	// add an interest with enter key press
+	$("#interest-input").keyup(function(event){
+	    if(event.keyCode == 13){
+	    	if ($("#interest-input").val()){
+	    		addInterest($('#interest-input').val());
+                $("#interest-input").val("");
+	    	} else {
+	    		save();
+	    	}
+	    }
+	});
 
- //    $("#add-interest").click(function() {
- //       if ($("#interest-input").val()) {
- //           addInterest($("#interest-input").val());
- //           $("#interest-input").val("");
- //       }
- //    });
+    $("#add-interest").click(function() {
+       if ($("#interest-input").val()) {
+           addInterest($("#interest-input").val());
+           $("#interest-input").val("");
+       }
+    });
 
 	// $("#nameField-input").keyup(function(event){
 	// 	if (event.keyCode==13){
@@ -202,7 +208,7 @@ $(function() {
 	});
 
 	$("#interest-list").on('click', '.remove-interest', function(event){
-		$(event.target).parents('.list-group-item').detach();
+		$(event.target).parents('.collection-item').detach();
 	});
 
 	// $("#btn-start-shopping").click(function(event){
@@ -230,11 +236,5 @@ $(function() {
 		// 	loadChildInfo(cur_child.name);
 		// }
 	}
-
-	$(".child-card").click(function(event){
-		var name = event.target.parentElement.id.split('-')[1];
-		name = name.charAt(0).toUpperCase() + name.slice(1);
-		loadChildInfo(name);
-	});
 			
 });
