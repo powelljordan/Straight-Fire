@@ -10,8 +10,8 @@
 		<link rel="stylesheet" href="../css/profile.css"/>
 		<script src="../jquery/js/jquery-1.12.3.min.js"></script>
 		<!-- <script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script> -->
-		<script src="../javascripts/index.js"></script>
 		<script src="../javascripts/profile.js"></script>
+		<script src="../javascripts/index.js"></script>
 		<script src="../javascripts/common.js"></script>
 		<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
@@ -19,6 +19,9 @@
 		<title>Home</title>
 	</head>
 	<body>
+	<div class="undo-col right-align">
+        <span class="undo" id="index-undo">Undo '<span id="index-undo-action">Delete</span>'</span>
+    </div>
     <div class="nav-wrapper"><div id="title" class="page-title center">toyChest</div></div>
 
 		<!-- Modal -->
@@ -103,9 +106,10 @@
                         <table>
                             <tr align="center">
                                 <td>
-                                    <div class="col s12 m12 l12">
-                                        <h4 id="name">David</h4>
-                                        <img id="avatarImage" class="responsive-img" src="../images/john.png">
+                                    <div class="col s10 m10 l10">
+                                        <h4 id="name"></h4>
+                                        <img id="avatarImage" class="responsive-img" src="">
+                                        <a id="delete-profile"class="btn large">Delete Profile</a>
                                         <div class="thumbnail col s2">
                                             
                                         </div>
@@ -121,20 +125,20 @@
                             <div class="col s12 m12 l12">
                                 <br><br>
                                 <div class="col s12 m12 l12">
-	                                    <input type='text' class="form-control" id='nameField-input' value="David" onClick='this.select()'>
+	                                    <input type='text' class="form-control" id='nameField-input' value="" onClick='this.select()'>
                                 </div>
                             </div>
                             <div class="col s12 m12 l12">
                                 <div class="col s12 m12 l12">
-                                    <input type='number' class="form-control" id='ageField-input' value= "8" onClick='this.select()'>
+                                    <input type='number' class="form-control" id='ageField-input' value= "" onClick='this.select()'>
                                 </div>
                             </div>
                             <div class="col s12 m12 l12">
-                                <div class="col s12 m12 l12" style="color:blue"><h5>Interests</h5></div>
+                                <div class="col s12 m12 l12"><h5>Interests</h5></div>
                                 <div class="col s12 m12 l12 new-interest">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="interest-input">
-                                        <span class="input-group-btn">
+                                        <input type="text" class="form-control col s9 m9" id="interest-input">
+                                        <span class="input-group-btn col s2 m2">
                                             <button class="btn btn-default" id="add-interest" type="button"><i class="fa fa-plus"></i></button>
                                         </span>
                                     </div>
@@ -143,16 +147,14 @@
                                 <div class="col s12 m12 l12">
                                     <!--list of interests -->
                                     <ul id="interest-list" class='collection'>
-                                        <li class="collection-item">
-                                            <span>Star Wars</span>
-                                            <span class="badge remove-interest"><i class="fa fa-close left"></i></span>
-                                        </li>
+ 
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col s6 m6 l6"><button id="btn-save-changes" class="btn btn-default">Save</button></div>
                         </div>
+                         <div class="col s12 m12 l12"><a id="btn-save-changes" class="btn right">Save</a></div>
                     </div> <!-- end of second half of page -->
+
 
                 </div>
             </div>

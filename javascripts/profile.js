@@ -1,3 +1,5 @@
+interests = [];
+currentChild = "";
 $(function() {
 	children = [
 		{
@@ -20,6 +22,9 @@ $(function() {
 		}
 	];
 
+
+	childrenDB = new Firebase("https://toychest.firebaseio.com/children");
+
 	// $("#nameField-input").css({display:"None"});
 	// $("#ageField-input").css({display:"None"});
 
@@ -31,60 +36,23 @@ $(function() {
 	}
 
 	// // save button
-	// function save() {
-	// 	// make input text into solid text
-	// 	var newName = $('#nameField-input').val();
-	// 	if (newName) {
-	// 		$("#nameField-span").text(newName);
-	// 		$("#name").text(newName);
-	// 		$("#nav-bar-dropdown").html(newName + "<span class='caret'></span>");
-	// 		$("#toychest-name").text(newName);
-	// 	}
-	// 	$("#nameField-input").hide();
-	// 	$("#nameField-span").show();
- //        $("#name-pencil").show();
+	function save() {
+		// make input text into solid text
+		var newName = $('#nameField-input').val();
+		if (newName) {
+			childrenDB.child(currentChild).child("name").set(newName);
+		}
 
-	// 	var newAge = $('#ageField-input').val();
-	// 	if (newAge) {
-	// 		$("#ageField-span").text(newAge);
-	// 	}
-	// 	$("#ageField-input").hide();
-	// 	$("#ageField-span").show();
- //        $("#age-pencil").show();
-
-	// 	var newInterest = $('#interestsField-input').val();
-	// 	if (newInterest) {
-	// 		addInterest();
-	// 	}
-
-	// 	// remove delete icons
-	// 	var deleteIcons = $('.glyphicon .glyphicon-remove .red');
-	// 	while(deleteIcons[0]) {
-	// 		deleteIcons[0].parentNode.removeChild(deleteIcons[0]);
-	// 	}
-	// } 
-
-
-	// // editing form fields
-	// function editName() {
-	// 	var newName = $("#nameField-span").text();		
-	// 	// make solid text into input text
-	// 	$("#nameField-span").hide();
-	// 	$("#nameField-input").show();
-	// 	$("#nameField-input").val(newName);
- //        $("#name-pencil").hide();
-	// 	$("#nameField-input").select();
-	// } 
-
-	// function editAge() {
-	// 	var newAge = $("#ageField-span").text();
-	// 	// make solid text into input text
-	// 	$("#ageField-span").hide();
-	// 	$("#ageField-input").show();
-	// 	$("#ageField-input").val(newAge);
- //        $('#age-pencil').hide();
-	// 	$("#ageField").select();
-	// }
+		var newAge = $('#ageField-input').val();
+		if (newAge) {
+			childrenDB.child(currentChild).child("age").set(newAge);
+		}
+		console.log(interests);
+		if (interests) {
+			childrenDB.child(currentChild).child("interests").set(interests);
+		}
+		Materialize.toast("Changes saved", 1500);
+	} 
 
 	// for the add interest plus button
 	function addInterest(newInterest) {
@@ -95,70 +63,65 @@ $(function() {
 			var listItem = $("<li class='collection-item'></li>");
 				// add interest
    			var itemName = $("<span>" + newInterest + "</span>");
-            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close left'></i></span>");
+            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close' style='pointer-events:none'></i></span>");
    			// prepend new interest to top of list
    			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
    			$('#interestsField-input').val("");
+   			interests.push(newInterest);
+   			console.log(interests);
 		}
 	}
 
+	var removeInterest = function(interest){
+		if(interests.indexOf(interest) > -1){
+			interests.splice(interests.indexOf(interest), 1);
+			$("#interest-list").html("");
+			console.log("before we re-add", interests);
+			console.log(currentChild);
+			interests.forEach(function(newInterest){
+				if (newInterest) {
+					// insert new row
+					var listItem = $("<li class='collection-item'></li>");
+						// add interest
+		   			var itemName = $("<span>" + newInterest + "</span>");
+		            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close' style='pointer-events:none'></i></span>");
+		   			// prepend new interest to top of list
+		   			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
+		   			$('#interestsField-input').val("");
+		   			console.log(interests);
+				}
+			})
+		}
+	}
+
+	$("#delete-profile").click(function(){
+		findChild(currentChild);
+		childrenDB.child(currentChild).remove();
+		$("#edit-profile-modal").closeModal();
+		// $("#"+currentChild).remove();
+		deleteAction(currentChild);
+	})
+
+
 	// // only allow letters and white spaces to be typed for name and interests fields
-	// $("#interestsField-input").keypress(function(event){
- //        var inputValue = event.which;
- //        // allow letters and whitespaces only.
- //        if((inputValue > 47 && inputValue < 58) && (inputValue != 32)){
- //            event.preventDefault();
- //        }
- //    });
+	$("#interestsField-input").keypress(function(event){
+        var inputValue = event.which;
+        // allow letters and whitespaces only.
+        if((inputValue > 47 && inputValue < 58) && (inputValue != 32)){
+            event.preventDefault();
+        }
+    });
 
- //    $("#nameField-input").keypress(function(event){
- //        var inputValue = event.which;
- //        //interest allow letters and whitespaces only.
- //        if((inputValue > 47 && inputValue < 58) && (inputValue != 32)){
- //            event.preventDefault();
- //        }
- //    });
+    $("#nameField-input").keypress(function(event){
+        var inputValue = event.which;
+        //interest allow letters and whitespaces only.
+        if((inputValue > 47 && inputValue < 58) && (inputValue != 32)){
+            event.preventDefault();
+        }
+    });
 
 
-    // save automatically when user clicks out of the input text box
-    $("#nameField-input").blur(function() {
-    	save();
-	});
-    $("#ageField-input").blur(function() {
-    	save();
-	});
-    $("#interestsField-input").blur(function() {
-    	save();
-	});
-
-	
-
-	// // select child's profile to view
-	// var loadChildInfo = function(name) {
-	// 	var child = $.grep(children, function(e){ return e.name == name; })[0];
-	// 	$("#name").text(child.name);
-	// 	$("#nameField-span").text(child.name);
-	// 	$("#ageField-span").text(child.age);
-	// 	$("#interest-list").empty();
-	// 	$("#avatarImage").attr('src',child.img_src);
-	// 	for (var i = 0; i < child.interests.length; i++) {
-	// 		addInterest(child.interests[i]);
-	// 	}
-	// };
-
-	// // add inputs to profile for each child
-	// var createChild = function(name, age, interests) {
-	// 	$("#name").text(name);
-	// 	$("#nameField-span").text(name);
-	// 	$("#ageField-span").text(age);
-	// 	$("#toychest-name").text(name);
-	// 	$("#interest-list").empty();
-	// 	for (var i = 0; i < interests.length; i++) {
-	// 		addInterest(interests[i]);
-	// 	}
-	// };
-	
-	// add an interest with enter key press
+	// // add an interest with enter key press
 	$("#interest-input").keyup(function(event){
 	    if(event.keyCode == 13){
 	    	if ($("#interest-input").val()){
@@ -177,38 +140,15 @@ $(function() {
        }
     });
 
-	// $("#nameField-input").keyup(function(event){
-	// 	if (event.keyCode==13){
-	// 		save();
-	// 	}
-	// });
-
-	// $("#ageField-input").keyup(function(event){
-	// 	if (event.keyCode==13){
-	// 		save();
-	// 	}
-	// });
-
-	// $(".edit-name").click(function(event) {
-	// 	editName();
-	// 	$("#nameField-input").select();
-	// });
-
-	// $(".edit-age").click(function(event){
-	// 	editAge();
-	// 	$("#ageField-input").select();
-	// });
-
-	$("#add-interest").click(function(event){
-		addInterest($('#interestsField-input').val());
-	});
-
 	$("#btn-save-changes").click(function(event){
 		save();
 	});
 
 	$("#interest-list").on('click', '.remove-interest', function(event){
 		$(event.target).parents('.collection-item').detach();
+		var deletedInterest = $(event.target).parents('.collection-item').find('span')[0].innerText;
+		removeInterest(deletedInterest);
+		console.log(interests);
 	});
 
 	// $("#btn-start-shopping").click(function(event){
@@ -236,5 +176,12 @@ $(function() {
 		// 	loadChildInfo(cur_child.name);
 		// }
 	}
+
+
+	// $(".child-card").click(function(event){
+	// 	var name = event.target.parentElement.id.split('-')[1];
+	// 	name = name.charAt(0).toUpperCase() + name.slice(1);
+	// 	loadChildInfo(name);
+	// });
 			
 });

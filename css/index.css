@@ -296,3 +296,8 @@ body {
 	cursor: pointer;
 	text-decoration: underline;
 }
+
+#delete-profile{
+	width:90%;
+	background-color:#EC6A6A;
+}

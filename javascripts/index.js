@@ -126,6 +126,7 @@ $(function() {
 
 	//For example I can add the two children I defined above to our firebase
 	var childrenDB = rootRef.child("children");
+	var localChildrenDB = {};
 	children.forEach(function(child){
 		rootRef.child('children').child(child.id).set(child);
 	})
@@ -133,6 +134,7 @@ $(function() {
 	//Then I can print them from the database as they're added by adding a listener and getting a snapshot
 	rootRef.child('children').on("value", function(snapshot){
 		dbChildren = snapshot.val();
+		localChildrenDB = dbChildren;
 		children = [];
 		for (var key in dbChildren) {
 	    // skip loop if the property is from prototype
@@ -160,98 +162,83 @@ $(function() {
    	'</div>'
 	);
 
-
+	var initialized = false;
 	childrenDB.on("child_added", function(snapshot){
-		var child = snapshot.val();
+		if (!initialized) {
+			var child = snapshot.val();
+			$("#btn-new-profile").before(
+				'<div class = "col s6 m3" id="'+child.id+'">'+
+					'<div class="card child-card">'+
+				      '<div class = "profile-image card-image">'+
+				      '<img class="activator" src = "'+ child.img_src + '" alt = "Generic placeholder thumbnail">'+
+				      '</div>'+
+				      '<div class = "card-content">'+
+				         '<div class="row btn-row">'+
+				            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col s6" role = "button">'+
+				               'Toys'+
+				            '</a> '+
+				            '<a href="shopping.html?id='+child.id+'" class="btn btn-start-shopping col s6" role = "button">' +
+				            	' Shop'+
+				            '</a>' +
+				          '</div>'+
+						  '<div class="card-title name"></div>' +
+				       '</div>'+
+				       '<div class="edit-section">'+
+				       	 '<div class = "card-image waves-effect waves-block waves-light edit-icon-container">'+
+			      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile">edit</i>'+
+			      		 '</div>'+
+				      '</div>'+
+				     '</div>'+
+			   	'</div>'
+				);
+			$("#"+child.id).find(".card-content").find(".name").text(child.name);
+			$("#"+child.id).find(".card-reveal").find(".name").html(child.name);
 
-		$("#btn-new-profile").before(
-			'<div class = "col s6 m3" id="'+child.id+'">'+
-				'<div class="card child-card">'+
-			      '<div class = "profile-image card-image">'+
-			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
-			      '</div>'+
-			      '<div class = "card-content">'+
-			         '<div class="row btn-row">'+
-			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col s6" role = "button">'+
-			               'Toys'+
-			            '</a> '+
-			            '<a href="shopping.html?id='+child.id+'" class="btn btn-start-shopping col s6" role = "button">' +
-			            	' Shop'+
-			            '</a>' +
-			          '</div>'+
-					  '<div class="card-title name"></div>' +
-			       '</div>'+
-			       '<div class="edit-section">'+
-			       	 '<div class = "card-image waves-effect waves-block waves-light edit-icon-container">'+
-		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile">edit</i>'+
-		      		 '</div>'+
-			      '</div>'+
-			     '</div>'+
-		   	'</div>'
-			);
-		$("#"+child.id).find(".card-content").find(".name").text(child.name);
-		$("#"+child.id).find(".card-reveal").find(".name").html(child.name);
 
-
-		$(".profile").click(function(event){
-	// console.log(event.target);
-			if (event.target.classList[0] === "btn") return;
-			var profile = event.target.parentElement;
-			if (profile.classList[0] !== 'profile') {
-				profile = profile.parentElement;
-			}
-			// var child = $.grep(children, function(e){ return e.id == profile.id; })[0];
-			console.log("ID", event.target.classList[0].split("_"));
-			var selectedChild = dbChildren[event.target.classList[0].split("_")[1]];
-			
-			var image = selectedChild.img_src;
-			var name = selectedChild.name;
-			var age = selectedChild.age;
-			var interests = selectedChild.interests;
-			
-			document.getElementById("name").innerHTML = name;
-			$("#avatarImage").attr("src",image);
-			$("#nameField-input").val(name);
-			$("#ageField-input").val(age);
-			
-			// loading interests
-			function addInterest(newInterest) {
-				id = $(".remove-interest").length;
-				// make sure an interest is entered
-				if (newInterest) {
-					// insert new row
-					var listItem = $("<li class='collection-item'></li>");
-						// add interest
-		   			var itemName = $("<span>" + newInterest + "</span>");
-		            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close left'></i></span>");
-		   			// prepend new interest to top of list
-		   			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
-		   			$('#interestsField-input').val("");
+			$(".profile").click(function(event){
+		// console.log(event.target);
+				if (event.target.classList[0] === "btn") return;
+				var profile = event.target.parentElement;
+				if (profile.classList[0] !== 'profile') {
+					profile = profile.parentElement;
 				}
-			}
-
-			for (i = 0; i < interests.length; i++) {
-				addInterest(interests[i]);
-			}
-			
-			$("#edit-profile-modal").openModal();
-			// window.location.href = "profile.html?name="+dbChildren[event.target.classList[0].split("_")[1]].name;
-		});
+			});
+		}
 
 	});
 
-	$(".card-reveal").click(function(event) {
-		console.log("hello");
-		$("#edit-profile-modal").openModal();
-	});
-
-// 	});
+	function addInterest(newInterest) {
+		id = $(".remove-interest").length;
+		// make sure an interest is entered
+		if (newInterest) {
+			interests.push(newInterest);
+			// insert new row
+			var listItem = $("<li class='collection-item'></li>");
+				// add interest
+   			var itemName = $("<span>" + newInterest + "</span>");
+            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close'></i></span>");
+   			// prepend new interest to top of list
+   			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
+   			$('#interestsField-input').val("");
+		}
+	}
 
     $(document).on("click", ".edit-section.show-edit", function(event) {
+		initialized = true;
         var child = $(event.target).parents('.col.s6.m3').attr('id');
-        // window.location.href = "profile.html?name="+dbChildren[child].name;
+        currentChild = child;
+        $("#interest-list").html("");
+        $("#nameField-input").val(localChildrenDB[child].name);
+        $("#ageField-input").val(localChildrenDB[child].age);
+        $("#avatarImage").attr("src", localChildrenDB[child].img_src);
+        interests = [];
+        localChildrenDB[child].interests.forEach(function(interest){
+        	addInterest(interest);
+        })
+        $("#edit-profile-modal").openModal();
     });
-// >>>>>>> 6ce0bc6afa66275b64876f0bda077c24d7a9c369
+
+
 
 	$("#btn-new-profile").click(function(event) {
 		$("#new-profile-modal").openModal();
@@ -356,5 +343,43 @@ $(function() {
             $("#manageProfiles").text("Manage Profiles");
             $('.edit-section', '.child-card').fadeOut().removeClass('show-edit');
         }
+	});
+
+	var lastDeleted;
+	var deletedChild;
+	deleteAction = function(child_id) {
+		$('#'+child_id).fadeOut({
+			complete: function() {
+				lastDeleted = $('#'+child_id).addClass('item-hidden');
+				$('#index-undo').fadeIn();
+			}
+		});
+	};
+
+	findChild = function(child_id) {
+		console.log(children, 'CHIDREN');
+		var index = -1;
+		for (var i = 0; i < children.length; i++) {
+			if (children[i].id == child_id) {
+				index = i;
+				break;
+			}
+		}
+		deletedChild = children.splice(index,1);
+	}
+
+	var addChildBack = function() {
+		console.log(deletedChild[0], "DC");
+		if (deletedChild[0]) {
+			childrenDB.child(deletedChild[0].id).set(deletedChild[0]);
+		}
+	}
+
+	$("#index-undo").click(function() {
+		if (lastDeleted) {
+			lastDeleted.removeClass('item-hidden').fadeIn();
+			$(this).fadeOut();
+			addChildBack();
+		}
 	});
 });
