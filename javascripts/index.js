@@ -86,7 +86,7 @@ $(function() {
 				img_src:"../images/scooter.jpg"
 			}],
 			interests:["Cars", "Action Figures", "Painting"],
-			wishlist: [0,1]
+			wishlist: [0,9]
 		}
 
 	jill = {
