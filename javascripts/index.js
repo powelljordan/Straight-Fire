@@ -105,7 +105,7 @@ $(function() {
 	var images = [jill, annie];
 	var selectedImage;
 
-	var children = [john, david];
+	var children = [];
 	var firstItem = true;
 	var offset;
 	var test = function(){
