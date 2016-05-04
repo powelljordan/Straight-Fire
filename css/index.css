@@ -281,3 +281,18 @@ body {
 	text-align: center;
 	pointer-events: none;
 }
+
+.undo-col {
+	margin-top: 7px;
+	height: 20px;
+	margin-right:10px;
+}
+
+.undo {
+	display: none;
+}
+
+.undo:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
