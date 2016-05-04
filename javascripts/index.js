@@ -355,6 +355,8 @@ $(function() {
 			complete: function() {
 				lastDeleted = $('#'+child_id).addClass('item-hidden');
 				$('#index-undo').fadeIn();
+                var index = $('#' + child_id).attr('data-slick-index');
+                $('#carousel').slick('slickRemove', index);
 			}
 		});
 	};
@@ -368,18 +370,19 @@ $(function() {
 			}
 		}
 		deletedChild = children.splice(index,1);
-	}
+	};
 
 	var addChildBack = function() {
 		if (deletedChild[0]) {
 			childrenDB.child(deletedChild[0].id).set(deletedChild[0]);
 		}
-	}
+	};
 
 	$("#index-undo").click(function() {
 		if (lastDeleted) {
 			lastDeleted.removeClass('item-hidden').fadeIn();
 			$(this).fadeOut();
+            $('#carousel').slick('slickAdd', lastDeleted);
 			addChildBack();
 		}
 	});
