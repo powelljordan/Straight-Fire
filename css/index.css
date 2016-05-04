@@ -282,6 +282,21 @@ body {
 	pointer-events: none;
 }
 
+.undo-col {
+	margin-top: 7px;
+	height: 20px;
+	margin-right:10px;
+}
+
+.undo {
+	display: none;
+}
+
+.undo:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
 #delete-profile{
 	width:90%;
 	background-color:#EC6A6A;

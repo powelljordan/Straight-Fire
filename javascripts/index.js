@@ -162,46 +162,48 @@ $(function() {
    	'</div>'
 	);
 
-
+	var initialized = false;
 	childrenDB.on("child_added", function(snapshot){
-		var child = snapshot.val();
-		$("#btn-new-profile").before(
-			'<div class = "col s6 m3" id="'+child.id+'">'+
-				'<div class="card child-card">'+
-			      '<div class = "profile-image card-image">'+
-			         '<img class="activator" src = "../images/'+ child.name.charAt(0).toLowerCase() + child.name.slice(1) + '.png" alt = "Generic placeholder thumbnail">'+
-			      '</div>'+
-			      '<div class = "card-content">'+
-			         '<div class="row btn-row">'+
-			            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col s6" role = "button">'+
-			               'Toys'+
-			            '</a> '+
-			            '<a href="shopping.html?id='+child.id+'" class="btn btn-start-shopping col s6" role = "button">' +
-			            	' Shop'+
-			            '</a>' +
-			          '</div>'+
-					  '<div class="card-title name"></div>' +
-			       '</div>'+
-			       '<div class="edit-section">'+
-			       	 '<div class = "card-image waves-effect waves-block waves-light edit-icon-container">'+
-		      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile">edit</i>'+
-		      		 '</div>'+
-			      '</div>'+
-			     '</div>'+
-		   	'</div>'
-			);
-		$("#"+child.id).find(".card-content").find(".name").text(child.name);
-		$("#"+child.id).find(".card-reveal").find(".name").html(child.name);
+		if (!initialized) {
+			var child = snapshot.val();
+			$("#btn-new-profile").before(
+				'<div class = "col s6 m3" id="'+child.id+'">'+
+					'<div class="card child-card">'+
+				      '<div class = "profile-image card-image">'+
+				      '<img class="activator" src = "'+ child.img_src + '" alt = "Generic placeholder thumbnail">'+
+				      '</div>'+
+				      '<div class = "card-content">'+
+				         '<div class="row btn-row">'+
+				            '<a href = "toys.html?id='+ child.id +'" class = "btn btn-toychest col s6" role = "button">'+
+				               'Toys'+
+				            '</a> '+
+				            '<a href="shopping.html?id='+child.id+'" class="btn btn-start-shopping col s6" role = "button">' +
+				            	' Shop'+
+				            '</a>' +
+				          '</div>'+
+						  '<div class="card-title name"></div>' +
+				       '</div>'+
+				       '<div class="edit-section">'+
+				       	 '<div class = "card-image waves-effect waves-block waves-light edit-icon-container">'+
+			      			'<i class="edit_'+child.id+' material-icons large edit-icon  profile">edit</i>'+
+			      		 '</div>'+
+				      '</div>'+
+				     '</div>'+
+			   	'</div>'
+				);
+			$("#"+child.id).find(".card-content").find(".name").text(child.name);
+			$("#"+child.id).find(".card-reveal").find(".name").html(child.name);
 
 
-		$(".profile").click(function(event){
-	// console.log(event.target);
-			if (event.target.classList[0] === "btn") return;
-			var profile = event.target.parentElement;
-			if (profile.classList[0] !== 'profile') {
-				profile = profile.parentElement;
-			}
-		});
+			$(".profile").click(function(event){
+		// console.log(event.target);
+				if (event.target.classList[0] === "btn") return;
+				var profile = event.target.parentElement;
+				if (profile.classList[0] !== 'profile') {
+					profile = profile.parentElement;
+				}
+			});
+		}
 
 	});
 
@@ -222,6 +224,7 @@ $(function() {
 	}
 
     $(document).on("click", ".edit-section.show-edit", function(event) {
+		initialized = true;
         var child = $(event.target).parents('.col.s6.m3').attr('id');
         currentChild = child;
         $("#interest-list").html("");
@@ -346,13 +349,42 @@ $(function() {
             $('.edit-section', '.child-card').fadeOut().removeClass('show-edit');
         }
 	});
+
+	var lastDeleted;
+	var deletedChild;
+	deleteAction = function(child_id) {
+		$('#'+child_id).fadeOut({
+			complete: function() {
+				lastDeleted = $('#'+child_id).addClass('item-hidden');
+				$('#index-undo').fadeIn();
+			}
+		});
+	};
+
+	findChild = function(child_id) {
+		console.log(children, 'CHIDREN');
+		var index = -1;
+		for (var i = 0; i < children.length; i++) {
+			if (children[i].id == child_id) {
+				index = i;
+				break;
+			}
+		}
+		deletedChild = children.splice(index,1);
+	}
+
+	var addChildBack = function() {
+		console.log(deletedChild[0], "DC");
+		if (deletedChild[0]) {
+			childrenDB.child(deletedChild[0].id).set(deletedChild[0]);
+		}
+	}
+
+	$("#index-undo").click(function() {
+		if (lastDeleted) {
+			lastDeleted.removeClass('item-hidden').fadeIn();
+			$(this).fadeOut();
+			addChildBack();
+		}
+	});
 });
-
-
-
-
-/**
-	Remove name over picture
-	Right align save button
-	Right align add interests button
-*/

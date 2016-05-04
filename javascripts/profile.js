@@ -94,11 +94,12 @@ $(function() {
 		}
 	}
 
-
 	$("#delete-profile").click(function(){
+		findChild(currentChild);
 		childrenDB.child(currentChild).remove();
 		$("#edit-profile-modal").closeModal();
-		$("#"+currentChild).remove();
+		// $("#"+currentChild).remove();
+		deleteAction(currentChild);
 	})
 
 
