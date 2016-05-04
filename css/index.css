@@ -82,14 +82,20 @@ body {
 
 #profiles{
 	padding-top: 5%;
-	overflow-x: auto;
-	overflow-y: hidden;
     white-space: nowrap;
 }
 
 #profiles [class*="col"],
 #profiles [class*="div"]{
 	white-space: normal;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: black !important;
+}
+
+#add-interest {
+    padding: 0 1.65rem !important;
 }
 
 
