@@ -151,22 +151,26 @@ $(function() {
 	//Read or write permissions right now so technically I think anyone can write to the db, but if we feel it's necessary
 	//we can add those later
 
-	$("#profiles").append(
-	'<div id="btn-new-profile" class = "col s6 m3">'+
-		'<div class="card add-card">'+
-	      '<div class = "card-image add-icon-container">'+
-	      '<i class="material-icons large add-icon">add</i>'+
-	      '</div>'+
-	      '<div id="addToyText" class="add-label">ADD CHILD</div>'+
-	    '</div>'+
-   	'</div>'
-	);
+    $('#carousel').slick({
+        dots: true,
+        slidesToShow: 4,
+        slidesToScroll: 4
+    });
+
+	//var addCard = '<div id="btn-new-profile" class = "col s6 m3">'+
+	//	'<div class="card add-card">'+
+	//      '<div class = "card-image add-icon-container">'+
+	//      '<i class="material-icons large add-icon">add</i>'+
+	//      '</div>'+
+	//      '<div id="addToyText" class="add-label">ADD CHILD</div>'+
+	//    '</div>'+
+   	//'</div>';
 
 	var initialized = false;
 	childrenDB.on("child_added", function(snapshot){
 		if (!initialized) {
 			var child = snapshot.val();
-			$("#btn-new-profile").before(
+			$("#carousel").slick("slickAdd",
 				'<div class = "col s6 m3" id="'+child.id+'">'+
 					'<div class="card child-card">'+
 				      '<div class = "profile-image card-image">'+
@@ -192,16 +196,15 @@ $(function() {
 			   	'</div>'
 				);
 			$("#"+child.id).find(".card-content").find(".name").text(child.name);
-			$("#"+child.id).find(".card-reveal").find(".name").html(child.name);
 
 
-			$(".profile").click(function(event){
-				if (event.target.classList[0] === "btn") return;
-				var profile = event.target.parentElement;
-				if (profile.classList[0] !== 'profile') {
-					profile = profile.parentElement;
-				}
-			});
+			//$(".profile").click(function(event){
+			//	if (event.target.classList[0] === "btn") return;
+			//	var profile = event.target.parentElement;
+			//	if (profile.classList[0] !== 'profile') {
+			//		profile = profile.parentElement;
+			//	}
+			//});
 		}
 
 	});
@@ -215,7 +218,7 @@ $(function() {
 			var listItem = $("<li class='collection-item'></li>");
 				// add interest
    			var itemName = $("<span>" + newInterest + "</span>");
-            var deleteBtn = $("<span class='badge remove-interest'><i class='fa fa-close'></i></span>");
+            var deleteBtn = $("<span class='badge remove-interest'><i class='material-icons'>close</i></span>");
    			// prepend new interest to top of list
    			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
    			$('#interestsField-input').val("");
@@ -233,7 +236,7 @@ $(function() {
         interests = [];
         localChildrenDB[child].interests.forEach(function(interest){
         	addInterest(interest);
-        })
+        });
         $("#edit-profile-modal").openModal();
     });
 

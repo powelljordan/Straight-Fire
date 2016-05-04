@@ -1,178 +1,192 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<!-- <link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.min.css"/> -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-		<!-- <link rel="stylesheet" href="../css/common.css"/> -->
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-		<link rel="stylesheet" href="../css/index.css"/>
-		<link rel="stylesheet" href="../css/profile.css"/>
-		<script src="../jquery/js/jquery-1.12.3.min.js"></script>
-		<!-- <script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script> -->
-		<script src="../javascripts/profile.js"></script>
-		<script src="../javascripts/index.js"></script>
-		<script src="../javascripts/common.js"></script>
-		<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-		<script src="../javascripts/load_data.js"></script>
-		<title>Home</title>
-	</head>
-	<body>
-	<div class="undo-col right-align">
-        <span class="undo" id="index-undo">Undo '<span id="index-undo-action">Delete</span>'</span>
-    </div>
-    <div class="nav-wrapper"><div id="title" class="page-title center">toyChest</div></div>
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.min.css"/> -->
+    <!-- <link rel="stylesheet" href="../css/common.css"/> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" href="../css/index.css"/>
+    <link rel="stylesheet" href="../css/profile.css"/>
+    <link rel="stylesheet" href="../slick/slick-theme.css">
+    <link rel="stylesheet" href="../slick/slick.css">
+    <script src="../jquery/js/jquery-1.12.3.min.js"></script>
+    <!-- <script src="../bootstrap-3.3.6-dist/js/bootstrap.min.js"></script> -->
+    <script src="../slick/slick.min.js"></script>
+    <script src="../javascripts/profile.js"></script>
+    <script src="../javascripts/index.js"></script>
+    <script src="../javascripts/common.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="../javascripts/load_data.js"></script>
+    <title>Home</title>
+</head>
+<body>
+<div class="undo-col right-align">
+    <span class="undo" id="index-undo">Undo '<span id="index-undo-action">Delete</span>'</span>
+</div>
+<div class="nav-wrapper"><div id="title" class="page-title center">toyChest</div></div>
 
-		<!-- Modal -->
-		<div id="new-profile-modal" class="modal bottom-sheet" role="dialog">
-	    <div class="modal-content col s6 m6 l6">
-	    	<div class="modal-header">
-	    		<h4 class="modal-title center">Create New Profile<i class="material-icons right modal-close">close</i></h4>
+<!-- Modal -->
+<div id="new-profile-modal" class="modal bottom-sheet" role="dialog">
+    <div class="modal-content col s6 m6 l6">
+        <div class="modal-header">
+            <h4 class="modal-title center">Create New Profile<i class="material-icons right modal-close">close</i></h4>
 
-	    	</div>
-	    	<div class="row create-profile-padding">
-			  <div class="">
-			    <label for="name">Name</label>
-			    <input type="text" class="form-control" id="create-name" placeholder="Name">
-			  </div>
-			  <div class="">
-			    <label for="age">Age</label>
-			    <input type="number" class="form-control" id="create-age" placeholder="Numerical value">
-			  </div>
-			  <div class="">
-			    <label for="interests">Interests</label>
-			    <small class="text-muted">(Please separate interests with commas)</small>
-			    <input type="text" class="form-control" id="create-interests" placeholder="Enter interests">
-			  </div> 
-					<!-- <label class="control-label">Select Toy Image</label> -->
-				  <form action="#">
-				    <div class="file-field input-field">
-				      <div id="addFile" class="btn">
-				        <span>File</span>
-				      </div>
-				      <div class="file-path-wrapper">
-				        <input id="file-path" class=" validate" type="text" placeholder="Upload a picture">
-				      </div>
-				    </div>
-				  </form>
-				  <button id="btn-create-profile" type="submit" class="btn right">Create</button>
-				</div>
-
-				<div id="create-profile-modal-footer" class="modal-footer class="row create-profile-padding"">
-	    		
-	    	</div>
-	    </div>
-		</div>
-
-
-		<div id="choose-file-modal" class="modal" role="dialog">
-	    <div class="modal-content">
-	    	<div class="modal-header">
-	    		<h4 class="modal-title">Open</h4>
-	    	</div>
-	    	<div id="localImages" class="row">
-
-			  </div>
-				<div id="create-profile-modal-footer" class="modal-footer">
-					<div class="row">
-					  <div class="input-field col s8 m8">
-					  	<input placeholder="File name" id="file-name" type="text" class="validate">
-					  </div>
-					  <div class="input-field col s4 m4">
-					    <select>
-					      <option value="" disabled selected>All Files(*.*)</option>
-					      <option value="1">.png</option>
-					    </select>
-					  </div>
-					<div class="col s12 m12">
-	    		<a id="btn-cancel-file" class="modal-action btn-flat waves-effect waves-light">Cancel</a>
-	    		<a id="btn-open-file"class="modal-action btn-flat waves-effect waves-light">Open</a>
-	    		</div>
-	    		</div>
-	    	</div>
-	    </div>
-		</div>
-
-		    <!-- Modal -->
-    <div id="edit-profile-modal" class="modal bottom-sheet" role="dialog">
-        <div class="modal-content col s6 m6 l6">
-            <div class="modal-header">
-                <h4 class="modal-title center">Edit Profile<i class="material-icons right modal-close">close</i></h4>
+        </div>
+        <div class="row create-profile-padding">
+            <div class="">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="create-name" placeholder="Name">
             </div>
-            <div class="container" >
-                <div class="row">
-                    <div class="col s5 m5 l5 center offset-s1 offset-m1 offset-l1">
-                        <table>
-                            <tr align="center">
-                                <td>
-                                    <div class="col s10 m10 l10">
-                                        <h4 id="name"></h4>
-                                        <img id="avatarImage" class="responsive-img" src="../images/default-profile.png">
-                                        <a id="delete-profile"class="btn large">Delete Profile</a>
-                                        <div class="thumbnail col s2">
-                                            
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table> <!-- end of first half of page -->
+            <div class="">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="create-age" placeholder="Numerical value">
+            </div>
+            <div class="">
+                <label for="interests">Interests</label>
+                <small class="text-muted">(Please separate interests with commas)</small>
+                <input type="text" class="form-control" id="create-interests" placeholder="Enter interests">
+            </div>
+            <!-- <label class="control-label">Select Toy Image</label> -->
+            <form action="#">
+                <div class="file-field input-field">
+                    <div id="addFile" class="btn">
+                        <span>File</span>
                     </div>
+                    <div class="file-path-wrapper">
+                        <input id="file-path" class=" validate" type="text" placeholder="Upload a picture">
+                    </div>
+                </div>
+            </form>
+            <button id="btn-create-profile" type="submit" class="btn right">Create</button>
+        </div>
+
+        <div id="create-profile-modal-footer" class="modal-footer class="row create-profile-padding"">
+
+    </div>
+</div>
+</div>
 
 
-                    <div class="col s5 m5 l5">
-                        <div class="row" id='profile-table'>
-                            <div class="col s12 m12 l12">
-                                <br><br>
-                                <div class="col s12 m12 l12">
-	                                    <input type='text' class="form-control" id='nameField-input' value="" onClick='this.select()'>
-                                </div>
-                            </div>
-                            <div class="col s12 m12 l12">
-                                <div class="col s12 m12 l12">
-                                    <input type='number' class="form-control" id='ageField-input' value= "" onClick='this.select()'>
-                                </div>
-                            </div>
-                            <div class="col s12 m12 l12">
-                                <div class="col s12 m12 l12"><h5>Interests</h5></div>
-                                <div class="col s12 m12 l12 new-interest">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control col s9 m9" id="interest-input">
-                                        <span class="input-group-btn col s2 m2">
-                                            <button class="btn btn-default" id="add-interest" type="button"><i class="fa fa-plus"></i></button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- list of interests -->
-                                <div class="col s12 m12 l12">
-                                    <!--list of interests -->
-                                    <ul id="interest-list" class='collection'>
- 
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="col s12 m12 l12"><a id="btn-save-changes" class="btn right">Save</a></div>
-                    </div> <!-- end of second half of page -->
+<div id="choose-file-modal" class="modal" role="dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Open</h4>
+        </div>
+        <div id="localImages" class="row">
 
-
+        </div>
+        <div id="create-profile-modal-footer" class="modal-footer">
+            <div class="row">
+                <div class="input-field col s8 m8">
+                    <input placeholder="File name" id="file-name" type="text" class="validate">
+                </div>
+                <div class="input-field col s4 m4">
+                    <select>
+                        <option value="" disabled selected>All Files(*.*)</option>
+                        <option value="1">.png</option>
+                    </select>
+                </div>
+                <div class="col s12 m12">
+                    <a id="btn-cancel-file" class="modal-action btn-flat waves-effect waves-light">Cancel</a>
+                    <a id="btn-open-file"class="modal-action btn-flat waves-effect waves-light">Open</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div id="edit-profile-modal" class="modal bottom-sheet" role="dialog">
+    <div class="modal-content col s6 m6 l6">
+        <div class="modal-header">
+            <h4 class="modal-title center">Edit Profile<i class="material-icons right modal-close">close</i></h4>
+        </div>
+        <div class="container" >
+            <div class="row">
+                <div class="col s5 m5 l5 center offset-s1 offset-m1 offset-l1">
+                    <table>
+                        <tr align="center">
+                            <td>
+                                <div class="col s10 m10 l10">
+                                    <h4 id="name"></h4>
+                                    <img id="avatarImage" class="responsive-img" src="../images/default-profile.png">
+                                    <a id="delete-profile"class="btn large">Delete Profile</a>
+                                    <div class="thumbnail col s2">
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table> <!-- end of first half of page -->
+                </div>
+
+
+                <div class="col s5 m5 l5">
+                    <div class="row" id='profile-table'>
+                        <div class="col s12 m12 l12">
+                            <br><br>
+                            <div class="col s12 m12 l12">
+                                <input type='text' class="form-control" id='nameField-input' value="" onClick='this.select()'>
+                            </div>
+                        </div>
+                        <div class="col s12 m12 l12">
+                            <div class="col s12 m12 l12">
+                                <input type='number' class="form-control" id='ageField-input' value= "" onClick='this.select()'>
+                            </div>
+                        </div>
+                        <div class="col s12 m12 l12">
+                            <div class="col s12 m12 l12"><h5>Interests</h5></div>
+                            <div class="col s12 m12 l12 new-interest">
+                                <div class="input-group">
+                                    <input type="text" class="form-control col s9 m9" id="interest-input">
+                                        <span class="input-group-btn col s2 m2">
+                                            <button class="btn btn-default" id="add-interest" type="button"><i class="material-icons">add</i></button>
+                                        </span>
+                                </div>
+                            </div>
+                            <!-- list of interests -->
+                            <div class="col s12 m12 l12">
+                                <!--list of interests -->
+                                <ul id="interest-list" class='collection'>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l12"><a id="btn-save-changes" class="btn right">Save</a></div>
+                </div> <!-- end of second half of page -->
+
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
-		<div class = "row" >
-			<div class="col m8 s12 offset-m2 " id="profiles"></div>
-	  	</div>
-	    <div class="row">
-	      <div class="col m2 s4 offset-m5 offset-s4" >
-	        <div id="manageProfiles" class="activator card-panel center waves-effect waves-block waves-light">
-	          <span class="gray-text text">Manage Profiles</span>
-	        </div>
-	      </div>
-	    </div>
-	</body>
+<div class = "row" >
+    <div class="col m8 s12 offset-m2 " id="profiles">
+        <div id="carousel">
+            <div id="btn-new-profile" class="col s6 m3">
+                <div class="card add-card">
+                    <div class = "card-image add-icon-container">
+                        <i class="material-icons large add-icon">add</i>
+                    </div>
+                    <div id="addToyText" class="add-label">ADD CHILD</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col m2 s4 offset-m5 offset-s4" >
+        <div id="manageProfiles" class="activator card-panel center waves-effect waves-block waves-light">
+            <span class="gray-text text">Manage Profiles</span>
+        </div>
+    </div>
+</div>
+</body>
 
 </html>
