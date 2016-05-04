@@ -47,7 +47,6 @@ $(function() {
 		if (newAge) {
 			childrenDB.child(currentChild).child("age").set(newAge);
 		}
-		console.log(interests);
 		if (interests) {
 			childrenDB.child(currentChild).child("interests").set(interests);
 		}
@@ -68,7 +67,6 @@ $(function() {
    			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
    			$('#interestsField-input').val("");
    			interests.push(newInterest);
-   			console.log(interests);
 		}
 	}
 
@@ -76,8 +74,6 @@ $(function() {
 		if(interests.indexOf(interest) > -1){
 			interests.splice(interests.indexOf(interest), 1);
 			$("#interest-list").html("");
-			console.log("before we re-add", interests);
-			console.log(currentChild);
 			interests.forEach(function(newInterest){
 				if (newInterest) {
 					// insert new row
@@ -88,7 +84,6 @@ $(function() {
 		   			// prepend new interest to top of list
 		   			listItem.append(itemName, deleteBtn).prependTo("#interest-list");
 		   			$('#interestsField-input').val("");
-		   			console.log(interests);
 				}
 			})
 		}
@@ -148,7 +143,6 @@ $(function() {
 		$(event.target).parents('.collection-item').detach();
 		var deletedInterest = $(event.target).parents('.collection-item').find('span')[0].innerText;
 		removeInterest(deletedInterest);
-		console.log(interests);
 	});
 
 	// $("#btn-start-shopping").click(function(event){

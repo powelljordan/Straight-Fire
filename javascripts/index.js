@@ -108,9 +108,9 @@ $(function() {
 	var children = [john, david];
 	var firstItem = true;
 	var offset;
-	var test = function(){
-		console.log("gets called");
-	};
+	// var test = function(){
+	// 	console.log("gets called");
+	// };
 
 
 	/**
@@ -196,7 +196,6 @@ $(function() {
 
 
 			$(".profile").click(function(event){
-		// console.log(event.target);
 				if (event.target.classList[0] === "btn") return;
 				var profile = event.target.parentElement;
 				if (profile.classList[0] !== 'profile') {
@@ -268,7 +267,6 @@ $(function() {
 		});
 
 		$(".brightness").click(function(event){
-			console.log($(event.target));
 			if(selectedImage){
 				selectedImage.css("background-color", "#ffffff");
 				selectedImage.css("border-color", "#ffffff");
@@ -279,9 +277,7 @@ $(function() {
 			$(event.target).css("border-width", "2px");
 			$(event.target).css("border-color", "#b3e5fc");
 			$(event.target).css("opacity", "1");
-			console.log($("#file-name"));
 			$("#file-name").val($(this).attr("value"));
-			console.log($(this).attr("value"));
 		});
 	});
 
@@ -291,9 +287,7 @@ $(function() {
 	});
 
 	$("#btn-open-file").click(function(){
-		console.log("soething");
 		if(selectedImage){
-			console.log($("#file-path"));
 			$("#file-path").val(selectedImage.attr("value")+".png");
 		}
 		
@@ -363,7 +357,6 @@ $(function() {
 	};
 
 	findChild = function(child_id) {
-		console.log(children, 'CHIDREN');
 		var index = -1;
 		for (var i = 0; i < children.length; i++) {
 			if (children[i].id == child_id) {
@@ -375,7 +368,6 @@ $(function() {
 	}
 
 	var addChildBack = function() {
-		console.log(deletedChild[0], "DC");
 		if (deletedChild[0]) {
 			childrenDB.child(deletedChild[0].id).set(deletedChild[0]);
 		}
