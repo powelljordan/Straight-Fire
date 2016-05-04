@@ -273,3 +273,7 @@ input:focus {
 .nav-wrapper > .col > .input-field {
 	height: 62px;
 }
+
+.item-card > .card-action{
+	min-height:85px;
+}

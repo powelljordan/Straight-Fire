@@ -18,7 +18,8 @@ $(function() {
 		}
 	    
 	    var img_text = '<div class="card-image"> <img src="'+d.img_src+'"></div>';
-	    var caption_text = '<div class="card-action">' + "<span class='seller'>"+ d.seller + "</span><span class='item-name'>"+d.name+'</span></div>';
+	    var name = (d.name.length > 45) ? d.name.substring(0,42)+"..." : d.name;
+	    var caption_text = '<div class="card-action">' + "<span class='seller'>"+ d.seller + "</span><span class='item-name'>"+name+'</span></div>';
 	    var str = div_text + img_text + caption_text + '</div>';
 		$("#row-"+row_num).append(str);
 		bind_modal("#item-wrapper-"+d.id);
