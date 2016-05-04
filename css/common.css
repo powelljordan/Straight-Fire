@@ -8,24 +8,6 @@
 	height:350px;
 }
 
-/*.caption{
-	text-align:center;
-	pointer-events: none;
-}
-*/
-/*.child-panel-card .thumbnail{
-	pointer-events:none;
-}
-
-.child-card .panel{
-	pointer-events:none;
-}
-
-.child-card .thumbnail {
-    pointer-events: none;
-}*/
-
-
 /* Styling for toy chest modal */
 .toy-section {
     position: relative;
