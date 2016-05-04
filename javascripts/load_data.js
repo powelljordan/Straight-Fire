@@ -744,6 +744,89 @@ $(function() {
 				"walker":true
 				}
 		},
+		{
+			id:19,
+			name: "Goldie Flopsie", 
+			url: "http://www.amazon.com/Aurora-Plush-31117-Goldie-Flopsie/dp/B00124X5YQ/ref=sr_1_6?s=toys-and-games&ie=UTF8&qid=1462322553&sr=1-6&keywords=stuffed+animals",
+			img_src: "../images/stuffed_dog.jpg",
+			item: "goldie",
+			price: 10.02,
+			rating: 4.6,
+			seller: "Amazon",
+			description:"Realistic styling. Wonderful gift item. Fine plush fabric. Soft and cuddly",
+			age:"36mths+",
+			notes:"",
+			reviews:[{
+				summary:"Mom's new puppy",
+				content:"Toys aren't for kids any more. My mother is 86 and has dementia/Alzheimer's. She spends hours talking to her furry little friends and they are a great comfort to her while I'm away at work. The Aurora plush puppies are especially soft, huggable and realistic.",
+				author:"A. Slocum",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"5.0 out of 5 starsBaby pup is 'pure gold.'",
+				content:"I have a photography studio. I bought a huge bear, then a huge golden retriever from your company. When I saw the little pup I couldn't resist. The children that come in for pictures won't set him down. They just love to hold him. Thanks.",
+				author:"Mary H. Dunaway",
+				author_desc:"",
+				rating:5
+			}],
+			tags:{
+				"stuffed animal":true,
+				"stuffed animals":true,
+				"dog":true,
+				"animal":true,
+				"dogs":true,
+				"animals":true,
+				"cuddles":true,
+				"cuddly":true,
+				"soft":true
+				}
+		},
+		{
+			id:20,
+			name: "Sweet and Softer Perky Penguin", 
+			url: "http://www.amazon.com/Aurora-World-Sweet-Softer-Penguin/dp/B00B4WJB26/ref=sr_1_14?s=toys-and-games&ie=UTF8&qid=1462322553&sr=1-14&keywords=stuffed+animals",
+			img_src: "../images/penguin.jpg",
+			item: "perky",
+			price: 10.68,
+			rating: 4.9,
+			seller: "Amazon",
+			description:"9.5\" overall height, standing position. Silky soft two-tone plush that is sweet to the touch. Made with high quality materials and lock washer eyes for safety.",
+			age:"36mths+",
+			notes:"",
+			reviews:[{
+				summary:"Large, fluffy, and adorable",
+				content:"The kids love it. It is quite large but I think it's perfect for snuggling with and carrying around. They play all kinds of penguin games with this one.",
+				author:"D. Lee",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"Penguin",
+				content:"I have a growing collection of plush penguins and this was a great addition. Very cute and soft. I would recommend it.",
+				author:"C-Mix",
+				author_desc:"",
+				rating:5
+			},
+			{
+				summary:"I love it",
+				content:'I bought this for my girlfriend for Valentine\'s day, because she likes penguins a lot. She is telling me to write this review right now -- "this penguin is the softest, roundest, most cuddliest little thing ever. When you move it\'s arms, it makes cute expressions and makes you want to hug it. I love it."',
+				author:"Kimberly Blythe",
+				author_desc:"",
+				rating:5
+			}],
+			tags:{
+				"stuffed animal":true,
+				"stuffed animals":true,
+				"peguins":true,
+				"animal":true,
+				"penguin":true,
+				"animals":true,
+				"cuddles":true,
+				"cuddly":true,
+				"soft":true
+				}
+		},
 	];
 
 	var rootRef = new Firebase("https://toychest.firebaseio.com/");

@@ -183,12 +183,12 @@ $(function() {
 			$("#myModal").data("index", index);
 
 			if ($.inArray(index, selected_child.wishlist) != -1) {
-				// $("#btn-wishlist").prop("disabled",true);
-				$("#btn-wishlist").addClass("z-depth-0");
+				$("#btn-wishlist").text("Remove from wishlist");
+				// $("#btn-wishlist").addClass("z-depth-0");
 				$("#btn-wishlist").addClass("disabled-btn");
 			} else {
-				// $("#btn-wishlist").prop("disabled",false);
-				$("#btn-wishlist").removeClass("z-depth-0");
+				$("#btn-wishlist").text("Add to wishlist");
+				// $("#btn-wishlist").removeClass("z-depth-0");
 				$("#btn-wishlist").removeClass("disabled-btn");
 			}
 
@@ -202,6 +202,7 @@ $(function() {
 	})
 
 	var purchase_state = false;
+	var details_state = false;
 
 	var purchaseConfirm = function() {
 		purchase_state = true;
@@ -232,7 +233,12 @@ $(function() {
 	}
 
 	$("#btn-continue").click(function(event) {
-		// $("#confirm-modal").closeModal();
+		if (details_state) {
+			details_state = false;
+			$("#confirm-modal").closeModal();
+			open($("#modal-buttons").data().url, "_blank");
+			return;
+		}
 		if (!purchase_state) {
 			open($("#modal-buttons").data().url, "_blank");
 			moveToToychest($("#modal-buttons").data("id"));
@@ -245,12 +251,14 @@ $(function() {
 
 	$("#btn-cancel").click(function(event) {
 		$("#confirm-modal").closeModal();
+		details_state = false;
 	});
 
 	var bindReadMoreBtn = function() {
 		$("#btn-read-more").click(function(event) {
 			$("#continue-desc").text('You will be directed to an external page for the full description.');
 			$("#confirm-modal").openModal();
+			details_state = true;
 		});
 	}
 
@@ -261,15 +269,16 @@ $(function() {
 			// Remove from wishlist
 			wishlist.splice(wishlist.indexOf(item_id), 1);
 			rootRef.child('children').child(selected_child.id).child('wishlist').set(wishlist);
-			$("#btn-wishlist").removeClass("z-depth-0");
+			// $("#btn-wishlist").removeClass("z-depth-0");
+			$("#btn-wishlist").text("Add to wishlist");
 			$("#btn-wishlist").removeClass("disabled-btn");
 			Materialize.toast ("Item has been removed from wishlist", 3000);
 		} else {
 			// Add to wishlist
 			wishlist.push(item_id);
 			rootRef.child('children').child(selected_child.id).child('wishlist').set(wishlist);
-			// $("#btn-wishlist").prop("disabled",true);
-			$("#btn-wishlist").addClass("z-depth-0");
+			// $("#btn-wishlist").addClass("z-depth-0");
+			$("#btn-wishlist").text("Remove from wishlist");
 			$("#btn-wishlist").addClass("disabled-btn");
 			Materialize.toast ("Item has been added to wishlist", 3000);
 		}
