@@ -320,8 +320,8 @@ $(function() {
     		child = children[i];
     		if (children[i].id == c_id) {
     			selected_child = child;
-				toychest_index = (child.toyChest == undefined) ? 0 : child.toyChest[child.toyChest.length-1].id;
-				donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
+				toychest_index = (child.toyChest == undefined || child.toyChest.length == 0) ? 0 : child.toyChest[child.toyChest.length-1].id;
+				donated_index = (child.donated == undefined || child.donated.length == 0) ? 0 : child.donated[child.donated.length-1].id;
 				if (!child.toyChest) {
 					selected_child.toyChest = [];
 				}
@@ -383,8 +383,8 @@ $(function() {
 		// If child the selected child, update the page
 		if (child.id == child_id) {
 			selected_child = child;
-			toychest_index = (child.toyChest == undefined) ? 0 : child.toyChest[child.toyChest.length-1].id;
-			donated_index = (child.donated == undefined) ? 0 : child.donated[child.donated.length-1].id;
+			toychest_index = (child.toyChest == undefined || child.toyChest.length == 0) ? 0 : child.toyChest[child.toyChest.length-1].id;
+			donated_index = (child.donated == undefined || child.donated.length == 0) ? 0 : child.donated[child.donated.length-1].id;
 			if (!child.toyChest) {
 				selected_child.toyChest = [];
 			}
