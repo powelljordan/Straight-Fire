@@ -495,7 +495,7 @@ $(function() {
 
 	panda = {
 		name:"Designer",
-		img_src: "../images/panda.jpg",
+		img_src: "../images/panda.JPG",
 		size: "33.0KB"
 	}
 
